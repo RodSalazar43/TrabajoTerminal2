@@ -1,0 +1,68 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="Actions" extends="struts-default">
+        <action name="Revisa" class="Actions.Login">    <!-- Revisa el usuario con el login -->
+            <result name="administrador" type="redirect">
+                <param name="location">exitoso.jsp?id=${id}&amp;tipo=Administrador</param>
+            </result>         
+            <result name="profesor" type="redirect">
+                <param name="location">exitoso.jsp?id=${id}&amp;tipo=Profesor</param>
+            </result>
+            <result name="alumno" type="redirect">
+                <param name="location">exitoso.jsp?id=${id}&amp;tipo=Alumno</param>
+            </result>
+            <result name="none">/index.html</result>
+        </action>
+        
+        <action name="BorraExamen" class="Actions.BorraExamen">                                        <!-- Elimina Examen -->
+            <result name="success" type="redirect">
+                <param name="location">borraExamenExitoso.jsp?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">error.jsp?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="AgregaExamen" class="Actions.AgregaExamen">                                        <!-- Agrega Examen -->
+            <result name="success" type="redirect">
+                <param name="location">agregaExamenExitoso.jsp?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">error.jsp?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="ModificaEjercicio" class="Actions.ModificaEjercicio">                                        <!-- Modifica Ejercicio -->
+            <result name="success" type="redirect">
+                <param name="location">modificaEjercicioExitoso.jsp?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">error.jsp?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="BorraEjercicio" class="Actions.EliminaEjercicio">   <!-- Elimina Ejercicio -->
+            <result name="success" type="redirect">
+                <param name="location">borraEjercicioExitoso.jsp?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">error.jsp?correcto=false</param>
+            </result>
+                
+        </action>
+        
+        <action name="inEjercicio" class="Actions.AgregaEjercicio">             <!-- Agrega Ejercicio -->
+            <result name="success" type="redirect">
+                <param name="location">agregaEjercicioStatus.jsp?correcto=done</param>
+            </result>
+            <result name="error" type="redirect">
+                <param name="location">index.html?nel=${datosJson}</param>
+            </result>
+        </action>
+        
+        
+    </package>
+</struts>
