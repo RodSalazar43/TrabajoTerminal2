@@ -129,6 +129,8 @@ public class AgregarUsuario implements Serializable {
             if(xml.crearXMLRespuestas(nombre)){
                 alum.setRutaXmlrespuestas("xml/Alumno" + nombre + "/respuestas.xml");
             }
+            hibernateSession.save(alum);
+            t.commit();
         }
         
         return SUCCESS;
