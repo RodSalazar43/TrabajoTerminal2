@@ -2,6 +2,9 @@ package Actions.Administrador;
 
 import entitys.HibernateUtil;
 import entitys.Usuario;
+import entitys.Grupo;
+import entitys.Profesor;
+import entitys.Alumno;
 import static Complementos.Operaciones.SUCCESS;
 import java.io.Serializable;
 import org.hibernate.Session;
@@ -23,31 +26,39 @@ public class EliminarUsuario implements Serializable{
         this.id = id;
     }
     
-    public String EliminarUsuario(){
+    public String execute(){
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
         Transaction t = hibernateSession.beginTransaction(); 
 
-        Usuario usuario = (Usuario)hibernateSession.createQuery("from Usuario where idUsuario=" + id);
+        Usuario usuario = (Usuario)hibernateSession.createQuery("from Usuario where idUsuario=" + this.id);
         
         switch(usuario.getTipousuario().getIdTipoUsuario()){
             case 2: //profesor
+                Profesor profe = (Profesor)hibernateSession.createQuery("from Profesor where idUsuario="+ this.id); //Aquí le mando un usuario como parámetro del where
+                
+                Grupo grupo = (Grupo)hibernateSession.createQuery("from Grupo where profesor=" + profe);
+                
+                Profesor profe2 = new Profesor();
+                grupo.setProfesor(profe2);
+                
+                hibernateSession.update(grupo);
+                t.commit();
+                
+                hibernateSession.delete(profe);
+                t.commit();
+                
                 break;
+                
             case 3: //alumno
+                Alumno alum = (Alumno)hibernateSession.load(Alumno.class, this.id);
+                hibernateSession.delete(alum);
+                t.commit();
                 break;
         }
-        
-        //Ahora vamos a borrar el usuario de la tabla de usuarios, el switch anterior fue para borrar el usuario de las otras tablas.
-        //Ahora vamos a checar el tipo de usuario que es, dependiendo de eso borramos de las tablas correspondientes
-        //usuario.
-        //login=(Login) hibernateSession.createQuery("from Login where userName='"+userName+"'AND password='"+password+"'").uniqueResult();
-        
-        /*Usuario usuario = (Usuario)hibernateSession.load(Usuario.class, id);
-        //Para eliminar un usuario, checamos su tipo de usuario, después obtenemos el registro de la tabla dependiendo de su tipo 
-        //y lo buscamos en la tabla de grupos, si está, lo borramos, también debemos de buscar sus registros en los xml's 
-        usuario.getTipousuario().getIdTipoUsuario(); //para
+                
         hibernateSession.delete(usuario);
-        t.commit();*/
+        t.commit();
         return SUCCESS;
     }
     

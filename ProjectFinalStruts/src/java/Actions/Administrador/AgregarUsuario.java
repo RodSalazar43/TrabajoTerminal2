@@ -75,7 +75,7 @@ public class AgregarUsuario implements Serializable {
         this.contrasena = contrasena;
     }
     
-    public String AgregarUsuario(){
+    public String execute(){
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
         Transaction t = hibernateSession.beginTransaction();     
