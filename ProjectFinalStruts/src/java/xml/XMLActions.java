@@ -259,6 +259,66 @@ public class XMLActions {
         return false;
     }
     
+    public boolean crearXMLExamen(String Nombre){
+        String nombreRuta = "xml/Profesor" + Nombre + "/examenes.xml";
+        Element root = new Element("examenes");
+
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+            return false;
+        }
+    }
+    
+    public boolean crearXMLEjercicio(String Nombre){
+        String nombreRuta = "xml/Profesor" + Nombre + "/ejercicios.xml";
+        Element root = new Element("ejercicios");
+
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+            return false;
+        }
+    }
+    
+    public boolean crearXMLPregunta(String Nombre){
+        String nombreRuta = "xml/Profesor" + Nombre + "/preguntas.xml";
+        Element root = new Element("preguntas");
+
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+            return false;
+        }
+    }
+    
+    public boolean crearXMLRespuestas(String Nombre){
+        String nombreRuta = "xml/Alumno" + Nombre + "/respuestas.xml";
+        Element root = new Element("respuestas");
+
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+            return false;
+        }
+    }
+   
     public ArrayList<Ejercicio> eliminaEjercicio(ArrayList<Ejercicio> ejercicios,int numero){
         ejercicios.remove(numero-1);
         return ejercicios;

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import entitys.Tipousuario;
+import xml.XMLActions;
 
 /**
  *
@@ -97,18 +98,37 @@ public class AgregarUsuario implements Serializable {
         
         //En este punto, debo de checar que tipo de usuario es, y agregarlo en su respectiva tabla
         
+        String nombre = this.nombres + this.apellidoPat + this.apellidoMat;
         
-        if(tipousuario == 2){  //Profesor
+        if(this.tipousuario == 2){  //Profesor
+            XMLActions xml = new XMLActions();
             Profesor profe = new Profesor();
             
             profe.setIdUsuario(user.getIdUsuario());
-            //Generar código para crear los xml's correspondientes
-            profe.setRutaXmlejercicios("Aquí irá una ruta");
-            profe.setRutaXmlexamen("Aquí otra ruta");
-            profe.setRutaXmlpreguntas("Y aquí otra ruta");
+            if(xml.crearXMLExamen(nombre)){
+                profe.setRutaXmlexamen("xml/Profesor" + nombre + "/examenes.xml");
+            }
             
+            if(xml.crearXMLPregunta(nombre)){
+                profe.setRutaXmlpreguntas("xml/Profesor" + nombre + "/preguntas.xml");
+            }
+            
+            if(xml.crearXMLEjercicio(nombre)){
+                profe.setRutaXmlejercicios("xml/Profesor" + nombre + "/ejercicios.xml");    
+            }
+
             hibernateSession.save(profe);
             t.commit();
+        }
+        
+        if(this.tipousuario == 3){ //Alumno
+            Alumno alum = new Alumno();
+            XMLActions xml = new XMLActions();
+            
+            alum.setIdUsuario(user.getIdUsuario());
+            if(xml.crearXMLRespuestas(nombre)){
+                alum.setRutaXmlrespuestas("xml/Alumno" + nombre + "/respuestas.xml");
+            }
         }
         
         return SUCCESS;
