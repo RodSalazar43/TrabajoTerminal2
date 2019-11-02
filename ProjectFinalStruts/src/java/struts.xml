@@ -87,6 +87,12 @@
             </result>
         </action>
         
+        <action name="ModificarUsuario" class="Actions.Administrador.ModificarUsuario">             <!-- ModificarUsuario -->
+            <result name="success" type="redirect">
+                <param name="location">Administrador/Administrador.html?correcto=done</param>
+            </result>
+        </action>
+        
         
     </package>
 </struts>
