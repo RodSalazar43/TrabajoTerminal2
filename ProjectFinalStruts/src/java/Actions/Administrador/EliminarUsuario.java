@@ -7,8 +7,11 @@ import entitys.Profesor;
 import entitys.Alumno;
 import static Complementos.Operaciones.SUCCESS;
 import java.io.Serializable;
+import java.util.Iterator;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import java.util.Set;
 
 /**
  *
@@ -35,23 +38,33 @@ public class EliminarUsuario implements Serializable{
         
         switch(usuario.getTipousuario().getIdTipoUsuario()){
             case 2: //profesor
-                Profesor profe = (Profesor)hibernateSession.createQuery("from Profesor where idUsuario="+ this.id); //Aquí le mando un usuario como parámetro del where
                 
-                Grupo grupo = (Grupo)hibernateSession.createQuery("from Grupo where profesor=" + profe);
-                
+                Profesor profe = (Profesor)hibernateSession.createQuery("from Profesor where idUsuario="+ this.id); 
                 Profesor profe2 = new Profesor();
-                grupo.setProfesor(profe2);
                 
-                hibernateSession.update(grupo);
-                t.commit();
+                String hql = "FROM Grupo WHERE Profesor = " + profe;
+                Query query = hibernateSession.createQuery(hql);
+                Iterator results = query.iterate();
+                
+                while(results.hasNext()){
+                    Grupo group = (Grupo)results.next();
+                    group.setProfesor(profe2);
+                    hibernateSession.update(group);
+                    t.commit();
+                }
                 
                 hibernateSession.delete(profe);
                 t.commit();
                 
                 break;
                 
-            case 3: //alumno
+            case 3: //alumno, tengo que borrar el id del set de alumnos.
                 Alumno alum = (Alumno)hibernateSession.load(Alumno.class, this.id);
+                Grupo group = alum.getGrupo();
+                Set set = group.getAlumnos();
+                set.remove(this.id);
+                hibernateSession.update(group);
+                
                 hibernateSession.delete(alum);
                 t.commit();
                 break;
