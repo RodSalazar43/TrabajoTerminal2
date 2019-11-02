@@ -75,6 +75,12 @@
             </result>
         </action>
         
+        <action name="AgregarGrupo" class="Actions.Administrador.AgregarGrupo">             <!-- AgregarGrupo -->
+            <result name="success" type="redirect">
+                <param name="location">Administrador/Administrador.html?correcto=done</param>
+            </result>
+        </action>
+        
         
     </package>
 </struts>
