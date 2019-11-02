@@ -41,7 +41,6 @@ CREATE TABLE  Grupo (
   idGrupo INT NOT NULL AUTO_INCREMENT,
   Nombre VARCHAR(45) NULL,
   Ano INT NULL,
-  Grupocol VARCHAR(45) NULL,
   Turno VARCHAR(45) NULL,
   idProfesor INT NOT NULL,
   PRIMARY KEY (idGrupo),

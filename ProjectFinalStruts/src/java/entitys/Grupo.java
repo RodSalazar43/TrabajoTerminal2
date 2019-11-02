@@ -15,7 +15,6 @@ public class Grupo  implements java.io.Serializable {
      private Profesor profesor;
      private String nombre;
      private Integer ano;
-     private String grupocol;
      private String turno;
      private Set alumnos = new HashSet(0);
 
@@ -26,11 +25,10 @@ public class Grupo  implements java.io.Serializable {
     public Grupo(Profesor profesor) {
         this.profesor = profesor;
     }
-    public Grupo(Profesor profesor, String nombre, Integer ano, String grupocol, String turno, Set alumnos) {
+    public Grupo(Profesor profesor, String nombre, Integer ano, String turno, Set alumnos) {
        this.profesor = profesor;
        this.nombre = nombre;
        this.ano = ano;
-       this.grupocol = grupocol;
        this.turno = turno;
        this.alumnos = alumnos;
     }
@@ -62,13 +60,6 @@ public class Grupo  implements java.io.Serializable {
     
     public void setAno(Integer ano) {
         this.ano = ano;
-    }
-    public String getGrupocol() {
-        return this.grupocol;
-    }
-    
-    public void setGrupocol(String grupocol) {
-        this.grupocol = grupocol;
     }
     public String getTurno() {
         return this.turno;

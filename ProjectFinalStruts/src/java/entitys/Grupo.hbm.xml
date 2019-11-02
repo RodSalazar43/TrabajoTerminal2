@@ -17,9 +17,6 @@
         <property name="ano" type="java.lang.Integer">
             <column name="Ano" />
         </property>
-        <property name="grupocol" type="string">
-            <column name="Grupocol" length="45" />
-        </property>
         <property name="turno" type="string">
             <column name="Turno" length="45" />
         </property>
