@@ -4,6 +4,7 @@ import entitys.Usuario;
 import entitys.Profesor;
 import entitys.Alumno;
 import static Complementos.Operaciones.*;
+import entitys.Grupo;
 import entitys.HibernateUtil;
 import java.io.Serializable;
 import org.hibernate.Session;
@@ -126,9 +127,14 @@ public class AgregarUsuario implements Serializable {
             XMLActions xml = new XMLActions();
             
             alum.setIdUsuario(user.getIdUsuario());
+            
+            Grupo grupo = new Grupo();
+            alum.setGrupo(grupo);
+            
             if(xml.crearXMLRespuestas(nombre)){
                 alum.setRutaXmlrespuestas("xml/Alumno" + nombre + "/respuestas.xml");
             }
+            
             hibernateSession.save(alum);
             t.commit();
         }
