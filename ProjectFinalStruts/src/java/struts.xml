@@ -99,6 +99,11 @@
             </result>
         </action>
         
+        <action name="AsignarContrasenaAGrupo" class="Actions.Profesor.AsignarContrasenaAGrupo">             <!-- AsignarContrasenaAGrupo -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=done</param>
+            </result>
+        </action>
         
     </package>
 </struts>
