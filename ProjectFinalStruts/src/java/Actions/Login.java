@@ -4,12 +4,15 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import entitys.Usuario;
 import entitys.Tipousuario;
+import java.util.Map;
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Login extends ActionSupport {
+public class Login extends ActionSupport implements SessionAware{
     private final String PROFESOR="profesor";
     private final String ALUMNO="alumno";
     private final String ADMINISTRADOR="administrador";
@@ -18,6 +21,18 @@ public class Login extends ActionSupport {
     private Usuario dato;
     private Tipousuario tipo;
 
+    //Para añadir a la sesión
+    private SessionMap<String, Object> sessionMap;
+
+    public SessionMap<String, Object> getSessionMap() {
+        return sessionMap;
+    }
+    
+    @Override
+    public void setSession(Map<String, Object> map) {
+        sessionMap = (SessionMap<String, Object>) map;
+    }
+    
     public int getId() {
         return id;
     }
@@ -75,6 +90,7 @@ public class Login extends ActionSupport {
             dato = (Usuario) query.uniqueResult();  //obtengo ese usuario que obtuve
             id = dato.getIdUsuario();
             tipo = dato.getTipousuario();           //otengo el tipo de usuario            
+            sessionMap.put("idUsuario", id);        //Para agregar el usuario a la sesión
             return true;
 
         } else {

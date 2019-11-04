@@ -105,5 +105,11 @@
             </result>
         </action>
         
+        <action name="Logout" class="Actions.Logout">    <!-- Logout -->
+            <result name="logout" type="redirect">
+                <param name="location">index.html</param>
+            </result>         
+        </action>
+        
     </package>
 </struts>
