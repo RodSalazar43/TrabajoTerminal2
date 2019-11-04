@@ -16,12 +16,20 @@ public class Grupo  implements java.io.Serializable {
      private String nombre;
      private Integer ano;
      private String turno;
+     private String RutaXMLAsignados;
      private Set alumnos = new HashSet(0);
 
     public Grupo() {
     }
 
-	
+    public String getRutaXMLAsignados() {
+        return RutaXMLAsignados;
+    }
+
+    public void setRutaXMLAsignados(String RutaXMLAsignados) {
+        this.RutaXMLAsignados = RutaXMLAsignados;
+    }
+
     public Grupo(Profesor profesor) {
         this.profesor = profesor;
     }

@@ -9,6 +9,7 @@ import entitys.HibernateUtil;
 import java.io.Serializable;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import xml.XMLActions;
 
 /**
  *
@@ -70,6 +71,12 @@ public class AgregarGrupo implements Serializable{
         
         Set alumnos = new HashSet(0);
         grupo.setAlumnos(alumnos);
+        
+        XMLActions xml = new XMLActions();
+        
+        if(xml.crearXMLAsignado(nombre)){
+            grupo.setRutaXMLAsignados("xml/Grupo" + nombre + "/asignados.xml");
+        }
         
         hibernateSession.save(grupo);
         t.commit();

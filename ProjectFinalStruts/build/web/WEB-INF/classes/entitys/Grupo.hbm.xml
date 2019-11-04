@@ -20,6 +20,9 @@
         <property name="turno" type="string">
             <column name="Turno" length="45" />
         </property>
+        <property name="RutaXMLAsignados" type="string">
+            <column name="RutaXMLAsignados" length="45" />
+        </property>
         <set name="alumnos" table="alumno" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idGrupo" not-null="true" />

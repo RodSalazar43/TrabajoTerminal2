@@ -42,6 +42,7 @@ CREATE TABLE  Grupo (
   Nombre VARCHAR(45) NULL,
   Ano INT NULL,
   Turno VARCHAR(45) NULL,
+  RutaXMLAsignados VARCHAR(45) NULL,
   idProfesor INT NOT NULL,
   PRIMARY KEY (idGrupo),
   INDEX fk_Grupo_Profesor1_idx (idProfesor ASC),

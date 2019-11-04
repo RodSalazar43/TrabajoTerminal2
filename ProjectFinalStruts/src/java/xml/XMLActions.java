@@ -274,6 +274,21 @@ public class XMLActions {
         }
     }
     
+    public boolean crearXMLAsignado(String Nombre){
+        String nombreRuta = "xml/Grupo" + Nombre + "/asignados.xml";
+        Element root = new Element("asignados");
+
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+            return false;
+        }
+    }
+    
     public boolean crearXMLEjercicio(String Nombre){
         String nombreRuta = "xml/Profesor" + Nombre + "/ejercicios.xml";
         Element root = new Element("ejercicios");
