@@ -19,6 +19,7 @@ public class Profesor  implements java.io.Serializable {
      private Set grupos = new HashSet(0);
 
     public Profesor() {
+        this.idUsuario = 0;
     }
 
 	

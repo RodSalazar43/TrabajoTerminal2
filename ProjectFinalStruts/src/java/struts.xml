@@ -118,5 +118,40 @@
             </result>         
         </action>
         
+        <action name="BuscarUnUsuario" class="Consultas.BuscarUnUsuario">    <!-- Buscar un usuario -->
+            <result name="SUCCESS" type="redirect">
+                <param name="location">index.html</param>
+            </result>         
+        </action>
+        
+        <action name="BuscarTodosLosGrupos" class="Consultas.BuscarTodosLosGrupos">    <!-- Buscar Todos Los Grupos -->
+            <result name="SUCCESS" type="redirect">
+                <param name="location">index.html</param>
+            </result>         
+        </action>
+        
+        <action name="BuscarTodosLosUsuarios" class="Consultas.BuscarTodosLosUsuarios">    <!-- Buscar Todos Los usuarios -->
+            <result name="SUCCESS" type="redirect">
+                <param name="location">index.html</param>
+            </result>         
+        </action>
+        
+        <action name="BuscarAlumnosSinGrupo" class="Consultas.BuscarAlumnosSinGrupo">    <!-- Buscar alumno sin grupo -->
+            <result name="SUCCESS" type="redirect">
+                <param name="location">index.html</param>
+            </result>         
+        </action>
+        
+        <action name="BuscarTodosLosProfesores" class="Consultas.BuscarTodosLosProfesores">    <!-- Buscar Todos Los profesores -->
+            <result name="SUCCESS" type="redirect">
+                <param name="location">index.html</param>
+            </result>         
+        </action>
+        
+        <action name="BuscarGruposSinProfesor" class="Consultas.BuscarGruposSinProfesor">    <!-- Buscar Grupos Sin Profesor -->
+            <result name="SUCCESS" type="redirect">
+                <param name="location">index.html</param>
+            </result>         
+        </action>
     </package>
 </struts>

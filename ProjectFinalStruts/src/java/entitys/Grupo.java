@@ -20,6 +20,7 @@ public class Grupo  implements java.io.Serializable {
      private Set alumnos = new HashSet(0);
 
     public Grupo() {
+        this.idGrupo = 0;
     }
 
     public String getRutaXMLAsignados() {
