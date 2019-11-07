@@ -9,7 +9,7 @@
     <property name="hibernate.connection.password">rodo</property>
     <property name="hibernate.connection.pool_size">10</property>
     <mapping resource="entitys/Usuario.hbm.xml"/>
-    <mapping resource="entitys/Tipousuario.hbm.xml"/>
+    <mapping resource="entitys/Tipo.hbm.xml"/>
     <mapping resource="entitys/Grupo.hbm.xml"/>
     <mapping resource="entitys/Profesor.hbm.xml"/>
     <mapping resource="entitys/Alumno.hbm.xml"/>

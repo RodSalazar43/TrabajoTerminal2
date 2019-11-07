@@ -1,5 +1,5 @@
 package entitys;
-// Generated 25/10/2019 05:16:54 AM by Hibernate Tools 4.3.1
+// Generated 6/11/2019 10:35:44 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -19,7 +19,6 @@ public class Profesor  implements java.io.Serializable {
      private Set grupos = new HashSet(0);
 
     public Profesor() {
-        this.idUsuario = 0;
     }
 
 	

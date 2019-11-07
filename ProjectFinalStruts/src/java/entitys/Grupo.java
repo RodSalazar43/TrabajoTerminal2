@@ -1,5 +1,5 @@
 package entitys;
-// Generated 25/10/2019 05:16:54 AM by Hibernate Tools 4.3.1
+// Generated 6/11/2019 10:35:44 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,29 +16,22 @@ public class Grupo  implements java.io.Serializable {
      private String nombre;
      private Integer ano;
      private String turno;
-     private String RutaXMLAsignados;
+     private String rutaXmlasignados;
      private Set alumnos = new HashSet(0);
 
     public Grupo() {
-        this.idGrupo = 0;
     }
 
-    public String getRutaXMLAsignados() {
-        return RutaXMLAsignados;
-    }
-
-    public void setRutaXMLAsignados(String RutaXMLAsignados) {
-        this.RutaXMLAsignados = RutaXMLAsignados;
-    }
-
+	
     public Grupo(Profesor profesor) {
         this.profesor = profesor;
     }
-    public Grupo(Profesor profesor, String nombre, Integer ano, String turno, Set alumnos) {
+    public Grupo(Profesor profesor, String nombre, Integer ano, String turno, String rutaXmlasignados, Set alumnos) {
        this.profesor = profesor;
        this.nombre = nombre;
        this.ano = ano;
        this.turno = turno;
+       this.rutaXmlasignados = rutaXmlasignados;
        this.alumnos = alumnos;
     }
    
@@ -76,6 +69,13 @@ public class Grupo  implements java.io.Serializable {
     
     public void setTurno(String turno) {
         this.turno = turno;
+    }
+    public String getRutaXmlasignados() {
+        return this.rutaXmlasignados;
+    }
+    
+    public void setRutaXmlasignados(String rutaXmlasignados) {
+        this.rutaXmlasignados = rutaXmlasignados;
     }
     public Set getAlumnos() {
         return this.alumnos;
