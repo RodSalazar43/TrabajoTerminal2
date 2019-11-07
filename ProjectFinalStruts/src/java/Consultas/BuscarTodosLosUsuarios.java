@@ -33,7 +33,7 @@ public class BuscarTodosLosUsuarios {
             Usuario usuario = (Usuario)results.next();
             
             JSONObject innerObj = new JSONObject();
-            innerObj.put("nombre", usuario.getNombres());
+            innerObj.put("nombre", usuario.getNombre());
             
             obj.put(usuario.getIdUsuario(),innerObj);
             raiz.put("id", obj);

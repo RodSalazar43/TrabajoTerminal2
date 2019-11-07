@@ -37,7 +37,7 @@ public class BuscarAlumnosSinGrupo {
             if(idGrupo == 0){
                 Usuario usuario = (Usuario)hibernateSession.load(Usuario.class, alumno.getIdUsuario());
                 JSONObject innerObj = new JSONObject();
-                innerObj.put("nombre", usuario.getNombres());
+                innerObj.put("nombre", usuario.getNombre());
                 obj.put(alumno.getIdUsuario(), innerObj);
                 raiz.put("id", obj);
             }

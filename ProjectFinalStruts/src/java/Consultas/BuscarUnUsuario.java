@@ -35,9 +35,9 @@ public class BuscarUnUsuario {
         JSONObject obj = new JSONObject();
         JSONObject innerObj = new JSONObject();
         
-        innerObj.put("nombre", usuario.getNombres());
-        innerObj.put("apellidoPat", usuario.getApellidoPat());
-        innerObj.put("apellidoMat", usuario.getApellidoMat());
+        innerObj.put("nombre", usuario.getNombre());
+        innerObj.put("apellidoPat", usuario.getApPaterno());
+        innerObj.put("apellidoMat", usuario.getApMat());
         innerObj.put("nombreUsuario", usuario.getNombreUsuario());
         innerObj.put("contrasena", usuario.getContrasena());
         

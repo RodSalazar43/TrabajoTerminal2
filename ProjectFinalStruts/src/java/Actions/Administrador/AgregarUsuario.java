@@ -9,7 +9,7 @@ import entitys.HibernateUtil;
 import java.io.Serializable;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import entitys.Tipousuario;
+import entitys.Tipo;
 import xml.XMLActions;
 
 /**
@@ -84,15 +84,13 @@ public class AgregarUsuario implements Serializable {
         
         user.setIdUsuario(0);
         user.setNombreUsuario(nombreUsuario);
-        user.setNombres(nombres);
-        user.setApellidoPat(apellidoPat);
-        user.setApellidoMat(apellidoMat);
+        user.setNombre(nombres);
+        user.setApPaterno(apellidoPat);
+        user.setApMat(apellidoMat);
         user.setContrasena(contrasena);
         
-        Tipousuario tu = new Tipousuario();
-        tu.setIdTipoUsuario(tipousuario);
-        
-        user.setTipousuario(tu);
+        Tipo tu = (Tipo)hibernateSession.load(Tipo.class, this.tipousuario);
+        user.setTipo(tu);
         
         hibernateSession.save(user);
         t.commit();

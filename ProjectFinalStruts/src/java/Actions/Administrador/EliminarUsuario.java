@@ -36,7 +36,7 @@ public class EliminarUsuario implements Serializable{
 
         Usuario usuario = (Usuario)hibernateSession.createQuery("from Usuario where idUsuario=" + this.id);
         
-        switch(usuario.getTipousuario().getIdTipoUsuario()){
+        switch(usuario.getTipo().getIdTipo()){
             case 2: //profesor
                 
                 Profesor profe = (Profesor)hibernateSession.createQuery("from Profesor where idUsuario="+ this.id); 

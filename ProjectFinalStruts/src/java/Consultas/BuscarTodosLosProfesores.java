@@ -35,7 +35,7 @@ public class BuscarTodosLosProfesores {
             Usuario usuario = (Usuario)hibernateSession.load(Usuario.class, profesor.getIdUsuario());
             
             JSONObject innerObj = new JSONObject();
-            innerObj.put("nombre", usuario.getNombres());
+            innerObj.put("nombre", usuario.getNombre());
             
             obj.put(profesor.getIdUsuario(),innerObj);
             raiz.put("id", obj);
