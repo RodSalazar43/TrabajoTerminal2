@@ -23,6 +23,7 @@ public class BuscarTodosLosProfesores {
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
         Transaction t = hibernateSession.beginTransaction();
         
+        JSONObject raiz = new JSONObject();
         JSONObject obj = new JSONObject();
         
         String hql = "FROM Profesor";
@@ -37,11 +38,12 @@ public class BuscarTodosLosProfesores {
             innerObj.put("nombre", usuario.getNombres());
             
             obj.put(profesor.getIdUsuario(),innerObj);
+            raiz.put("id", obj);
         }
         
         try{
             FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
-            file.write(obj.toJSONString());
+            file.write(raiz.toJSONString());
             file.flush();
             file.close();
         

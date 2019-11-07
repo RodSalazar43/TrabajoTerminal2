@@ -28,6 +28,7 @@ public class BuscarGruposSinProfesor {
         Query query = hibernateSession.createQuery(hql);
         Iterator results = query.iterate();
         
+        JSONObject raiz = new JSONObject();
         JSONObject obj = new JSONObject();
         
         while(results.hasNext()){
@@ -38,12 +39,12 @@ public class BuscarGruposSinProfesor {
                 JSONObject innerObj = new JSONObject();
                 innerObj.put("nombre", grupo.getNombre());
                 obj.put(grupo.getIdGrupo(), innerObj);
+                raiz.put("id", obj);
             }
         }
-        
         try{
             FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
-            file.write(obj.toJSONString());
+            file.write(raiz.toJSONString());
             file.flush();
             file.close();
         

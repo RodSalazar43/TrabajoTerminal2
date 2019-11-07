@@ -31,6 +31,7 @@ public class BuscarUnUsuario {
         
         Usuario usuario = (Usuario)hibernateSession.load(Usuario.class, this.idUsuario);
         
+        JSONObject raiz = new JSONObject();
         JSONObject obj = new JSONObject();
         JSONObject innerObj = new JSONObject();
         
@@ -41,10 +42,11 @@ public class BuscarUnUsuario {
         innerObj.put("contrasena", usuario.getContrasena());
         
         obj.put(usuario.getIdUsuario(), innerObj);
+        raiz.put("id", obj);
 
         try{
             FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
-            file.write(obj.toJSONString());
+            file.write(raiz.toJSONString());
             file.flush();
             file.close();
         

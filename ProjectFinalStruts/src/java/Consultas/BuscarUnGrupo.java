@@ -32,6 +32,7 @@ public class BuscarUnGrupo {
         Grupo grupo = (Grupo)hibernateSession.load(Grupo.class, this.idGrupo);
         
         //Para crear el json
+        JSONObject raiz = new JSONObject();
         JSONObject obj = new JSONObject();
         JSONObject innerObj = new JSONObject();
         
@@ -40,10 +41,11 @@ public class BuscarUnGrupo {
         innerObj.put("Turno", grupo.getTurno());
         
         obj.put(grupo.getIdGrupo(), innerObj);
+        raiz.put("id", obj);
 
         try{
             FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
-            file.write(obj.toJSONString());
+            file.write(raiz.toJSONString());
             file.flush();
             file.close();
         
