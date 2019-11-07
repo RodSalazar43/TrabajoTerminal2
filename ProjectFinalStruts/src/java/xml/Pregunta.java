@@ -4,6 +4,26 @@ import java.io.Serializable;
 
 public class Pregunta implements Serializable{
     String nombre,tipo,indicaciones,opcion1,opcion2,respuesta;
+    String numero;
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
     public Pregunta(){
         
     }

@@ -193,6 +193,31 @@ public class XMLActions {
         return datos;
     }
     
+    public ArrayList<Pregunta> convierte2ArrayListPreguntas(List nodos){
+        ArrayList<Pregunta> datos=new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            //String nombre,tipo,indicaciones,opcion1,opcion2,respuesta; int id;
+            Element preguntas= (Element) nodos.get(i);
+            
+            Pregunta pregunta = new Pregunta();
+            
+            //obtenemos los atributos
+            pregunta.setNombre(preguntas.getAttributeValue("nombre"));
+            pregunta.setNumero(preguntas.getAttributeValue("numero"));
+            pregunta.setTipo(preguntas.getAttributeValue("tipo"));
+            
+            //obtenemos los elementos
+            pregunta.setIndicaciones(preguntas.getChildText("cuestionamiento"));
+            pregunta.setOpcion1(preguntas.getChildText("opcion1"));
+            pregunta.setOpcion2(preguntas.getChildText("opcion2"));
+            pregunta.setRespuesta(preguntas.getChildText("respuesta"));
+            
+            datos.add(pregunta);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
+    
     public List cargarXml() {
         SAXBuilder builder = new SAXBuilder();
         String path = ServletActionContext.getServletContext().getRealPath("/");
@@ -206,6 +231,29 @@ public class XMLActions {
             Element rootNode = document.getRootElement();
             //se obtiene la lista de los hijos
             list = rootNode.getChildren("ejercicio");
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlPreguntas(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            //Creo un documento atraves del archivo
+            Document document = (Document) builder.build(xmlFile);
+            //obtengo la raiz
+            Element rootNode = document.getRootElement();
+            //se obtiene la lista de los hijos
+            list = rootNode.getChildren("pregunta");
             return list;
         } catch (IOException io) {
             System.out.println(io.getMessage());
@@ -259,6 +307,50 @@ public class XMLActions {
         return false;
     }
     
+    public boolean guardarXmlPregunta(ArrayList<Pregunta> lista, String ruta) {
+        Element root = new Element("preguntas");
+        Pregunta pg;
+        
+        for (int i = 0; i < lista.size(); i++) {
+            pg = lista.get(i);
+            Element pregunta = new Element("pregunta");
+            
+            //establecemos atributos
+            pregunta.setAttribute("numero", pg.getNumero());
+            pregunta.setAttribute("nombre", pg.getNombre());
+            pregunta.setAttribute("tipo", pg.getTipo());
+            
+            //establecemos elementos
+            Element cuestionamiento = new Element("cuestionamiento");
+            cuestionamiento.setText(pg.getIndicaciones());
+            
+            Element opcion1 = new Element("opcion1");
+            opcion1.setText(pg.getOpcion1());
+            
+            Element opcion2 = new Element("opcion2");
+            opcion2.setText(pg.getOpcion2());
+
+            Element respuesta = new Element("respuesta");
+            respuesta.setText(pg.getRespuesta());
+            
+            pregunta.addContent(cuestionamiento);
+            pregunta.addContent(opcion1);
+            pregunta.addContent(opcion2);
+            pregunta.addContent(respuesta);
+            
+            root.addContent(pregunta);
+        }
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(ruta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return false;
+    }
+        
     public boolean crearXMLExamen(String Nombre){
         String nombreRuta = "xml/Profesor" + Nombre + "/examenes.xml";
         Element root = new Element("examenes");
