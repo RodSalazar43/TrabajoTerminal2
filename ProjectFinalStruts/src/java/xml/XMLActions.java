@@ -218,11 +218,9 @@ public class XMLActions {
         return datos;
     }
     
-    public List cargarXml() {
+    public List cargarXml(String ruta) {
         SAXBuilder builder = new SAXBuilder();
-        String path = ServletActionContext.getServletContext().getRealPath("/");
-        System.out.println(path);
-        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath("xml/ejercicios.xml"));
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
         List list = null;
         try {
             //Creo un documento atraves del archivo
@@ -266,7 +264,7 @@ public class XMLActions {
         }
     }
 
-    public boolean guardarXml(ArrayList<Ejercicio> lista) {
+    public boolean guardarXml(ArrayList<Ejercicio> lista, String ruta) {
         Element root = new Element("ejercicios");
         Ejercicio ej;
         for (int i = 0; i < lista.size(); i++) {
@@ -297,7 +295,7 @@ public class XMLActions {
         }
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
-            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath("xml/ejercicios.xml")));
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(ruta)));
             System.out.println("Archivo xml, guardado");
             return true;
             //C:\Users\German Pons\Documents\NetBeansProjects\ProyectFinal\build\web\xml
