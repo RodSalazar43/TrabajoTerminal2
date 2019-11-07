@@ -153,5 +153,23 @@
                 <param name="location">index.html</param>
             </result>         
         </action>
+        
+        <action name="AgregarPregunta" class="Actions.Profesor.AgregarPregunta">             <!-- Agregar pregunta -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="EliminarPregunta" class="Actions.Profesor.EliminarPregunta">             <!-- Eliminar pregunta -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
     </package>
 </struts>
