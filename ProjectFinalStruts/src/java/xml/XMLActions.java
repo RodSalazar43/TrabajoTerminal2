@@ -442,6 +442,13 @@ public class XMLActions {
         ejercicios.add(num-1, ejercicioModificado);
         return ejercicios;
     }
+    
+    public ArrayList<Pregunta> modificaPregunta(ArrayList<Pregunta> preguntas, String numero, Pregunta preguntaModificada) {
+        int num=Integer.parseInt(numero);
+        preguntas.remove(num-1);
+        preguntas.add(num-1, preguntaModificada);
+        return preguntas;
+    }
 
     public ArrayList<Examen> eliminaExamen(ArrayList<Examen> examenes, String numero){        
         int num=Integer.parseInt(numero);

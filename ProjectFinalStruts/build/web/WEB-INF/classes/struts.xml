@@ -171,5 +171,14 @@
                 <param name="location">Profesor/Profesor.html?correcto=false</param>
             </result>
         </action>
+        
+        <action name="ModificarPregunta" class="Actions.Profesor.ModificarPregunta">             <!-- Modificar pregunta -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
     </package>
 </struts>
