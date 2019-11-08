@@ -412,6 +412,13 @@ public class XMLActions {
     public boolean crearXMLRespuestas(String Nombre){
         String nombreRuta = "xml/Alumno" + Nombre + "/respuestas.xml";
         Element root = new Element("respuestas");
+        Element examenes = new Element("examenes");
+        Element ejercicios = new Element("ejercicios");
+        Element preguntas = new Element("preguntas");
+        
+        root.addContent(examenes);
+        root.addContent(ejercicios);
+        root.addContent(preguntas);
 
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
