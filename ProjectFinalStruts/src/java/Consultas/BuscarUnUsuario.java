@@ -7,7 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.json.simple.JSONObject;
 import static Complementos.Operaciones.*;
+import Complementos.cifrarContrasenas;
 import entitys.Usuario;
+import java.io.UnsupportedEncodingException;
 
 /**
  *
@@ -24,10 +26,11 @@ public class BuscarUnUsuario {
         this.idUsuario = idUsuario;
     }
     
-    public String execute(){
+    public String execute() throws UnsupportedEncodingException{
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
         Transaction t = hibernateSession.beginTransaction();
+        cifrarContrasenas c = new cifrarContrasenas();
         
         Usuario usuario = (Usuario)hibernateSession.load(Usuario.class, this.idUsuario);
         
@@ -39,7 +42,9 @@ public class BuscarUnUsuario {
         innerObj.put("apellidoPat", usuario.getApPaterno());
         innerObj.put("apellidoMat", usuario.getApMat());
         innerObj.put("nombreUsuario", usuario.getNombreUsuario());
-        innerObj.put("contrasena", usuario.getContrasena());
+        
+        String contrasena = c.desencriptar(usuario.getContrasena());
+        innerObj.put("contrasena", contrasena);
         
         obj.put(usuario.getIdUsuario(), innerObj);
         raiz.put("id", obj);

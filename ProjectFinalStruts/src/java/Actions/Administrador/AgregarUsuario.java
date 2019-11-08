@@ -11,6 +11,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import entitys.Tipo;
 import xml.XMLActions;
+import Complementos.cifrarContrasenas;
+import java.io.UnsupportedEncodingException;
 
 /**
  *
@@ -76,10 +78,13 @@ public class AgregarUsuario implements Serializable {
         this.contrasena = contrasena;
     }
     
-    public String execute(){
+    public String execute() throws UnsupportedEncodingException{
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
-        Transaction t = hibernateSession.beginTransaction();     
+        Transaction t = hibernateSession.beginTransaction();   
+        
+        cifrarContrasenas c = new cifrarContrasenas();
+        
         Usuario user = new Usuario();
         
         user.setIdUsuario(0);
@@ -87,7 +92,7 @@ public class AgregarUsuario implements Serializable {
         user.setNombre(nombres);
         user.setApPaterno(apellidoPat);
         user.setApMat(apellidoMat);
-        user.setContrasena(contrasena);
+        user.setContrasena(c.encriptar(this.contrasena));
         
         Tipo tu = (Tipo)hibernateSession.load(Tipo.class, this.tipousuario);
         user.setTipo(tu);
