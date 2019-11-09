@@ -474,7 +474,22 @@ public class XMLActions {
     public boolean crearXMLExamen(String Nombre){
         String nombreRuta = "xml/Profesor" + Nombre + "/examenes.xml";
         Element root = new Element("examenes");
-
+        
+        Element examen = new Element("examen");
+        
+        examen.setAttribute("fecha", "prueba");
+        examen.setAttribute("nombre", "prueba");
+        
+        Element ejercicio = new Element("ejercicio");
+        ejercicio.setAttribute("numero", "0");
+        
+        Element pregunta = new Element("Pregunta");
+        pregunta.setAttribute("numero", "0");
+        
+        examen.addContent(ejercicio);
+        examen.addContent(pregunta);
+        
+        root.addContent(examen);
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
             outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
@@ -502,8 +517,22 @@ public class XMLActions {
     }
     
     public boolean crearXMLEjercicio(String Nombre){
+        //private String nombre,tipo,pregunta,resultado,numero,opcion1,opcion2,opcion3,opcion4;
         String nombreRuta = "xml/Profesor" + Nombre + "/ejercicios.xml";
         Element root = new Element("ejercicios");
+        
+        Element ejercicio = new Element("ejercicio");
+        
+        ejercicio.setAttribute("numero", "prueba");
+        ejercicio.setAttribute("nombre", "prueba");
+        ejercicio.setAttribute("tipo", "prueba");
+        
+        Element indicaciones = new Element("indicaciones");
+        Element opcion1 = new Element("opcion1");
+        Element opcion2 = new Element("opcion2");
+        Element opcion3 = new Element("opcion3");
+        Element opcion4 = new Element("opcion4");
+        
 
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
@@ -516,9 +545,26 @@ public class XMLActions {
         }
     }
     
-    public boolean crearXMLPregunta(String Nombre){
+    public boolean crearXMLPregunta(String Nombre){        
         String nombreRuta = "xml/Profesor" + Nombre + "/preguntas.xml";
         Element root = new Element("preguntas");
+        
+        Element pregunta = new Element("pregunta");
+        pregunta.setAttribute("numero", "prueba");
+        pregunta.setAttribute("nombre", "prueba");
+        pregunta.setAttribute("tipo", "prueba");
+        
+        Element cuestionamiento = new Element("cuestionamiento");
+        Element opcion1 = new Element("opcion1");
+        Element opcion2 = new Element("opcion2");
+        Element respuesta = new Element("respuesta");
+        
+        pregunta.addContent(cuestionamiento);
+        pregunta.addContent(opcion1);
+        pregunta.addContent(opcion2);
+        pregunta.addContent(respuesta);
+        
+        root.addContent(pregunta);
 
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {

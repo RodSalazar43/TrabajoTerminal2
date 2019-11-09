@@ -16,7 +16,7 @@ import xml.XMLActions;
  *
  * @author RodrigoSalazar
  */
-public class RegistrarRespuestasEjercicios {
+public class RegistrarRespuestaEjercicios {
     private int idAlumno;
     private int numeroEjercicio;
     private String respuesta;
