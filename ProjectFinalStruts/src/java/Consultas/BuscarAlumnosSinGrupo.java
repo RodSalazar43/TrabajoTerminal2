@@ -29,7 +29,7 @@ public class BuscarAlumnosSinGrupo {
         
         JSONObject raiz = new JSONObject();
         JSONObject obj = new JSONObject();
-        
+        int contador=0;
         while(results.hasNext()){
             Alumno alumno = (Alumno)results.next();
             int idGrupo = alumno.getGrupo().getIdGrupo();
@@ -38,12 +38,16 @@ public class BuscarAlumnosSinGrupo {
                 Usuario usuario = (Usuario)hibernateSession.load(Usuario.class, alumno.getIdUsuario());
                 JSONObject innerObj = new JSONObject();
                 innerObj.put("nombre", usuario.getNombre());
-                obj.put(alumno.getIdUsuario(), innerObj);
-                raiz.put("id", obj);
+                innerObj.put("id", usuario.getIdUsuario());
+                innerObj.put("apPat",usuario.getApPaterno());
+                innerObj.put("apMat",usuario.getApMat());
+                obj.put(contador, innerObj);
+                raiz.put("idAlumno", obj);
+                contador++;
             }
         }
         try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
+            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsultaAlumnoSinGrupo.json");
             file.write(raiz.toJSONString());
             file.flush();
             file.close();

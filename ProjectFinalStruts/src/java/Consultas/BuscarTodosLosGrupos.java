@@ -28,18 +28,19 @@ public class BuscarTodosLosGrupos {
         String hql = "FROM Grupo";
         Query query = hibernateSession.createQuery(hql);
         Iterator results = query.iterate();        
-        
+        int contador=0;
         while(results.hasNext()){
             Grupo grupo = (Grupo)results.next();
             
             JSONObject innerObj = new JSONObject();
             innerObj.put("nombre", grupo.getNombre());
-            
-            obj.put(grupo.getIdGrupo(),innerObj);
-            raiz.put("id", obj);
+            innerObj.put("id", grupo.getIdGrupo());
+            obj.put(contador,innerObj);
+            raiz.put("idGrupo", obj);
+            contador++;
         }
         try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
+            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsultaGrupos.json");
             file.write(raiz.toJSONString());
             file.flush();
             file.close();

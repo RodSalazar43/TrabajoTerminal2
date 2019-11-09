@@ -30,7 +30,7 @@ public class BuscarGruposSinProfesor {
         
         JSONObject raiz = new JSONObject();
         JSONObject obj = new JSONObject();
-        
+        int contador=0;
         while(results.hasNext()){
             Grupo grupo = (Grupo)results.next();
             int idProfesor = grupo.getProfesor().getIdUsuario();
@@ -38,12 +38,14 @@ public class BuscarGruposSinProfesor {
             if(idProfesor == 0){
                 JSONObject innerObj = new JSONObject();
                 innerObj.put("nombre", grupo.getNombre());
-                obj.put(grupo.getIdGrupo(), innerObj);
-                raiz.put("id", obj);
+                innerObj.put("id",grupo.getIdGrupo());
+                obj.put(contador, innerObj);
+                raiz.put("idGrupoSinProfesor", obj);
+                contador++;
             }
         }
         try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
+            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsultaGrupoSinProfesor.json");
             file.write(raiz.toJSONString());
             file.flush();
             file.close();
