@@ -28,19 +28,23 @@ public class BuscarTodosLosUsuarios {
         String hql = "FROM Usuario";
         Query query = hibernateSession.createQuery(hql);
         Iterator results = query.iterate();        
-        
+        int contador=0;
         while(results.hasNext()){
             Usuario usuario = (Usuario)results.next();
             
             JSONObject innerObj = new JSONObject();
             innerObj.put("nombre", usuario.getNombre());
-            
-            obj.put(usuario.getIdUsuario(),innerObj);
-            raiz.put("id", obj);
+            innerObj.put("id",usuario.getIdUsuario());
+            innerObj.put("apPat",usuario.getApPaterno());
+            innerObj.put("apMat", usuario.getApMat());
+            innerObj.put("username", usuario.getNombreUsuario());
+            obj.put(contador,innerObj);
+            raiz.put("idUsuario", obj);
+            contador++;
         }
         
         try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
+            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsultaUsuarios.json");
             file.write(raiz.toJSONString());
             file.flush();
             file.close();

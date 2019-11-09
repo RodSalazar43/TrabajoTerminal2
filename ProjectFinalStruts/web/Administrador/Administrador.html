@@ -23,35 +23,13 @@
     <hr>
     <div id="navega"></div>
     <br>
-    <div id="text">
-            <h1>Leer de un json</h1>
-            <button onclick="loadDoc()">Carga json</button>
-        </div>
-        <script>
-            function loadDoc() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    myFunction(this);
-                }
-                };
-                xhttp.open("GET", "listadoPaises.json", true);
-                xhttp.send();
-            }
-            function myFunction(json) {
-                var jsonDoc = json.response;
-                var json= JSON.parse(jsonDoc);
-                console.log(json)
-                var paises=json.listadoPaises;
-                console.log(paises)
-                
-                
-                var pais=paises.pais[0];
-                console.log(pais);
-                pais=paises.pais[1].textoCapital;
-                console.log(pais);
-            }
-            
-        </script>
+    <div id="opcionBusqueda"></div>
+    <br>
+    <div id="tabla1"></div>
+    <br>
+    <div id="tabla2"></div>
+    <br>
+    <div id="tabla3"></div>
+    <br>
   <script type="text/javascript" src="js_react/administrador.js"></script></body>
 </html>
