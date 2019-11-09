@@ -35,6 +35,9 @@ public class BuscarTodosLosGrupos {
             JSONObject innerObj = new JSONObject();
             innerObj.put("nombre", grupo.getNombre());
             innerObj.put("id", grupo.getIdGrupo());
+            innerObj.put("ano", grupo.getAno());
+            innerObj.put("turno", grupo.getTurno());
+                    
             obj.put(contador,innerObj);
             raiz.put("idGrupo", obj);
             contador++;

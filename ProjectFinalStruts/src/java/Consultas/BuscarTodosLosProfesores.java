@@ -37,6 +37,9 @@ public class BuscarTodosLosProfesores {
             JSONObject innerObj = new JSONObject();
             innerObj.put("nombre", usuario.getNombre());
             innerObj.put("id", profesor.getIdUsuario());
+            innerObj.put("apMat", usuario.getApMat());
+            innerObj.put("apPat", usuario.getApPaterno());
+            innerObj.put("", usuario.getNombreUsuario());
             obj.put(contador,innerObj);
             raiz.put("idProfesores", obj);
             contador++;
