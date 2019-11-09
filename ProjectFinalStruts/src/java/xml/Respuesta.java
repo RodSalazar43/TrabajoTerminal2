@@ -5,21 +5,12 @@ package xml;
  * @author RodrigoSalazar
  */
 public class Respuesta {
-    int numeroExamen;
     int numeroEjercicio;
     int numeroPregunta;
     String respuestaEjercicio;
     String respuestaPregunta;
 
     public Respuesta() {
-    }
-
-    public int getNumeroExamen() {
-        return numeroExamen;
-    }
-
-    public void setNumeroExamen(int numeroExamen) {
-        this.numeroExamen = numeroExamen;
     }
 
     public int getNumeroEjercicio() {
