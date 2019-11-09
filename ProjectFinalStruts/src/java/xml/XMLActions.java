@@ -218,6 +218,46 @@ public class XMLActions {
         return datos;
     }
     
+    public ArrayList<RespuestaPregunta> convierte2ArrayListRespuestasPreguntas(List nodos){
+        ArrayList<RespuestaPregunta> datos = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            //String nombre,tipo,indicaciones,opcion1,opcion2,respuesta; int id;
+            Element respuestas = (Element) nodos.get(i);
+            
+            RespuestaPregunta respuesta = new RespuestaPregunta();
+            
+            //Obtenemos los atributos
+            respuesta.setNumeroPregunta(Integer.parseInt(respuestas.getAttributeValue("numero")));
+            
+            //Obtenemos la respuesta
+            respuesta.setRespuestaPregunta(respuestas.getText());
+            
+            datos.add(respuesta);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
+    
+    public ArrayList<RespuestaEjercicio> convierte2ArrayListRespuestasEjercicios(List nodos){
+        ArrayList<RespuestaEjercicio> datos = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            //String nombre,tipo,indicaciones,opcion1,opcion2,respuesta; int id;
+            Element respuestas = (Element) nodos.get(i);
+            
+            RespuestaEjercicio respuesta = new RespuestaEjercicio();
+            
+            //Obtenemos los atributos
+            respuesta.setNumeroEjercicio(Integer.parseInt(respuestas.getAttributeValue("numero")));
+            
+            //Obtenemos la respuesta
+            respuesta.setRespuestaEjercicio(respuestas.getText());
+            
+            datos.add(respuesta);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
+    
     public List cargarXml(String ruta) {
         SAXBuilder builder = new SAXBuilder();
         File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
@@ -252,6 +292,48 @@ public class XMLActions {
             Element rootNode = document.getRootElement();
             //se obtiene la lista de los hijos
             list = rootNode.getChildren("pregunta");
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlRespuestasEjercicios(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element ejercicios = rootNode.getChild("ejercicios");
+            list = ejercicios.getChildren();
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlRespuestasPreguntas(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element preguntas = rootNode.getChild("preguntas");
+            list = preguntas.getChildren();
             return list;
         } catch (IOException io) {
             System.out.println(io.getMessage());
@@ -348,7 +430,47 @@ public class XMLActions {
         }
         return false;
     }
+
+    public boolean guardarXmlRespuestas(ArrayList<RespuestaPregunta> listaPreguntas, ArrayList<RespuestaEjercicio> listaEjercicios,String ruta) {
+        Element root = new Element("respuestas");
+        Element preguntas = new Element("preguntas");
+        Element ejercicios = new Element("ejercicios");
         
+        RespuestaPregunta rp;
+        RespuestaEjercicio re;
+        
+        for(int i = 0; i < listaEjercicios.size(); i++){
+           re = listaEjercicios.get(i);
+           Element respuestaEjercicio = new Element("ejercicio");
+           
+           respuestaEjercicio.setAttribute("numero", Integer.toString(re.getNumeroEjercicio()));
+           respuestaEjercicio.setText(re.getRespuestaEjercicio());
+           ejercicios.addContent(respuestaEjercicio);
+        }
+        
+        for(int i = 0; i < listaPreguntas.size(); i++){
+            rp = listaPreguntas.get(i);
+            Element respuestaPregunta = new Element("pregunta");
+            
+            respuestaPregunta.setAttribute("numero", Integer.toString(rp.getNumeroPregunta()));
+            respuestaPregunta.setText(rp.getRespuestaPregunta());
+            preguntas.addContent(respuestaPregunta);
+        }
+        
+        root.addContent(ejercicios);
+        root.addContent(preguntas);
+        
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(ruta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return false;
+    }
+    
     public boolean crearXMLExamen(String Nombre){
         String nombreRuta = "xml/Profesor" + Nombre + "/examenes.xml";
         Element root = new Element("examenes");

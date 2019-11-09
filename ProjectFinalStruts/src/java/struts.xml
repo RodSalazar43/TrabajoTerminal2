@@ -180,5 +180,23 @@
                 <param name="location">Profesor/Profesor.html?correcto=false</param>
             </result>
         </action>
+        
+        <action name="RegistrarRespuestaPregunta" class="Actions.Alumno.RegistrarRespuestaPregunta">  <!-- Registrar respuesta pregunta -->
+            <result name="success" type="redirect">
+                <param name="location">Alumno/Alumno.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Alumno/Alumno?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="RegistrarRespuestaEjercicio" class="Actions.Alumno.RegistrarRespuestaEjercicio">  <!-- Registrar respuesta ejercicio -->
+            <result name="success" type="redirect">
+                <param name="location">Alumno/Alumno.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Alumno/Alumno?correcto=false</param>
+            </result>
+        </action>
     </package>
 </struts>
