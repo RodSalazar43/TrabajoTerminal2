@@ -37,12 +37,13 @@ public class BuscarUnGrupo {
         JSONObject obj = new JSONObject();
         JSONObject innerObj = new JSONObject();
         
-        innerObj.put("Nombre", grupo.getNombre());
-        innerObj.put("Ano", grupo.getAno());
-        innerObj.put("Turno", grupo.getTurno());
+        innerObj.put("nombre", grupo.getNombre());
+        innerObj.put("ano", grupo.getAno());
+        innerObj.put("turno", grupo.getTurno());
+        innerObj.put("id", grupo.getIdGrupo());
         
-        obj.put(grupo.getIdGrupo(), innerObj);
-        raiz.put("id", obj);
+        obj.put(0, innerObj);
+        raiz.put("idGrupo", obj);
 
         try{
             String hola=ServletActionContext.getServletContext().getRealPath("/json");

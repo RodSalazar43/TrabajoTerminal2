@@ -1,3 +1,4 @@
+    var idGrupoid;
     function buscarGrupo(){
     var tabla="";
     tabla+="<center class='container bg-warning'>"
@@ -39,21 +40,20 @@ function muestraDatos(){
             var dataArray = JSON.parse(this.responseText);
             console.log(this)
             console.log(dataArray)
-            var idUsuario=dataArray.idUsuario;
-            console.log(idUsuario)
-            idUsuarioid=idUsuario[0].id;
-    
+            var idGrupo=dataArray.idGrupo;
+            console.log(idGrupo)
+            idGrupoid=idGrupo[0].id;
             var formulario="<br><br>";
-            
+            formulario+="<center><h3 class='text-white'>Datos del grupo con id "+idGrupo[0].id+"</h3></center>"
             formulario+="<center class='container bg-success'>"
-            formulario+="<br></br>"
+            formulario+="<br>"
                     formulario+="<div class='container'>"
                         formulario+="<div class='row'>"
                             formulario+="<div class='col-4'>"
                                 formulario+="<label class='font-weight-bold h5'>Ingresa el nombre del grupo: </label>"
                             formulario+="</div>"
                             formulario+="<div class='col-8'>"
-                                formulario+="<input class='form-control' type='text' placeholder='Sera un identificador de grupo' name='nombre' value='' required></input>"
+                                formulario+="<input class='form-control' type='text' placeholder='Sera un identificador de grupo' name='nombre' value='"+idGrupo[0].nombre+"' required></input>"
                             formulario+="</div>"
                         formulario+="</div>"
                         formulario+="<br>"
@@ -62,7 +62,7 @@ function muestraDatos(){
                                 formulario+="<label class='font-weight-bold h5'>Ingresa el año del grupo: </label>"
                             formulario+="</div>"
                             formulario+="<div class='col-8'>"
-                                formulario+="<input class='form-control' type='text' placeholder='Ejemplo: 2018' name='anio' value='' required></input>"
+                                formulario+="<input class='form-control' type='text' placeholder='Ejemplo: 2018' name='anio' value='"+idGrupo[0].ano+"' required></input>"
                             formulario+="</div>"
                         formulario+="</div>"
                         formulario+="<br>"
@@ -70,14 +70,14 @@ function muestraDatos(){
                             formulario+="<div class='col-4'>"
                                 formulario+="<label class='font-weight-bold h5'>Ingresa el turno del grupo: </label>"
                             formulario+="</div>"
-                            formulario+="<div className='col-8'>"
-                                formulario+="<input class='form-control' type='text' placeholder='Matutino/Vespertino' name='turno' value='' required></input>"
+                            formulario+="<div class='col-8'>"
+                                formulario+="<input class='form-control' type='text' placeholder='Matutino/Vespertino' name='turno' value='"+idGrupo[0].turno+"' required></input>"
                             formulario+="</div>"
                         formulario+="</div>"
-                        
+                        formulario+="<br>"
                         formulario+="<div class='row'>"
                             formulario+="<div class='col-12'>"
-                                formulario+="<button class='btn btn-secondary btn-lg btn-outline-light btn-block'>Crear grupo</button>"
+                                formulario+="<button class='btn btn-secondary btn-lg btn-outline-light btn-block' onclick='guardarInfo()'>Guardar grupo</button>"
                             formulario+="</div>    "
                         formulario+="</div>"
                         formulario+="<br>"
@@ -94,13 +94,12 @@ function muestraDatos(){
 
 function guardarInfo(){
     var nombre=document.getElementsByName("nombre");
-    var username=document.getElementsByName("username");
-    var apaterno=document.getElementsByName("apaterno");
-    var amaterno=document.getElementsByName("amaterno");
-    var contrasena=document.getElementsByName("contrasena");
+    var anio=document.getElementsByName("anio");
+    var turno=document.getElementsByName("turno");
+    
     console.log(nombre[0].value)    
     console.log(idUsuarioid)
-        let url = 'http://localhost:8080/ProjectFinalStruts/ModificarGrupo?id='+idUsuarioid+"&nombres="+nombre[0].value+"&nombreUsuario="+username[0].value+"&apellidoPat="+apaterno[0].value+"&apellidoMat="+amaterno[0].value+"&contrasena="+contrasena[0].value;
+        let url = 'http://localhost:8080/ProjectFinalStruts/ModificarGrupo?idGrupo='+idGrupoid+"&nombre="+nombre[0].value+"&ano="+anio[0].value+"&turno="+turno[0].value;
     fetch(url).then(response => response.text()).then(data => {
         alert(data);
         

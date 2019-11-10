@@ -108,7 +108,7 @@
         
         <action name="ModificarGrupo" class="Actions.Administrador.ModificarGrupo">             <!-- ModificarGrupo -->
             <result name="success" type="redirect">
-                <param name="location">Administrador/Administrador.html?correcto=done</param>
+                <param name="location">Administrador/respuestas/modificarCorrectamente.jsp?correcto=done</param>
             </result>
         </action>
         
