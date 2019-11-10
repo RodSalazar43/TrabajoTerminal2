@@ -1,11 +1,16 @@
-<Grupo>
-    <Examenes>
-        <Examen numero="1" fecha="2019-11-04" nombre="Primer parcial 2019" />
-        <Examen numero="3" fecha="2019-12-04" nombre="Segundo parcial 2019" />
-    </Examenes>
-    <Ejercicios>
-        <Ejercicio numero="3" />
-        <Ejercicio numero="2" />
-        <Ejercicio numero="5" />
-    </Ejercicios>
-</Grupo>
+<asignados>
+    <examenes>
+        <examen numero="1"  grupoCompleto="no" alumno="1"/>
+        <examen numero="3"  grupoCompleto="si" alumno="todos"/>
+    </examenes>
+    
+    <ejercicios>
+        <ejercicio numero="3" grupoCompleto="no" alumno="1"/>
+        <ejercicio numero="2" grupoCompleto="si" alumno="todos"/>
+    </ejercicios>
+    
+    <preguntas>
+    	<pregunta numero="3" grupoCompleto="no" alumno="1"/>
+    	<pregunta numero="2" grupoCompleto="si" alumno="todos"/>
+    </preguntas>
+</asignados>

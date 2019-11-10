@@ -198,7 +198,7 @@
                 <param name="location">Alumno/Alumno.html?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Alumno/Alumno?correcto=false</param>
+                <param name="location">Alumno/Alumno.html?correcto=false</param>
             </result>
         </action>
         
@@ -207,7 +207,7 @@
                 <param name="location">Alumno/Alumno.html?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Alumno/Alumno?correcto=false</param>
+                <param name="location">Alumno/Alumno.html?correcto=false</param>
             </result>
         </action>
     </package>

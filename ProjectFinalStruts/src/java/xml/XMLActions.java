@@ -528,10 +528,26 @@ public class XMLActions {
         ejercicio.setAttribute("tipo", "prueba");
         
         Element indicaciones = new Element("indicaciones");
+        indicaciones.setText(" ");
         Element opcion1 = new Element("opcion1");
+        opcion1.setText(" ");
         Element opcion2 = new Element("opcion2");
+        opcion2.setText(" ");
         Element opcion3 = new Element("opcion3");
+        opcion3.setText(" ");
         Element opcion4 = new Element("opcion4");
+        opcion4.setText(" ");
+        Element resultado = new Element("resultado");
+        resultado.setText(" ");
+        
+        ejercicio.addContent(indicaciones);
+        ejercicio.addContent(opcion1);
+        ejercicio.addContent(opcion2);
+        ejercicio.addContent(opcion3);
+        ejercicio.addContent(opcion4);
+        ejercicio.addContent(resultado);
+        
+        root.addContent(ejercicio);
         
 
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
@@ -555,9 +571,13 @@ public class XMLActions {
         pregunta.setAttribute("tipo", "prueba");
         
         Element cuestionamiento = new Element("cuestionamiento");
+        cuestionamiento.setText(" ");
         Element opcion1 = new Element("opcion1");
+        opcion1.setText(" ");
         Element opcion2 = new Element("opcion2");
+        opcion1.setText(" ");
         Element respuesta = new Element("respuesta");
+        respuesta.setText(" ");
         
         pregunta.addContent(cuestionamiento);
         pregunta.addContent(opcion1);
@@ -580,11 +600,21 @@ public class XMLActions {
     public boolean crearXMLRespuestas(String Nombre){
         String nombreRuta = "xml/Alumno" + Nombre + "/respuestas.xml";
         Element root = new Element("respuestas");
-        Element examenes = new Element("examenes");
         Element ejercicios = new Element("ejercicios");
         Element preguntas = new Element("preguntas");
         
-        root.addContent(examenes);
+        Element ejercicio = new Element("ejercicio");
+        ejercicio.setAttribute("numero", "0");
+        ejercicio.setText(" ");
+        
+        ejercicios.addContent(ejercicio);
+        
+        Element pregunta = new Element("pregunta");
+        pregunta.setAttribute("numero", "0");
+        pregunta.setText(" ");
+        
+        preguntas.addContent(pregunta);
+        
         root.addContent(ejercicios);
         root.addContent(preguntas);
 
