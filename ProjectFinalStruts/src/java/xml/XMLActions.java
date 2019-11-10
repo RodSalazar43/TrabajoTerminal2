@@ -258,6 +258,65 @@ public class XMLActions {
         return datos;
     }
     
+    public ArrayList<ExamenesAsignados> convierte2ArrayListExamenesAsignados(List nodos){
+        ArrayList<ExamenesAsignados> datos = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            // numero, grupoCompleto, numeroAlumno
+            
+            Element examenes = (Element) nodos.get(i);
+            
+            ExamenesAsignados examen = new ExamenesAsignados();
+            
+            //Obtenemos los atributos
+            examen.setNumeroExamen(Integer.parseInt(examenes.getAttributeValue("numeroExamen")));
+            examen.setGrupoCompleto(examenes.getAttributeValue("grupoCompleto"));
+            examen.setNumeroAlumno(Integer.parseInt(examenes.getAttributeValue("numeroAlumno")));
+            
+            datos.add(examen);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
+    
+    public ArrayList<EjerciciosAsignados> convierte2ArrayListEjerciciosAsignados(List nodos){
+        ArrayList<EjerciciosAsignados> datos = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            // numero, grupoCompleto, numeroAlumno
+            
+            Element ejercicios = (Element) nodos.get(i);
+            
+            EjerciciosAsignados ejercicio = new EjerciciosAsignados();
+            
+            //Obtenemos los atributos
+            ejercicio.setNumeroEjercicio(Integer.parseInt(ejercicios.getAttributeValue("numeroEjercicio")));
+            ejercicio.setGrupoCompleto(ejercicios.getAttributeValue("grupoCompleto"));
+            ejercicio.setNumeroAlumno(Integer.parseInt(ejercicios.getAttributeValue("numeroAlumno")));
+            
+            datos.add(ejercicio);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
+    
+    public ArrayList<PreguntasAsignadas> convierte2ArrayListPreguntasAsignadas(List nodos){
+        ArrayList<PreguntasAsignadas> datos = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            // numero, grupoCompleto, numeroAlumno
+            
+            Element preguntas = (Element) nodos.get(i);
+            
+            PreguntasAsignadas pregunta = new PreguntasAsignadas();
+            
+            //Obtenemos los atributos
+            pregunta.setNumeroPregunta(Integer.parseInt(preguntas.getAttributeValue("numeroPregunta")));
+            pregunta.setGrupoCompleto(preguntas.getAttributeValue("grupoCompleto"));
+            pregunta.setNumeroAlumno(Integer.parseInt(preguntas.getAttributeValue("numeroAlumno")));
+            
+            datos.add(pregunta);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
     public List cargarXml(String ruta) {
         SAXBuilder builder = new SAXBuilder();
         File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
@@ -326,6 +385,69 @@ public class XMLActions {
     }
     
     public List cargarXmlRespuestasPreguntas(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element preguntas = rootNode.getChild("preguntas");
+            list = preguntas.getChildren();
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlExamenesAsignados(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element preguntas = rootNode.getChild("examenes");
+            list = preguntas.getChildren();
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlEjerciciosAsignados(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element preguntas = rootNode.getChild("ejercicios");
+            list = preguntas.getChildren();
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlPreguntasAsignadas(String ruta) {
         SAXBuilder builder = new SAXBuilder();
         File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
         List list = null;
@@ -445,6 +567,7 @@ public class XMLActions {
            
            respuestaEjercicio.setAttribute("numero", Integer.toString(re.getNumeroEjercicio()));
            respuestaEjercicio.setText(re.getRespuestaEjercicio());
+           
            ejercicios.addContent(respuestaEjercicio);
         }
         
@@ -454,9 +577,68 @@ public class XMLActions {
             
             respuestaPregunta.setAttribute("numero", Integer.toString(rp.getNumeroPregunta()));
             respuestaPregunta.setText(rp.getRespuestaPregunta());
+            
             preguntas.addContent(respuestaPregunta);
         }
         
+        root.addContent(ejercicios);
+        root.addContent(preguntas);
+        
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(ruta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return false;
+    }
+    
+    public boolean guardarXmlAsignados(ArrayList<ExamenesAsignados> listaExamenes, ArrayList<EjerciciosAsignados> listaEjercicios, ArrayList<PreguntasAsignadas> listaPreguntas, String ruta) {
+        Element root = new Element("asignados");
+        Element examenes = new Element("examenes");
+        Element preguntas = new Element("preguntas");
+        Element ejercicios = new Element("ejercicios");
+        
+        ExamenesAsignados ex;
+        EjerciciosAsignados ej;
+        PreguntasAsignadas pr;
+        
+        for(int i = 0; i < listaExamenes.size(); i++){
+            ex = listaExamenes.get(i);
+            Element examen = new Element("examen");
+            
+            examen.setAttribute("numeroExamen", Integer.toString(ex.getNumeroExamen()));
+            examen.setAttribute("grupoCompleto", ex.getGrupoCompleto());
+            examen.setAttribute("numeroAlumno", Integer.toString(ex.getNumeroAlumno()));
+            
+            examenes.addContent(examen);
+        }
+        
+        for(int i = 0; i < listaEjercicios.size(); i++){
+            ej = listaEjercicios.get(i);
+            Element ejercicio = new Element("ejercicio");
+            
+            ejercicio.setAttribute("numeroEjercicio", Integer.toString(ej.getNumeroEjercicio()));
+            ejercicio.setAttribute("grupoCompleto", ej.getGrupoCompleto());
+            ejercicio.setAttribute("numeroAlumno", Integer.toString(ej.getNumeroAlumno()));
+            
+            ejercicios.addContent(ejercicio);
+        }
+        
+        for(int i = 0; i < listaPreguntas.size(); i++){
+            pr = listaPreguntas.get(i);
+            Element pregunta = new Element("pregunta");
+            
+            pregunta.setAttribute("numeroPregunta", Integer.toString(pr.getNumeroPregunta()));
+            pregunta.setAttribute("grupoCompleto", pr.getGrupoCompleto());
+            pregunta.setAttribute("numeroAlumno", Integer.toString(pr.getNumeroAlumno()));
+            
+            preguntas.addContent(pregunta);
+        }
+        
+        root.addContent(examenes);
         root.addContent(ejercicios);
         root.addContent(preguntas);
         
