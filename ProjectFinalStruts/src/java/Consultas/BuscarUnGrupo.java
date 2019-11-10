@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.json.simple.JSONObject;
 import static Complementos.Operaciones.*;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -44,7 +45,11 @@ public class BuscarUnGrupo {
         raiz.put("id", obj);
 
         try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
+            String hola=ServletActionContext.getServletContext().getRealPath("/json");
+            System.out.println("***************************************************************");
+            System.out.println(hola);
+            
+            FileWriter file = new FileWriter(ServletActionContext.getServletContext().getRealPath("/json/respuestaConsultaUnGrupo.json"));
             file.write(raiz.toJSONString());
             file.flush();
             file.close();

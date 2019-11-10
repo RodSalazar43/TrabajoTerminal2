@@ -102,7 +102,7 @@
         
         <action name="ModificarUsuario" class="Actions.Administrador.ModificarUsuario">             <!-- ModificarUsuario -->
             <result name="success" type="redirect">
-                <param name="location">Administrador/Administrador.html?correcto=done</param>
+                <param name="location">Administrador/respuestas/modificarCorrectamente.jsp?correcto=done</param>
             </result>
         </action>
         
@@ -125,14 +125,14 @@
         </action>
         
         <action name="BuscarUnGrupo" class="Consultas.BuscarUnGrupo">    <!-- Buscar un grupo -->
-            <result name="SUCCESS" type="redirect">
-                <param name="location">index.html</param>
+            <result name="success" type="redirect">
+                <param name="location">Administrador/respuestas/datosCargados.jsp?correcto=done</param>
             </result>         
         </action>
         
         <action name="BuscarUnUsuario" class="Consultas.BuscarUnUsuario">    <!-- Buscar un usuario -->
-            <result name="SUCCESS" type="redirect">
-                <param name="location">index.html</param>
+            <result name="success" type="redirect">
+                <param name="location">Administrador/respuestas/datosCargados.jsp?correcto=done</param>
             </result>         
         </action>
         
