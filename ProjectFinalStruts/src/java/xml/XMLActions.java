@@ -171,6 +171,7 @@ public class XMLActions {
             ejercicio.setNombre(dato);
             dato=ejercicios.getAttributeValue("tipo");
             ejercicio.setTipo(dato);
+            ejercicio.setCopiaEjercicio(Integer.parseInt(ejercicios.getAttributeValue("copiaEjercicio")));
             dato=ejercicios.getAttributeValue("numero");
             ejercicio.setNumero(dato);
             String pregunta=ejercicios.getChildText("indicaciones");
@@ -481,6 +482,7 @@ public class XMLActions {
             ejercicio.setAttribute("numero", ej.getNumero());
             ejercicio.setAttribute("tipo", ej.getTipo());
             ejercicio.setAttribute("nombre", ej.getNombre());
+            ejercicio.setAttribute("copiaEjercicio", Integer.toString(ej.getCopiaEjercicio()));
             Element pregunta = new Element("indicaciones");
             pregunta.setText(ej.getPregunta());
             Element opcion1=new Element("opcion");
