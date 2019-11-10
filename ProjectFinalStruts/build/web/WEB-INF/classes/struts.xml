@@ -264,5 +264,23 @@
                 <param name="location">Profesor/Profesor.html?correcto=false</param>
             </result>
         </action>
+        
+        <action name="CrearCopiaPregunta" class="Actions.Profesor.CrearCopiaPregunta">             <!-- CrearCopiaPregunta -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="CrearCopiaEjercicio" class="Actions.Profesor.CrearCopiaEjercicio">             <!-- CrearCopiaEjercicio -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
     </package>
 </struts>
