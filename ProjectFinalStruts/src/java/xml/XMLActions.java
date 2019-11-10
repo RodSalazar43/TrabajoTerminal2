@@ -692,7 +692,41 @@ public class XMLActions {
     public boolean crearXMLAsignado(String Nombre){
         String nombreRuta = "xml/Grupo" + Nombre + "/asignados.xml";
         Element root = new Element("asignados");
+        
+        Element examenes = new Element("examenes");
+        Element ejercicios = new Element("ejercicios");
+        Element preguntas = new Element("preguntas");
+        
+        //<examen numero="3"  grupoCompleto="si" alumno="0" grupo=""/>
 
+        Element examen = new Element("examen");
+        examen.setAttribute("numeroExamen", "0");
+        examen.setAttribute("grupoCompleto", "no");
+        examen.setAttribute("numeroAlumno", "0");
+        examen.setAttribute("grupo", "0");
+        
+        examenes.addContent(examen);
+        
+        Element ejercicio = new Element("ejercicio");
+        ejercicio.setAttribute("numeroEjercicio", "0");
+        ejercicio.setAttribute("grupoCompleto", "no");
+        ejercicio.setAttribute("numeroAlumno", "0");
+        ejercicio.setAttribute("grupo", "0");
+        
+        ejercicios.addContent(ejercicio);
+        
+        Element pregunta = new Element("pregunta");
+        pregunta.setAttribute("numeroPregunta", "0");
+        pregunta.setAttribute("grupoCompleto", "no");
+        pregunta.setAttribute("numeroAlumno", "0");
+        pregunta.setAttribute("grupo", "0");
+        
+        preguntas.addContent(pregunta);
+
+        root.addContent(examenes);
+        root.addContent(ejercicios);
+        root.addContent(preguntas);
+        
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
             outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));

@@ -246,5 +246,23 @@
                 <param name="location">Profesor/Profesor.html?correcto=false</param>
             </result>
         </action>
+        
+        <action name="AsignarEjercicioAAlumnos" class="Actions.Profesor.AsignarEjercicioAAlumnos">             <!-- Asignar Ejercicio A Alumnos -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="AsignarPreguntaAAlumnos" class="Actions.Profesor.AsignarPreguntaAAlumnos">             <!-- Asignar Pregunta A Alumnos -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
     </package>
 </struts>

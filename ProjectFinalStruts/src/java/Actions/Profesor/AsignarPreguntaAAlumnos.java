@@ -16,10 +16,18 @@ import xml.XMLActions;
  *
  * @author RodrigoSalazar
  */
-public class AsignarExamenAAlumnos {
+public class AsignarPreguntaAAlumnos {
     private String numerosAlumnos;
     private int idGrupo;
-    private int numeroExamen;
+    private int numeroPregunta;
+
+    public int getNumeroPregunta() {
+        return numeroPregunta;
+    }
+
+    public void setNumeroPregunta(int numeroPregunta) {
+        this.numeroPregunta = numeroPregunta;
+    }
 
     public String getNumerosAlumnos() {
         return numerosAlumnos;
@@ -35,14 +43,6 @@ public class AsignarExamenAAlumnos {
 
     public void setIdGrupo(int idGrupo) {
         this.idGrupo = idGrupo;
-    }
-
-    public int getNumeroExamen() {
-        return numeroExamen;
-    }
-
-    public void setNumeroExamen(int numeroExamen) {
-        this.numeroExamen = numeroExamen;
     }
     
     public String execute(){
@@ -65,14 +65,14 @@ public class AsignarExamenAAlumnos {
         String cachos[] = this.numerosAlumnos.split(",");
         
         for (String cacho : cachos) {
-            ExamenesAsignados ea = new ExamenesAsignados();
+            PreguntasAsignadas pa = new PreguntasAsignadas();
             
-            ea.setGrupoCompleto("no");
-            ea.setIdGrupo(this.idGrupo);
-            ea.setNumeroAlumno(Integer.parseInt(cacho));
-            ea.setNumeroExamen(this.numeroExamen);
+            pa.setGrupoCompleto("no");
+            pa.setIdGrupo(this.idGrupo);
+            pa.setNumeroAlumno(Integer.parseInt(cacho));
+            pa.setNumeroPregunta(this.numeroPregunta);
             
-            datosExamenes.add(ea);
+            datosPreguntas.add(pa);
         }
         
         if(xml.guardarXmlAsignados(datosExamenes, datosEjercicios, datosPreguntas, ruta)){

@@ -16,10 +16,18 @@ import xml.XMLActions;
  *
  * @author RodrigoSalazar
  */
-public class AsignarExamenAAlumnos {
+public class AsignarEjercicioAAlumnos {
     private String numerosAlumnos;
     private int idGrupo;
-    private int numeroExamen;
+    private int numeroEjercicio;
+
+    public int getNumeroEjercicio() {
+        return numeroEjercicio;
+    }
+
+    public void setNumeroEjercicio(int numeroEjercicio) {
+        this.numeroEjercicio = numeroEjercicio;
+    }
 
     public String getNumerosAlumnos() {
         return numerosAlumnos;
@@ -35,14 +43,6 @@ public class AsignarExamenAAlumnos {
 
     public void setIdGrupo(int idGrupo) {
         this.idGrupo = idGrupo;
-    }
-
-    public int getNumeroExamen() {
-        return numeroExamen;
-    }
-
-    public void setNumeroExamen(int numeroExamen) {
-        this.numeroExamen = numeroExamen;
     }
     
     public String execute(){
@@ -65,14 +65,14 @@ public class AsignarExamenAAlumnos {
         String cachos[] = this.numerosAlumnos.split(",");
         
         for (String cacho : cachos) {
-            ExamenesAsignados ea = new ExamenesAsignados();
+            EjerciciosAsignados ea = new EjerciciosAsignados();
             
             ea.setGrupoCompleto("no");
             ea.setIdGrupo(this.idGrupo);
             ea.setNumeroAlumno(Integer.parseInt(cacho));
-            ea.setNumeroExamen(this.numeroExamen);
+            ea.setNumeroEjercicio(this.numeroEjercicio);
             
-            datosExamenes.add(ea);
+            datosEjercicios.add(ea);
         }
         
         if(xml.guardarXmlAsignados(datosExamenes, datosEjercicios, datosPreguntas, ruta)){
