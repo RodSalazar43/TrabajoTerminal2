@@ -52,7 +52,7 @@ public class BuscarTodosLosGrupos {
             file.write(raiz.toJSONString());
             file.flush();
             file.close();
-        
+            System.out.println("Exitoso");
         } catch (IOException e) {
             e.printStackTrace();
         }
