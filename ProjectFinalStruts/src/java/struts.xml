@@ -149,20 +149,20 @@
         </action>
         
         <action name="BuscarAlumnosSinGrupo" class="Consultas.BuscarAlumnosSinGrupo">    <!-- Buscar alumno sin grupo -->
-            <result name="SUCCESS" type="redirect">
-                <param name="location">index.html</param>
+            <result name="success" type="redirect">
+                <param name="location">Administrador/respuestas/datosCargados.jsp?correcto=done</param>
             </result>         
         </action>
         
         <action name="BuscarTodosLosProfesores" class="Consultas.BuscarTodosLosProfesores">    <!-- Buscar Todos Los profesores -->
-            <result name="SUCCESS" type="redirect">
-                <param name="location">index.html</param>
+            <result name="success" type="redirect">
+                <param name="location">Administrador/respuestas/datosCargados.jsp?correcto=done</param>
             </result>         
         </action>
         
         <action name="BuscarGruposSinProfesor" class="Consultas.BuscarGruposSinProfesor">    <!-- Buscar Grupos Sin Profesor -->
-            <result name="SUCCESS" type="redirect">
-                <param name="location">index.html</param>
+            <result name="success" type="redirect">
+                <param name="location">Administrador/respuestas/datosCargados.jsp?correcto=done</param>
             </result>         
         </action>
         

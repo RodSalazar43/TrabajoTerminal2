@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import static Complementos.Operaciones.*;
 import entitys.Usuario;
 import java.util.Iterator;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Query;
 
 /**
@@ -47,7 +48,11 @@ public class BuscarAlumnosSinGrupo {
             }
         }
         try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsultaAlumnoSinGrupo.json");
+            String hola=ServletActionContext.getServletContext().getRealPath("/json");
+            System.out.println("***************************************************************");
+            System.out.println(hola);
+           
+            FileWriter file = new FileWriter(ServletActionContext.getServletContext().getRealPath("/json/resultadoConsultaAlumnoSinGrupo.json"));
             file.write(raiz.toJSONString());
             file.flush();
             file.close();
