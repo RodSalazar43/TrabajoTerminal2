@@ -40,7 +40,7 @@ public class BuscarTodosLosProfesores {
             innerObj.put("id", profesor.getIdUsuario());
             innerObj.put("apMat", usuario.getApMat());
             innerObj.put("apPat", usuario.getApPaterno());
-            innerObj.put("", usuario.getNombreUsuario());
+            innerObj.put("username", usuario.getNombreUsuario());
             obj.put(contador,innerObj);
             raiz.put("idProfesores", obj);
             contador++;
@@ -54,7 +54,7 @@ public class BuscarTodosLosProfesores {
             file.write(raiz.toJSONString());
             file.flush();
             file.close();
-        
+            System.out.println("Exitoso");
         } catch (IOException e) {
             e.printStackTrace();
         }
