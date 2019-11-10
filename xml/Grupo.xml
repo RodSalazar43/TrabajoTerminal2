@@ -1,16 +1,16 @@
 <asignados>
     <examenes>
         <examen numero="1"  grupoCompleto="no" alumno="1"/>
-        <examen numero="3"  grupoCompleto="si" alumno="todos"/>
+        <examen numero="3"  grupoCompleto="si" alumno="todos" grupo=""/>
     </examenes>
     
     <ejercicios>
         <ejercicio numero="3" grupoCompleto="no" alumno="1"/>
-        <ejercicio numero="2" grupoCompleto="si" alumno="todos"/>
+        <ejercicio numero="2" grupoCompleto="si" alumno="todos" grupo=""/>
     </ejercicios>
     
     <preguntas>
     	<pregunta numero="3" grupoCompleto="no" alumno="1"/>
-    	<pregunta numero="2" grupoCompleto="si" alumno="todos"/>
+    	<pregunta numero="2" grupoCompleto="si" alumno="todos" grupo=""/>
     </preguntas>
 </asignados>

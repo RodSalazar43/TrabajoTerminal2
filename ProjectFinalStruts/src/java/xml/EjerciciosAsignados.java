@@ -8,6 +8,15 @@ public class EjerciciosAsignados {
     int numeroEjercicio;
     String grupoCompleto;
     int numeroAlumno;
+    int idGrupo;
+
+    public int getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(int idGrupo) {
+        this.idGrupo = idGrupo;
+    }
 
     public EjerciciosAsignados() {
     }

@@ -8,6 +8,15 @@ public class PreguntasAsignadas {
     int numeroPregunta;
     String grupoCompleto;
     int numeroAlumno;
+    int idGrupo;
+
+    public int getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(int idGrupo) {
+        this.idGrupo = idGrupo;
+    }
 
     public PreguntasAsignadas() {
     }

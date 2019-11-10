@@ -271,6 +271,7 @@ public class XMLActions {
             examen.setNumeroExamen(Integer.parseInt(examenes.getAttributeValue("numeroExamen")));
             examen.setGrupoCompleto(examenes.getAttributeValue("grupoCompleto"));
             examen.setNumeroAlumno(Integer.parseInt(examenes.getAttributeValue("numeroAlumno")));
+            examen.setIdGrupo(Integer.parseInt(examenes.getAttributeValue("grupo")));
             
             datos.add(examen);
         }
@@ -291,6 +292,7 @@ public class XMLActions {
             ejercicio.setNumeroEjercicio(Integer.parseInt(ejercicios.getAttributeValue("numeroEjercicio")));
             ejercicio.setGrupoCompleto(ejercicios.getAttributeValue("grupoCompleto"));
             ejercicio.setNumeroAlumno(Integer.parseInt(ejercicios.getAttributeValue("numeroAlumno")));
+            ejercicio.setIdGrupo(Integer.parseInt(ejercicios.getAttributeValue("grupo")));
             
             datos.add(ejercicio);
         }
@@ -311,6 +313,7 @@ public class XMLActions {
             pregunta.setNumeroPregunta(Integer.parseInt(preguntas.getAttributeValue("numeroPregunta")));
             pregunta.setGrupoCompleto(preguntas.getAttributeValue("grupoCompleto"));
             pregunta.setNumeroAlumno(Integer.parseInt(preguntas.getAttributeValue("numeroAlumno")));
+            pregunta.setIdGrupo(Integer.parseInt(preguntas.getAttributeValue("grupo")));
             
             datos.add(pregunta);
         }
@@ -612,6 +615,7 @@ public class XMLActions {
             examen.setAttribute("numeroExamen", Integer.toString(ex.getNumeroExamen()));
             examen.setAttribute("grupoCompleto", ex.getGrupoCompleto());
             examen.setAttribute("numeroAlumno", Integer.toString(ex.getNumeroAlumno()));
+            examen.setAttribute("grupo", Integer.toString(ex.getIdGrupo()));
             
             examenes.addContent(examen);
         }
@@ -623,6 +627,7 @@ public class XMLActions {
             ejercicio.setAttribute("numeroEjercicio", Integer.toString(ej.getNumeroEjercicio()));
             ejercicio.setAttribute("grupoCompleto", ej.getGrupoCompleto());
             ejercicio.setAttribute("numeroAlumno", Integer.toString(ej.getNumeroAlumno()));
+            ejercicio.setAttribute("grupo", Integer.toString(ej.getIdGrupo()));
             
             ejercicios.addContent(ejercicio);
         }
@@ -634,6 +639,7 @@ public class XMLActions {
             pregunta.setAttribute("numeroPregunta", Integer.toString(pr.getNumeroPregunta()));
             pregunta.setAttribute("grupoCompleto", pr.getGrupoCompleto());
             pregunta.setAttribute("numeroAlumno", Integer.toString(pr.getNumeroAlumno()));
+            pregunta.setAttribute("grupo", Integer.toString(pr.getIdGrupo()));
             
             preguntas.addContent(pregunta);
         }
