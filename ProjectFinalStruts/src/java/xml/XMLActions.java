@@ -205,6 +205,7 @@ public class XMLActions {
             pregunta.setNombre(preguntas.getAttributeValue("nombre"));
             pregunta.setNumero(preguntas.getAttributeValue("numero"));
             pregunta.setTipo(preguntas.getAttributeValue("tipo"));
+            pregunta.setCopiaPregunta(Integer.parseInt(preguntas.getAttributeValue("copiaPregunta")));
             
             //obtenemos los elementos
             pregunta.setIndicaciones(preguntas.getChildText("cuestionamiento"));
@@ -524,6 +525,7 @@ public class XMLActions {
             pregunta.setAttribute("numero", pg.getNumero());
             pregunta.setAttribute("nombre", pg.getNombre());
             pregunta.setAttribute("tipo", pg.getTipo());
+            pregunta.setAttribute("copiaPregunta", Integer.toString(pg.getCopiaPregunta()));
             
             //establecemos elementos
             Element cuestionamiento = new Element("cuestionamiento");
@@ -791,6 +793,7 @@ public class XMLActions {
         pregunta.setAttribute("numero", "prueba");
         pregunta.setAttribute("nombre", "prueba");
         pregunta.setAttribute("tipo", "prueba");
+        pregunta.setAttribute("copiaPregunta", "0");
         
         Element cuestionamiento = new Element("cuestionamiento");
         cuestionamiento.setText(" ");

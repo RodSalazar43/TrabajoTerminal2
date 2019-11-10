@@ -5,6 +5,15 @@ import java.io.Serializable;
 public class Pregunta implements Serializable{
     String nombre,tipo,indicaciones,opcion1,opcion2,respuesta;
     String numero;
+    int copiaPregunta;
+
+    public int getCopiaPregunta() {
+        return copiaPregunta;
+    }
+
+    public void setCopiaPregunta(int copiaPregunta) {
+        this.copiaPregunta = copiaPregunta;
+    }
 
     public String getNumero() {
         return numero;
@@ -13,8 +22,6 @@ public class Pregunta implements Serializable{
     public void setNumero(String numero) {
         this.numero = numero;
     }
-
-    
 
     public String getRespuesta() {
         return respuesta;

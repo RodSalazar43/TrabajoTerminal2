@@ -7,4 +7,8 @@
         <cuestionamiento>¿Cuánto es 3.009 + 1.05?</cuestionamiento>
         <respuesta>4.059</respuesta>
     </Pregunta>
+    <Pregunta numero="3" tipo="Operacion" copiaPregunta="1">
+        <cuestionamiento>¿Cuánto es 3.009 + 1.05?</cuestionamiento>
+        <respuesta>4.059</respuesta>
+    </Pregunta>
 </Preguntas>
