@@ -15,14 +15,9 @@ import static Complementos.Operaciones.ERROR;
  *
  * @author RodrigoSalazar
  */
-public class AgregarPregunta {
+public class CrearCopiaPregunta {
     private int idProfesor;
-    private String tipo;
-    private String indicaciones;
-    private String respuesta;
-    private String nombre;
-    private String opcion1;
-    private String opcion2;
+    private int numeroPregunta;
 
     public int getIdProfesor() {
         return idProfesor;
@@ -32,54 +27,14 @@ public class AgregarPregunta {
         this.idProfesor = idProfesor;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getNumeroPregunta() {
+        return numeroPregunta;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setNumeroPregunta(int numeroPregunta) {
+        this.numeroPregunta = numeroPregunta;
     }
 
-    public String getIndicaciones() {
-        return indicaciones;
-    }
-
-    public void setIndicaciones(String indicaciones) {
-        this.indicaciones = indicaciones;
-    }
-
-    public String getRespuesta() {
-        return respuesta;
-    }
-
-    public void setRespuesta(String respuesta) {
-        this.respuesta = respuesta;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getOpcion1() {
-        return opcion1;
-    }
-
-    public void setOpcion1(String opcion1) {
-        this.opcion1 = opcion1;
-    }
-
-    public String getOpcion2() {
-        return opcion2;
-    }
-
-    public void setOpcion2(String opcion2) {
-        this.opcion2 = opcion2;
-    }
-    
     public String execute(){
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
@@ -93,14 +48,16 @@ public class AgregarPregunta {
         List listas = xml.cargarXmlPreguntas(ruta);
         ArrayList<Pregunta> datos = xml.convierte2ArrayListPreguntas(listas);
         
+        Pregunta pac = datos.get(this.numeroPregunta);
+        
         pregunta.setNumero(Integer.toString(listas.size() + 1));
-        pregunta.setIndicaciones(indicaciones);
-        pregunta.setNombre(nombre);
-        pregunta.setOpcion1(opcion1);
-        pregunta.setOpcion2(opcion2);
-        pregunta.setRespuesta(respuesta);
-        pregunta.setTipo(tipo);
-        pregunta.setCopiaPregunta(0);
+        pregunta.setIndicaciones(pac.getIndicaciones());
+        pregunta.setNombre(pac.getNombre());
+        pregunta.setOpcion1(pac.getOpcion1());
+        pregunta.setOpcion2(pac.getOpcion2());
+        pregunta.setRespuesta(pac.getRespuesta());
+        pregunta.setTipo(pac.getTipo());
+        pregunta.setCopiaPregunta(Integer.parseInt(pac.getNumero()));
         
         datos.add(pregunta);
         
