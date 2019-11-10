@@ -1,11 +1,11 @@
-<Repuestas>
-    <Ejercicios>
-        <Ejercicio numero="2">3,2,1,4</Ejercicio>
-        <Ejercicio numero="2">3,2,1,4</Ejercicio>
-    </Ejercicios>
+<respuestas>
+    <ejercicios>
+        <ejercicio numero="2">3,2,1,4</ejercicio>
+        <ejercicio numero="2">3,2,1,4</ejercicio>
+    </ejercicios>
 
-    <Preguntas>
-        <Pregunta numero="1">Aqui va la respuesta</Pregunta>
-    </Preguntas>    
+    <preguntas>
+        <pregunta numero="1">Aqui va la respuesta</pregunta>
+    </preguntas>    
     
-</Repuestas>
+</respuestas>
