@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.json.simple.JSONObject;
 import static Complementos.Operaciones.*;
 import java.util.Iterator;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Query;
 
 /**
@@ -41,18 +42,26 @@ public class BuscarTodosLosUsuarios {
             obj.put(contador,innerObj);
             raiz.put("idUsuario", obj);
             contador++;
+            System.out.println("Contador: "+contador);
         }
         
         try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsultaUsuarios.json");
+            String hola=ServletActionContext.getServletContext().getRealPath("/json/resultadoConsultaUsuarios.json");
+            System.out.println("***************************************************************");
+            System.out.println(hola);
+            
+            FileWriter file = new FileWriter(ServletActionContext.getServletContext().getRealPath("/json/resultadoConsultaUsuarios.json"));
             file.write(raiz.toJSONString());
             file.flush();
             file.close();
-        
+            System.out.println("***************************************************************");
+            System.out.println("***************************Guardado******************************");
+            return SUCCESS;
         } catch (IOException e) {
             e.printStackTrace();
+            return ERROR;
         }
         
-        return SUCCESS;
+        
     }
 }

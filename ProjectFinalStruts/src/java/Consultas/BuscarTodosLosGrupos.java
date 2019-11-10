@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.json.simple.JSONObject;
 import static Complementos.Operaciones.*;
 import java.util.Iterator;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Query;
 
 /**
@@ -43,7 +44,11 @@ public class BuscarTodosLosGrupos {
             contador++;
         }
         try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsultaGrupos.json");
+            String hola=ServletActionContext.getServletContext().getRealPath("/json");
+            System.out.println("***************************************************************");
+            System.out.println(hola);
+            
+            FileWriter file = new FileWriter(ServletActionContext.getServletContext().getRealPath("json/resultadoConsultaGrupos.json"));
             file.write(raiz.toJSONString());
             file.flush();
             file.close();

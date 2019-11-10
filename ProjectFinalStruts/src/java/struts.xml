@@ -137,14 +137,14 @@
         </action>
         
         <action name="BuscarTodosLosGrupos" class="Consultas.BuscarTodosLosGrupos">    <!-- Buscar Todos Los Grupos -->
-            <result name="SUCCESS" type="redirect">
-                <param name="location">index.html</param>
+            <result name="success" type="redirect">
+                <param name="location">Administrador/respuestas/datosCargados.jsp?correcto=done</param>
             </result>         
         </action>
         
         <action name="BuscarTodosLosUsuarios" class="Consultas.BuscarTodosLosUsuarios">    <!-- Buscar Todos Los usuarios -->
-            <result name="SUCCESS" type="redirect">
-                <param name="location">index.html</param>
+            <result name="success" type="redirect">
+                <param name="location">Administrador/respuestas/datosCargados.jsp?correcto=done</param>
             </result>         
         </action>
         
@@ -198,16 +198,16 @@
                 <param name="location">Alumno/Alumno.html?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Alumno/Alumno?correcto=false</param>
+                <param name="location">Alumno/Alumno.html?correcto=false</param>
             </result>
         </action>
         
-        <action name="RegistrarRespuestaEjercicio" class="Actions.Alumno.RegistrarRespuestaEjercicio">  <!-- Registrar respuesta ejercicio -->
+        <action name="RegistrarRespuestaEjercicio" class="Actions.Alumno.RegistrarRespuestaEjercicios">  <!-- Registrar respuesta ejercicio -->
             <result name="success" type="redirect">
                 <param name="location">Alumno/Alumno.html?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Alumno/Alumno?correcto=false</param>
+                <param name="location">Alumno/Alumno.html?correcto=false</param>
             </result>
         </action>
     </package>

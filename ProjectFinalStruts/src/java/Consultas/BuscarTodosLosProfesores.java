@@ -11,6 +11,7 @@ import static Complementos.Operaciones.*;
 import entitys.Profesor;
 import java.util.Iterator;
 import org.hibernate.Query;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -45,8 +46,11 @@ public class BuscarTodosLosProfesores {
             contador++;
         }
         
-        try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsultaProfesores.json");
+        try{           
+            String hola=ServletActionContext.getServletContext().getRealPath("/json");
+            System.out.println("***************************************************************");
+            System.out.println(hola);
+            FileWriter file = new FileWriter(ServletActionContext.getServletContext().getRealPath("json/resultadoConsultaProfesores.json"));
             file.write(raiz.toJSONString());
             file.flush();
             file.close();

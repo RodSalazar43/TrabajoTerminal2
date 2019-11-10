@@ -33,7 +33,7 @@ public class EliminarUsuario implements Serializable{
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
         Transaction t = hibernateSession.beginTransaction(); 
-
+        System.out.println("Id: "+this.id);
         Usuario usuario = (Usuario)hibernateSession.createQuery("from Usuario where idUsuario=" + this.id);
         
         switch(usuario.getTipo().getIdTipo()){

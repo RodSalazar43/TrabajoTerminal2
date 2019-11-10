@@ -1,4 +1,4 @@
 <%@page contentType="text/plane" pageEncoding="UTF-8"%>
 <%
-        out.println("Se agregó correctamente el ejercicio");
+        out.println("Se agregó correctamente");
 %>
