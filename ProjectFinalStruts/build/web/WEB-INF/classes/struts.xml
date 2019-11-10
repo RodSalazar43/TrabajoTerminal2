@@ -210,5 +210,41 @@
                 <param name="location">Alumno/Alumno.html?correcto=false</param>
             </result>
         </action>
+        
+        <action name="AsignarEjercicioAGrupo" class="Actions.Profesor.AsignarEjercicioAGrupo">             <!-- Asignar Ejercicio A Grupo -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="AsignarExamenAGrupo" class="Actions.Profesor.AsignarExamenAGrupo">             <!-- Asignar Examen A Grupo -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="AsignarPreguntaAGrupo" class="Actions.Profesor.AsignarPreguntaAGrupo">             <!-- Asignar Pregunta A Grupo -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="AsignarExamenAAlumnos" class="Actions.Profesor.AsignarExamenAAlumnos">             <!-- Asignar Examen A Alumnos -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
     </package>
 </struts>
