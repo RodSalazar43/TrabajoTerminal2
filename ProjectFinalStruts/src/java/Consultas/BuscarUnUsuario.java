@@ -10,6 +10,7 @@ import static Complementos.Operaciones.*;
 import Complementos.cifrarContrasenas;
 import entitys.Usuario;
 import java.io.UnsupportedEncodingException;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -42,19 +43,23 @@ public class BuscarUnUsuario {
         innerObj.put("apellidoPat", usuario.getApPaterno());
         innerObj.put("apellidoMat", usuario.getApMat());
         innerObj.put("nombreUsuario", usuario.getNombreUsuario());
-        
+        innerObj.put("id", usuario.getIdUsuario());
         String contrasena = c.desencriptar(usuario.getContrasena());
         innerObj.put("contrasena", contrasena);
         
-        obj.put(usuario.getIdUsuario(), innerObj);
-        raiz.put("id", obj);
+        obj.put(0, innerObj);
+        raiz.put("idUsuario", obj);
 
         try{
-            FileWriter file = new FileWriter("C:\\jars\\json\\resultadoConsulta.json");
+            String hola=ServletActionContext.getServletContext().getRealPath("/json");
+            System.out.println("***************************************************************");
+            System.out.println(hola);
+            
+            FileWriter file = new FileWriter(ServletActionContext.getServletContext().getRealPath("/json/resultadoConsultaUnUsuario.json"));
             file.write(raiz.toJSONString());
             file.flush();
             file.close();
-        
+            System.out.println("Exitoso");
         } catch (IOException e) {
             e.printStackTrace();
         }
