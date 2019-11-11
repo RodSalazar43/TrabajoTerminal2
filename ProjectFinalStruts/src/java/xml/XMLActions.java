@@ -431,6 +431,103 @@ public class XMLActions {
         }
     }
     
+    public List cargarXmlExamenes(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            list = rootNode.getChildren();
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlEjerciciosAgregados(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element preguntas = rootNode.getChild("examenes");
+            list = preguntas.getChildren("ejercicio");
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlPreguntasAgregadas(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element preguntas = rootNode.getChild("examenes");
+            list = preguntas.getChildren("pregunta");
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public ArrayList<Examen> convierteList2ArrayListExamenAgregado(List nodos){
+        ArrayList<Examen> examenes = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            Element examen_elemento=(Element) nodos.get(i);
+            Examen examen_objeto=new Examen();
+            examen_objeto.setFecha(examen_elemento.getAttributeValue("fecha"));
+            examen_objeto.setNombre(examen_elemento.getAttributeValue("nombre"));
+            //aqui va el codigo para agregar las preguntas
+            examenes.add(examen_objeto);
+        }
+        System.out.println("Se regresan los examenes en array list con: "+examenes.size()+" elementos");
+        return examenes;
+    }
+    public ArrayList<Ejercicio> convierteList2ArrayListEjercicioAgregado(List nodos){
+        ArrayList<Ejercicio> ejercicios = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            Element ejercicio_elemento = (Element) nodos.get(i);
+            Ejercicio ejercicio = new Ejercicio();
+            ejercicio.setNumero(ejercicio_elemento.getAttributeValue("numero"));
+            ejercicios.add(ejercicio);
+        }
+        return ejercicios;
+    }
+    
+    public ArrayList<Pregunta> convierteList2ArrayListPreguntaAgregada(List nodos){
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            Element pregunta_elemento = (Element)nodos.get(i);
+            Pregunta pregunta = new Pregunta();
+            pregunta.setNumero(pregunta_elemento.getAttributeValue("numero"));
+            preguntas.add(pregunta);
+        }
+        return preguntas;
+    }
+    
     public List cargarXmlEjerciciosAsignados(String ruta) {
         SAXBuilder builder = new SAXBuilder();
         File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
