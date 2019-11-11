@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<examenes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/Irma%20Pons/Documents/xml/datos%20bien/examen/esquemaExamen2.xsd">
-	<examen fecha="2019-05-06" nombre="Primer parcial 2019">
-		<ejercicio numero="1" tipo="Ordena" nombre="Ordena los numeros"></ejercicio>
-		<pregunta tipo="VF" nombre="4.3 mayor que 2.3"></pregunta>
-		<ejercicio numero="3" tipo="Dad" nombre="Unir con lineas"></ejercicio>
+<examenes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/gerpo/OneDrive/Escritorio/xml/esquemaExamen.xsd">
+<examen fecha="2019-30-08" nombre="Primer parcial 2019" numero="1">
+		<ejercicio numero="1"></ejercicio>
+		<ejercicio numero="3"></ejercicio>
 	</examen>
-	<examen fecha="2019-01-05" nombre="Segundo Parcial 2019">
-		<ejercicio numero="1" tipo="Ordena" nombre="Ordena los numeros" ></ejercicio>
-		<pregunta tipo="VF" nombre="4.3 mayor que 2.3"></pregunta>
-		<ejercicio numero="3" tipo="Dad" nombre="Unir con lineas"></ejercicio>
+	<examen fecha="2019-15-10" nombre="Segundo parcial 2019" numero="2">
+		<ejercicio numero="2"></ejercicio>
+		<ejercicio numero="3"></ejercicio>
 	</examen>
-        <examen fecha="2019-03-04" nombre="Tercer parcial 2019">
-		<ejercicio numero="1" tipo="Ordena" nombre="Ordena los numeros"></ejercicio>
-		<pregunta tipo="VF" nombre="4.3 mayor que 2.3"></pregunta>
-		<ejercicio numero="3" tipo="Dad" nombre="Unir con lineas"></ejercicio>
-	</examen>
-        <examen fecha="2018-02-04" nombre="Primer parcial 2019">
-		<ejercicio numero="1" tipo="Ordena" nombre="Ordena los numeros"></ejercicio>
-		<pregunta tipo="VF" nombre="4.3 mayor que 2.3"></pregunta>
-		<ejercicio numero="3" tipo="Dad" nombre="Unir con lineas"></ejercicio>
+	<examen fecha="2019-08-11" nombre="Tercer parcial 2019" numero="3">
+		<ejercicio numero="1"></ejercicio>
+		<ejercicio numero="2"></ejercicio>
+		<pregunta numero="3"></pregunta>
 	</examen>
 </examenes>
+
