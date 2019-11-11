@@ -527,6 +527,7 @@ public class XMLActions {
         }
         return preguntas;
     }
+    
     public List cargarXmlEjerciciosAsignados(String ruta) {
         SAXBuilder builder = new SAXBuilder();
         File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
