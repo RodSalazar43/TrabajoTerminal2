@@ -42,7 +42,7 @@
 
   <script>
     document.getElementById("muestraEjercicio").addEventListener("click",cargarTabla);
-    
+    var ayuda=0;
     function muestraPregunta(){
        var xhr=new XMLHttpRequest();
       xhr.onreadystatechange=function(){
@@ -95,46 +95,78 @@
         tabla+=ejercicio[i].getAttribute("nombre");
         tabla+="</td>";
         tabla+="<td><a type='button' href='infoEjercicio.html?numero="+(i+1)+"' class='btn btn-primary'>Ver ejercicio</a>";
-        tabla+="</td></tr>"
+        tabla+="</td></tr>" 
+        ayuda++;
       }
       document.getElementById("demo").innerHTML=tabla;
     }
 
     function generaExamen(){
         var nombre=document.getElementById("nombreExamen").value;
+        alert(ayuda)
         //alert(nombre)
         var input=document.getElementsByTagName("input");
-        var seleccionados= new Array()
+        var seleccionadosEjercicio= new Array()
+        var seleccionadosPregunta= new Array()
         for(i=0;i<input.length;i++){
-          if(input[i].checked==true){
-            seleccionados.push(input[i])
-          }
-        }
-        console.log("Imprimiendo los seleccionados")
-        console.log(seleccionados.length)
-        var numeros="";
-        for(i=0;i<seleccionados.length;i++){
-            if(i===0)
-                numeros+=seleccionados[i].value;
-            else{
-                numeros+=",";
-                numeros+=seleccionados[i].value;
+            if(ayuda===0){
+                if(input[i].checked==true){
+                     seleccionadosPregunta.push(input[i])
+                }
+            }else{
+                if(i<=ayuda){
+                    if(input[i].checked==true){
+                         seleccionadosEjercicio.push(input[i])
+                    }
+                }else{
+                    if(input[i].checked==true){
+                         seleccionadosPregunta.push(input[i])
+                    }
+                }
             }
         }
-        console.log(numeros)
-        creaExamen(numeros,nombre);
+        console.log("Imprimiendo los seleccionados")
+        console.log("Seleccionados pregunta: "+seleccionadosPregunta.length)
+        console.log("Seleccionados ejercicios: "+seleccionadosEjercicio.length)
+        var numerosPregunta="";
+        var numerosEjercicio="";
+        for(i=0;i<seleccionadosPregunta.length;i++){
+            if(i===0)
+                numerosPregunta+=seleccionadosPregunta[i].value;
+            else{
+                numerosPregunta+=",";
+                numerosPregunta+=seleccionadosPregunta[i].value;
+            }
+        }
+        
+        for(i=0;i<seleccionadosEjercicio.length;i++){
+            if(i===0)
+                numerosEjercicio+=seleccionadosEjercicio[i].value;
+            else{
+                numerosEjercicio+=",";
+                numerosEjercicio+=seleccionadosEjercicio[i].value;
+            }
+        }
+        
+        creaExamen(numerosPregunta,nombre,numerosEjercicio);
     }
     
-    function creaExamen(numeros,nombre){
-        console.log("Numeros: "+numeros)
+    function creaExamen(numerosP,nombre,numerosE){
+        console.log("Numeros ejercicio: "+numerosE)
+        console.log("Numeros ejercicio: "+numerosP)
         var id=getParameterByName("id")
+        console.log(id)
         //http://localhost/struts2react/input1.jsp
-        let url = 'http://localhost:8080/ProjectFinalStruts/AgregaExamen?idProfesor='+id+'&numeros='+numeros+'&nombre='+nombre;
-        alert('URL:' + url);
-        //fetch(url).then(response => response.text()).then(data => {
-          //  alert(data);
-            
-        //});
+        let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjerciciosAExamen?idProfesor='+id+'&numeros='+numerosE+'&nombre='+nombre;
+        //alert('URL:' + url);
+        fetch(url).then(response => response.text()).then(data => {
+            alert(data);
+        });
+        let url2 = 'http://localhost:8080/ProjectFinalStruts/AgregarPreguntasAExamen?idProfesor='+id+'&numeros='+numerosP+'&nombre='+nombre;
+        fetch(url2).then(response => response.text()).then(data => {
+            alert(data);
+        });
+        
     }
     
     function getParameterByName(name) {
