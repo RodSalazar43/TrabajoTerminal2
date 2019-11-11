@@ -124,19 +124,31 @@ public class XMLActions {
         
         for(int i = 0;i < examenes.size();i++){
             Examen examen_datos= examenes.get(i);
+            
             Element examen_element=new Element("examen");
+            
             examen_element.setAttribute("fecha", examen_datos.getFecha());
             examen_element.setAttribute("nombre", examen_datos.getNombre());
+            
             ArrayList<Ejercicio> ejercicios = examen_datos.getEjercicios();
-            ArrayList<Pregunta> pregunta = examen_datos.getPreguntas();
+            ArrayList<Pregunta> preguntas = examen_datos.getPreguntas();
             
             Element ejercicio_element;
+            Element pregunta_element;
             
             for (int x = 0; x < ejercicios.size(); x++) {
                 Ejercicio ejercicio = ejercicios.get(x);
                 ejercicio_element=new Element("ejercicio");
                 ejercicio_element.setAttribute("numero", ejercicio.getNumero());
                 examen_element.addContent(ejercicio_element);
+            }
+            
+            for(int j = 0; j < preguntas.size(); j++){
+                Pregunta pregunta = preguntas.get(j);
+                pregunta_element = new Element("pregunta");
+                pregunta_element.setAttribute("numero", pregunta.getNumero());
+                examen_element.addContent(pregunta_element);
+                
             }
             //Aqui va lo de las preguntas
             root.addContent(examen_element);

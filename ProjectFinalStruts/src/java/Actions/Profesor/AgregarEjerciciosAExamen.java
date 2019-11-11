@@ -67,22 +67,11 @@ public class AgregarEjerciciosAExamen {
         examenes.remove(indicador);
         examenes.add(nuevo);
         
-        if(xml.guardarXMLExamen(examenes)){
+        if(xml.guardarXMLExamenAgregado(examenes)){
             return SUCCESS;
         }else{
             return ERROR;
         }
-        
-        
-        
-        /*
 
-        if(xmlExamen.guardarXMLExamen(examenes)){
-            return SUCCESS;
-        }else{
-            return ERROR;
-        }
-        */
-        
     }
 }
