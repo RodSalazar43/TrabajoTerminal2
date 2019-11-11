@@ -752,6 +752,7 @@ public class XMLActions {
         ejercicio.setAttribute("numero", "prueba");
         ejercicio.setAttribute("nombre", "prueba");
         ejercicio.setAttribute("tipo", "prueba");
+        ejercicio.setAttribute("numeroEjercicio","0");
         
         Element indicaciones = new Element("indicaciones");
         indicaciones.setText(" ");
