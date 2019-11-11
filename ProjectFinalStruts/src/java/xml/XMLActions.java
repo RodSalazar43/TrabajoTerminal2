@@ -119,6 +119,41 @@ public class XMLActions {
         
     }
     
+    public boolean guardarXMLExamenAgregado(ArrayList<Examen> examenes){
+        Element root=new Element("examenes");
+        
+        for(int i = 0;i < examenes.size();i++){
+            Examen examen_datos= examenes.get(i);
+            Element examen_element=new Element("examen");
+            examen_element.setAttribute("fecha", examen_datos.getFecha());
+            examen_element.setAttribute("nombre", examen_datos.getNombre());
+            ArrayList<Ejercicio> ejercicios = examen_datos.getEjercicios();
+            ArrayList<Pregunta> pregunta = examen_datos.getPreguntas();
+            
+            Element ejercicio_element;
+            
+            for (int x = 0; x < ejercicios.size(); x++) {
+                Ejercicio ejercicio = ejercicios.get(x);
+                ejercicio_element=new Element("ejercicio");
+                ejercicio_element.setAttribute("numero", ejercicio.getNumero());
+                examen_element.addContent(ejercicio_element);
+            }
+            //Aqui va lo de las preguntas
+            root.addContent(examen_element);
+        }
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath("xml/examenes.xml")));
+            System.out.println("Archivo xml, guardado");
+            return true;
+            //C:\Users\German Pons\Documents\NetBeansProjects\ProyectFinal\build\web\xml
+        } catch (Exception e) {
+            e.getMessage();
+            return false;
+        }
+        
+    }
+    
 
     public String convierteStringToJson(String texto) {
         JSONObject xmlJSONObj = XML.toJSONObject(texto);
@@ -497,7 +532,13 @@ public class XMLActions {
         ArrayList<Examen> examenes = new ArrayList<>();
         for(int i=0;i<nodos.size();i++){
             Element examen_elemento=(Element) nodos.get(i);
+            List ejercicios = examen_elemento.getChildren("ejercicio");
+            List preguntas = examen_elemento.getChildren("pregunta");
+            ArrayList<Ejercicio> arrayEjercicios = this.convierteList2ArrayListEjercicioAgregado(ejercicios);
+            ArrayList<Pregunta> arrayPregunta = this.convierteList2ArrayListPreguntaAgregada(preguntas);
             Examen examen_objeto=new Examen();
+            examen_objeto.setEjercicios(arrayEjercicios);
+            examen_objeto.setPreguntas(arrayPregunta);
             examen_objeto.setFecha(examen_elemento.getAttributeValue("fecha"));
             examen_objeto.setNombre(examen_elemento.getAttributeValue("nombre"));
             //aqui va el codigo para agregar las preguntas
@@ -990,6 +1031,16 @@ public class XMLActions {
             int numero=Integer.parseInt(numeros[i]);
             Ejercicio ej=datos.get(numero-1);
             ejercicios.add(ej);
+        }
+        return ejercicios;
+    }
+    
+    public ArrayList<Ejercicio> regresaEjerciciosA(String[] numeros){
+        ArrayList<Ejercicio> ejercicios = new ArrayList<>();
+        for(int i = 0;i < numeros.length;i++){
+            Ejercicio eje = new Ejercicio();
+            eje.setNumero(numeros[i]);
+            ejercicios.add(eje);
         }
         return ejercicios;
     }
