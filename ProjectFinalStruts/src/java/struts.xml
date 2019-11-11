@@ -288,16 +288,16 @@
                 <param name="location">Profesor/Profesor.html?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Profesor/Profesor.html?correcto=false</param>
+                <param name="location">Profesor/respuestas/agregarEjercicios2Examen.jsp?correcto=true</param>
             </result>
         </action>
         
         <action name="AgregarPreguntasAExamen" class="Actions.Profesor.AgregarPreguntasAExamen">    <!-- AgregarPreguntasAExamen -->
             <result name="success" type="redirect">
-                <param name="location">Profesor/Profesor.html?correcto=true</param>
+                <param name="location">Profesor/respuestas/agregarPreguntas2Examen.jsp?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Profesor/Profesor.html?correcto=false</param>
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
             </result>
         </action>
     </package>
