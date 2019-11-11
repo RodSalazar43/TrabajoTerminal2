@@ -66,19 +66,19 @@
         
         <action name="AgregarUsuario" class="Actions.Administrador.AgregarUsuario">             <!-- Agrega usuario -->
             <result name="success" type="redirect">
-                <param name="location">Administrador/Administrador.html?correcto=done</param>
+                <param name="location">Administrador/respuestas/agregarUsuario.jsp?correcto=done</param>
             </result>
         </action>
         
         <action name="EliminarUsuario" class="Actions.Administrador.EliminarUsuario">             <!-- Eliminar usuario -->
             <result name="success" type="redirect">
-                <param name="location">Administrador/Administrador.html?correcto=done</param>
+                <param name="location">Administrador/respuestas/eliminarUsuario.jsp?correcto=done</param>
             </result>
         </action>
         
         <action name="AgregarGrupo" class="Actions.Administrador.AgregarGrupo">             <!-- AgregarGrupo -->
             <result name="success" type="redirect">
-                <param name="location">Administrador/Administrador.html?correcto=done</param>
+                <param name="location">Administrador/respuestas/agregarUsuario.jsp?correcto=done</param>
             </result>
         </action>
         
@@ -96,7 +96,7 @@
         
         <action name="EliminarGrupo" class="Actions.Administrador.EliminarGrupo">             <!-- EliminarGrupo -->
             <result name="success" type="redirect">
-                <param name="location">Administrador/Administrador.html?correcto=done</param>
+                <param name="location">Administrador/respuestas/eliminarUsuario.jsp?correcto=done</param>
             </result>
         </action>
         
