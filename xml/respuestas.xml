@@ -1,4 +1,12 @@
-<respuestas>
+<?xml version="1.0" encoding="UTF-8"?>
+<respuestas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/gerpo/OneDrive/Escritorio/xml/esquemaRespuestas.xsd">
+		<examenes>
+		<examen numero="1">
+			<ejercicio numero="1">2,4,3,1</ejercicio>
+			<ejercicio numero="4">2,4,3,1</ejercicio>
+			<pregunta numero="1">2,4,3,1</pregunta>
+		</examen>
+	</examenes>
     <ejercicios>
         <ejercicio numero="2">3,2,1,4</ejercicio>
         <ejercicio numero="2">3,2,1,4</ejercicio>
