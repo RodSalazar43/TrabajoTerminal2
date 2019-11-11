@@ -24,7 +24,7 @@
   <br>
 
   <center>
-    <a class="btn btn-danger" href="creaEjercicio.html">Crear un ejercicio nuevo</a>
+    <button class="btn btn-danger" onclick="redirecciona()">Crear un ejercicio nuevo</button>
    <button onclick="muestraEjercicio()" class="btn btn-success">Muestra ejercicios</button>
   </center>
   
@@ -36,7 +36,19 @@
   </div>
 
   <script type="text/javascript" src="js/muestraEjercicio.js"></script>
-
+  <script type="text/javascript">
+      function redirecciona(){
+        var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/creaEjercicio.html?id='+id;
+      }
+      
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+  </script>
   <div id="alerta">
 
   </div>

@@ -32,6 +32,23 @@
     <script type="text/javascript">
       document.getElementById("muestraEjercicio").addEventListener("click", cargaDatos);
       var num;
+      
+      function redireccionaVerEjercicio(){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/verEjercicio.html?id='+id;
+      }
+      
+      function redireccionaCreaEjercicio(){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/creaEjercicio.html?id='+id;
+      }
+      
+      function redireccionaAgregaExamen(){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/agregaExamen.html?id='+id;
+      }
+      
+      
       function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
