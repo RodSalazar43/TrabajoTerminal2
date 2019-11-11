@@ -1056,5 +1056,15 @@ public class XMLActions {
         }
         return ejercicios;
     }
+    
+    public ArrayList<Pregunta> regresaPreguntasA(String[] numeros){
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        for(int i = 0;i < numeros.length;i++){
+            Pregunta pre = new Pregunta();
+            pre.setNumero(numeros[i]);
+            preguntas.add(pre);
+        }
+        return preguntas;
+    }
 
 }
