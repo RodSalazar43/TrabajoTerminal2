@@ -1110,7 +1110,7 @@ public class XMLActions {
     }
    
     public ArrayList<Ejercicio> eliminaEjercicio(ArrayList<Ejercicio> ejercicios,int numero){
-        ejercicios.remove(numero-1);
+        ejercicios.remove(numero - 1);
         return ejercicios;
     }
     

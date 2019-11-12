@@ -300,5 +300,23 @@
                 <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
             </result>
         </action>
+        
+        <action name="AgregarEjercicio" class="Actions.Profesor.AgregarEjercicio">    <!-- AgregarEjercicio -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="EliminarEjercicio" class="Actions.Profesor.EliminarEjercicio">    <!-- EliminarEjercicio -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/Profesor.html?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/Profesor.html?correcto=false</param>
+            </result>
+        </action>
     </package>
 </struts>
