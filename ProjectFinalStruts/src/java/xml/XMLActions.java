@@ -267,6 +267,33 @@ public class XMLActions {
         return datos;
     }
     
+    public ArrayList<Ejercicio> convierte2ArrayListEjercicios(List nodos){
+        ArrayList<Ejercicio> datos=new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            //private String numero, nombre, tipo - pregunta, resultado, opcion1, opcion2, opcion3, opcion4;
+            Element ejercicios = (Element) nodos.get(i);
+            
+            Ejercicio ejercicio = new Ejercicio();
+            
+            //obtenemos los atributos
+            ejercicio.setNumero(ejercicios.getAttributeValue("numero"));
+            ejercicio.setNombre(ejercicios.getAttributeValue("numero"));
+            ejercicio.setTipo(ejercicios.getAttributeValue("tipo"));
+            
+            //Obtenemos los elementos
+            ejercicio.setPregunta(ejercicios.getChildText("indicaciones"));
+            ejercicio.setOpcion1(ejercicios.getChildText("opcion1"));
+            ejercicio.setOpcion2(ejercicios.getChildText("opcion2"));
+            ejercicio.setOpcion3(ejercicios.getChildText("opcion3"));
+            ejercicio.setOpcion4(ejercicios.getChildText("opcion4"));
+            ejercicio.setResultado(ejercicios.getChildText("resultado"));
+
+            datos.add(ejercicio);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
+    
     public ArrayList<RespuestaPregunta> convierte2ArrayListRespuestasPreguntas(List nodos){
         ArrayList<RespuestaPregunta> datos = new ArrayList<>();
         for(int i=0;i<nodos.size();i++){
@@ -403,6 +430,29 @@ public class XMLActions {
             Element rootNode = document.getRootElement();
             //se obtiene la lista de los hijos
             list = rootNode.getChildren("pregunta");
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlEjercicios(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            //Creo un documento atraves del archivo
+            Document document = (Document) builder.build(xmlFile);
+            //obtengo la raiz
+            Element rootNode = document.getRootElement();
+            //se obtiene la lista de los hijos
+            list = rootNode.getChildren("ejercicio");
             return list;
         } catch (IOException io) {
             System.out.println(io.getMessage());
@@ -698,6 +748,58 @@ public class XMLActions {
             pregunta.addContent(respuesta);
             
             root.addContent(pregunta);
+        }
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(ruta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return false;
+    }
+    
+    public boolean guardarXmlEjercicio(ArrayList<Ejercicio> lista, String ruta) {
+        Element root = new Element("ejercicios");
+        Ejercicio ej;
+        
+        for (int i = 0; i < lista.size(); i++) {
+            ej = lista.get(i);
+            Element ejercicio = new Element("ejercicio");
+            
+            //establecemos atributos numero tipo nombre
+            ejercicio.setAttribute("numero", ej.getNumero());
+            ejercicio.setAttribute("nombre", ej.getNombre());
+            ejercicio.setAttribute("tipo", ej.getTipo());
+            
+            //establecemos elementos indicaciones opcion1-4 resultado
+            Element cuestionamiento = new Element("indicaciones");
+            cuestionamiento.setText(ej.getPregunta());
+            
+            Element opcion1 = new Element("opcion1");
+            opcion1.setText(ej.getOpcion1());
+            
+            Element opcion2 = new Element("opcion2");
+            opcion2.setText(ej.getOpcion2());
+            
+            Element opcion3 = new Element("opcion3");
+            opcion3.setText(ej.getOpcion3());
+            
+            Element opcion4 = new Element("opcion4");
+            opcion4.setText(ej.getOpcion4());
+
+            Element resultado = new Element("resultado");
+            resultado.setText(ej.getResultado());
+            
+            ejercicio.addContent(cuestionamiento);
+            ejercicio.addContent(opcion1);
+            ejercicio.addContent(opcion2);
+            ejercicio.addContent(opcion3);
+            ejercicio.addContent(opcion4);
+            ejercicio.addContent(resultado);
+            
+            root.addContent(ejercicio);
         }
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
