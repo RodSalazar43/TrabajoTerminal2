@@ -23,13 +23,23 @@ function cargarTabla() {
         tabla += "</th><td>";
         tabla += ejercicio[i].getAttribute("nombre");
         tabla += "</td>";
-        tabla += "<td><a class='btn btn-primary' href='infoEjercicio.html?numero="+(i+1)+"'>Ver ejercicio</a>";
-        tabla += "<a class='btn btn-warning' href='modificaEjercicio.html?numero="+(i+1)+"' >Modificar</a>";
+        tabla += "<td><a class='btn btn-primary' onclick='redireccionaVerEjercicio("+(i+1)+")'>Ver ejercicio</a>";
+        tabla += "<a class='btn btn-warning' onclick='redireccionaModificaEjercicio("+(i+1)+")'>Modificar</a>";
         tabla += "<button type='button' class='btn btn-danger' onclick='eliminaClick("+(i+1)+")'>Eliminar</button>";
         tabla += "</td></tr>"
       }
       document.getElementById("demo").innerHTML = tabla;
     }
+    
+    function redireccionaVerEjercicio(numero){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/infoEjercicio.html?id='+id+'&numero='+numero;
+    }
+      
+    function redireccionaModificaEjercicio(numero){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/modificaEjercicio.html?id='+id+'&numero='+numero;
+      }  
 
     function eliminaClick(numero){
       var opcion = confirm("Desea eliminar el ejercicio: "+numero);

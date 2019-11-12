@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ejercicios xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/gerpo/OneDrive/Escritorio/xml/esquemaEjercicio.xsd">
-<ejercicio numero="1" tipo="Ordena" nombre="Ordena los números decimales">
+<ejercicio numero="1" tipo="DAD" nombre="Ordena los números decimales">
     <indicaciones>Ordena los numeros de mayor a menor de arriba hacia abajo</indicaciones>
     <opcion1>0.69</opcion1>
     <opcion2>0.65</opcion2>
@@ -9,7 +9,7 @@
     <resultado>1,4,2,3</resultado>
   </ejercicio>
   
-  <ejercicio numero="2" tipo="Ordena" nombre="Ordena números enteros con decimales">
+  <ejercicio numero="2" tipo="DAD" nombre="Ordena números enteros con decimales">
     <indicaciones>Pinta de cualquier color el numero mas grande</indicaciones>
     <opcion1>2.54</opcion1>
     <opcion2>3.45</opcion2>
@@ -18,7 +18,7 @@
     <resultado>3,2,1,4</resultado>
   </ejercicio>
   
-  <ejercicio numero="3" tipo="Ordena" nombre="Acomoda las fracciones de mayor a menor">
+  <ejercicio numero="3" tipo="Linea" nombre="Une los numeros que son similares">
     <indicaciones>Acomoda de menor a mayor</indicaciones>
     <opcion1>1/100</opcion1>
     <opcion2>1/10</opcion2>
