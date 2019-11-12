@@ -1,5 +1,5 @@
 package entitys;
-// Generated 6/11/2019 10:35:44 PM by Hibernate Tools 4.3.1
+// Generated 11/11/2019 08:09:09 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -22,10 +22,6 @@ public class Grupo  implements java.io.Serializable {
     public Grupo() {
     }
 
-	
-    public Grupo(Profesor profesor) {
-        this.profesor = profesor;
-    }
     public Grupo(Profesor profesor, String nombre, Integer ano, String turno, String rutaXmlasignados, Set alumnos) {
        this.profesor = profesor;
        this.nombre = nombre;

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 6/11/2019 10:35:44 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 11/11/2019 08:09:10 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entitys.Profesor" table="profesor" catalog="trabajoterminal" optimistic-lock="version">
-        <id name="idUsuario" type="int">
+        <id name="idUsuario" type="java.lang.Integer">
             <column name="idUsuario" />
             <generator class="foreign">
                 <param name="property">usuario</param>
@@ -22,7 +22,7 @@
         </property>
         <set name="grupos" table="grupo" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idProfesor" not-null="true" />
+                <column name="idProfesor" />
             </key>
             <one-to-many class="entitys.Grupo" />
         </set>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 6/11/2019 10:35:44 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 11/11/2019 08:09:10 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entitys.Grupo" table="grupo" catalog="trabajoterminal" optimistic-lock="version">
         <id name="idGrupo" type="java.lang.Integer">
@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="profesor" class="entitys.Profesor" fetch="select">
-            <column name="idProfesor" not-null="true" />
+            <column name="idProfesor" />
         </many-to-one>
         <property name="nombre" type="string">
             <column name="Nombre" length="45" />
@@ -25,7 +25,7 @@
         </property>
         <set name="alumnos" table="alumno" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idGrupo" not-null="true" />
+                <column name="idGrupo" />
             </key>
             <one-to-many class="entitys.Alumno" />
         </set>

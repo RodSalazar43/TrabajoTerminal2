@@ -1,5 +1,5 @@
 package entitys;
-// Generated 6/11/2019 10:35:44 PM by Hibernate Tools 4.3.1
+// Generated 11/11/2019 08:09:09 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Profesor  implements java.io.Serializable {
 
 
-     private int idUsuario;
+     private Integer idUsuario;
      private Usuario usuario;
      private String rutaXmlpreguntas;
      private String rutaXmlejercicios;
@@ -33,11 +33,11 @@ public class Profesor  implements java.io.Serializable {
        this.grupos = grupos;
     }
    
-    public int getIdUsuario() {
+    public Integer getIdUsuario() {
         return this.idUsuario;
     }
     
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
     public Usuario getUsuario() {
