@@ -1,7 +1,8 @@
-<asignados>
-    <examenes>
+<?xml version="1.0" encoding="UTF-8"?>
+<asignados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/gerpo/OneDrive/Escritorio/xml/EsquemaAsignados.xsd">
+	<examenes>
         <examen numeroExamen="1"  grupoCompleto="no" numeroAlumno="1"/>
-        <examen numeroExamen="3"  grupoCompleto="si" numeroAlumno="0" grupo=""/>
+        <examen numeroExamen="3"  grupoCompleto="si" numeroAlumno="0" grupo="hola"/>
     </examenes>
     
     <ejercicios>
