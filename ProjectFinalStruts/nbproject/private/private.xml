@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/Profesor/infoEjercicio.html</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/Profesor/modificaEjercicio.html</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/xml/ejercicios.xml</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/Profesor/verEjercicio.html</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/src/java/struts.xml</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/cerrarSesion.jsp</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/exitoso.jsp</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/Profesor/js/modificaEjercicio.js</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/xml/XMLActions.java</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/AgregaEjercicio.java</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AgregarEjercicio.java</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/struts.xml</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AgregarPregunta.java</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/xml/Ejercicio.java</file>
         </group>
     </open-files>
 </project-private>
