@@ -11,7 +11,15 @@ import xml.Ejercicio;
 import xml.XMLActions;
 
 public class AgregaEjercicio extends ActionSupport {
-    private String inst,op1,op2,op3,op4,res;
+    private String inst,op1,op2,op3,op4,res,nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     private int idProfesor;
 
     public int getIdProfesor() {

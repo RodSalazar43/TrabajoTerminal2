@@ -120,7 +120,7 @@
         
         <action name="Logout" class="Actions.Logout">    <!-- Logout -->
             <result name="logout" type="redirect">
-                <param name="location">index.html</param>
+                <param name="location">cerrarSesion.jsp?correcto=done</param>
             </result>         
         </action>
         
