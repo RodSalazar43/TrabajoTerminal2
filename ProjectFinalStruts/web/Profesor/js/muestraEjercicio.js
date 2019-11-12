@@ -36,7 +36,7 @@ function cargarTabla() {
       console.log(opcion);
       if(opcion==true){
         let url = 'http://localhost:8080/ProjectFinalStruts/BorraEjercicio?numero='+numero;
-        alert('URL:' + url);
+        //alert('URL:' + url);
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    
             cargarTabla()
