@@ -32,6 +32,13 @@ public class Profesor  implements java.io.Serializable {
        this.rutaXmlexamen = rutaXmlexamen;
        this.grupos = grupos;
     }
+    
+    public Profesor(String rutaXmlpreguntas, String rutaXmlejercicios, String rutaXmlexamen, Set grupos) {
+       this.rutaXmlpreguntas = rutaXmlpreguntas;
+       this.rutaXmlejercicios = rutaXmlejercicios;
+       this.rutaXmlexamen = rutaXmlexamen;
+       this.grupos = grupos;
+    }
    
     public Integer getIdUsuario() {
         return this.idUsuario;

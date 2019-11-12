@@ -13,6 +13,8 @@ import entitys.Tipo;
 import xml.XMLActions;
 import Complementos.cifrarContrasenas;
 import java.io.UnsupportedEncodingException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -84,6 +86,44 @@ public class AgregarUsuario implements Serializable {
         Transaction t = hibernateSession.beginTransaction();   
         
         cifrarContrasenas c = new cifrarContrasenas();
+        String nombre = this.nombres + this.apellidoPat + this.apellidoMat;
+        XMLActions xml = new XMLActions();
+        Grupo grupo = new Grupo();
+        
+        //public Profesor(String rutaXmlpreguntas, String rutaXmlejercicios, String rutaXmlexamen, Set grupos) {
+        Set grupos = new HashSet(0);
+        Profesor profe = new Profesor("xml/Profesor" + nombre + "/preguntas.xml", "xml/Profesor" + nombre + "/ejercicios.xml", "xml/Profesor" + nombre + "/examenes.xml", grupos);
+        
+        //public Alumno(Grupo grupo, String rutaXmlrespuestas) {
+        Alumno alum = new Alumno(grupo, "xml/Alumno" + nombre + "/respuestas.xml");
+        
+        //public Usuario(Tipo tipo, String nombre, String apPaterno, String apMat, String nombreUsuario, String contrasena) {
+        Tipo tu = (Tipo)hibernateSession.load(Tipo.class, this.tipousuario);
+        Usuario user = new Usuario(tu, this.nombres, this.apellidoPat, this.apellidoMat, this.nombreUsuario, this.contrasena);
+        
+        profe.setUsuario(user);
+        
+        alum.setUsuario(user);
+        
+        user.setAlumno(alum);
+        user.setProfesor(profe);
+        
+        hibernateSession.save(alum);
+        t.commit();
+        hibernateSession.save(profe);
+        t.commit();
+        hibernateSession.save(user);
+        t.commit();
+        return SUCCESS;
+    }    
+}
+/*
+    public String execute() throws UnsupportedEncodingException{
+        Session hibernateSession;
+        hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
+        Transaction t = hibernateSession.beginTransaction();   
+        
+        cifrarContrasenas c = new cifrarContrasenas();
         
         Usuario user = new Usuario();
         
@@ -145,3 +185,4 @@ public class AgregarUsuario implements Serializable {
         return SUCCESS;
     }    
 }
+*/

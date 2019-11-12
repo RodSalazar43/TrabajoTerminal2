@@ -33,6 +33,14 @@ public class Usuario  implements java.io.Serializable {
        this.alumno = alumno;
     }
    
+    public Usuario(Tipo tipo, String nombre, String apPaterno, String apMat, String nombreUsuario, String contrasena) {
+       this.tipo = tipo;
+       this.nombre = nombre;
+       this.apPaterno = apPaterno;
+       this.apMat = apMat;
+       this.nombreUsuario = nombreUsuario;
+       this.contrasena = contrasena;
+    }
     public Integer getIdUsuario() {
         return this.idUsuario;
     }

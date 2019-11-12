@@ -26,6 +26,11 @@ public class Alumno  implements java.io.Serializable {
        this.usuario = usuario;
        this.rutaXmlrespuestas = rutaXmlrespuestas;
     }
+    
+    public Alumno(Grupo grupo, String rutaXmlrespuestas) {
+       this.grupo = grupo;
+       this.rutaXmlrespuestas = rutaXmlrespuestas;
+    }
    
     public Integer getIdUsuario() {
         return this.idUsuario;
