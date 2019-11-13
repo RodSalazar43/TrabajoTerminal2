@@ -127,8 +127,9 @@ public class XMLActions {
             
             Element examen_element=new Element("examen");
             
-            examen_element.setAttribute("fecha", examen_datos.getFecha());
+            examen_element.setAttribute("numero", examen_datos.getNumero());
             examen_element.setAttribute("nombre", examen_datos.getNombre());
+            examen_element.setAttribute("fecha", examen_datos.getFecha());
             
             ArrayList<Ejercicio> ejercicios = examen_datos.getEjercicios();
             ArrayList<Pregunta> preguntas = examen_datos.getPreguntas();
@@ -607,6 +608,7 @@ public class XMLActions {
             examen_objeto.setPreguntas(arrayPregunta);
             examen_objeto.setFecha(examen_elemento.getAttributeValue("fecha"));
             examen_objeto.setNombre(examen_elemento.getAttributeValue("nombre"));
+            examen_objeto.setNumero(examen_elemento.getAttributeValue("numero"));
             //aqui va el codigo para agregar las preguntas
             examenes.add(examen_objeto);
         }
@@ -1187,6 +1189,45 @@ public class XMLActions {
             ejercicios.add(eje);
         }
         return ejercicios;
+    }
+    
+    public ArrayList<Ejercicio> generaArregloEjercicios(){
+        ArrayList<Ejercicio> ejercicios = new ArrayList<>();
+        
+        Ejercicio ejercicio = new Ejercicio();
+        ejercicio.setNumero("0");
+        ejercicio.setNombre("PrimerEjercicio");
+        ejercicio.setOpcion1("1");
+        ejercicio.setOpcion2("2");
+        ejercicio.setOpcion3("3");
+        ejercicio.setOpcion4("4");
+        ejercicio.setOpcion5("5");
+        ejercicio.setOpcion6("6");
+        ejercicio.setOpcion7("7");
+        ejercicio.setOpcion8("8");
+        ejercicio.setPregunta("Pregunta");
+        ejercicio.setResultado("Resultado");
+        ejercicio.setTipo("Tipo");
+        
+        ejercicios.add(ejercicio);
+        return ejercicios;
+    }
+    
+    public ArrayList<Pregunta> generaArregloPreguntas(){
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        
+        Pregunta pregunta = new Pregunta();
+        
+        pregunta.setNumero("0");
+        pregunta.setNombre("PrimerPregunta");
+        pregunta.setOpcion1("1");
+        pregunta.setOpcion2("2");
+        pregunta.setIndicaciones("indicaciones");
+        pregunta.setRespuesta("respuesta");
+        pregunta.setTipo("Tipo");
+        
+        preguntas.add(pregunta);
+        return preguntas;
     }
     
     public ArrayList<Pregunta> regresaPreguntasA(String[] numeros){
