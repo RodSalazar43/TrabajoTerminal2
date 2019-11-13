@@ -110,7 +110,7 @@ public class AgregarUsuario implements Serializable {
         user.setAlumno(alum);
         user.setProfesor(profe);
         
-        if(this.tipousuario == 2){
+        if(this.tipousuario == 2){ //profesor
             if(xml.crearXMLExamen(nombre)){
                 System.out.println("XML Examen creado");
             }
@@ -144,72 +144,3 @@ public class AgregarUsuario implements Serializable {
         return SUCCESS;
     }    
 }
-/*
-    public String execute() throws UnsupportedEncodingException{
-        Session hibernateSession;
-        hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
-        Transaction t = hibernateSession.beginTransaction();   
-        
-        cifrarContrasenas c = new cifrarContrasenas();
-        
-        Usuario user = new Usuario();
-        
-        user.setIdUsuario(0);
-        user.setNombreUsuario(nombreUsuario);
-        user.setNombre(nombres);
-        user.setApPaterno(apellidoPat);
-        user.setApMat(apellidoMat);
-        user.setContrasena(c.encriptar(this.contrasena));
-        
-        Tipo tu = (Tipo)hibernateSession.load(Tipo.class, this.tipousuario);
-        user.setTipo(tu);
-        
-        hibernateSession.save(user);
-        t.commit();
-        
-        //En este punto, debo de checar que tipo de usuario es, y agregarlo en su respectiva tabla
-        
-        String nombre = this.nombres + this.apellidoPat + this.apellidoMat;
-        
-        if(this.tipousuario == 2){  //Profesor
-            XMLActions xml = new XMLActions();
-            Profesor profe = new Profesor();
-            
-            profe.setIdUsuario(user.getIdUsuario());
-            if(xml.crearXMLExamen(nombre)){
-                profe.setRutaXmlexamen("xml/Profesor" + nombre + "/examenes.xml");
-            }
-            
-            if(xml.crearXMLPregunta(nombre)){
-                profe.setRutaXmlpreguntas("xml/Profesor" + nombre + "/preguntas.xml");
-            }
-            
-            if(xml.crearXMLEjercicio(nombre)){
-                profe.setRutaXmlejercicios("xml/Profesor" + nombre + "/ejercicios.xml");    
-            }
-
-            hibernateSession.save(profe);
-            t.commit();
-        }
-        
-        if(this.tipousuario == 3){ //Alumno
-            Alumno alum = new Alumno();
-            XMLActions xml = new XMLActions();
-            
-            alum.setIdUsuario(user.getIdUsuario());
-            
-            Grupo grupo = new Grupo();
-            alum.setGrupo(grupo);
-            
-            if(xml.crearXMLRespuestas(nombre)){
-                alum.setRutaXmlrespuestas("xml/Alumno" + nombre + "/respuestas.xml");
-            }
-            
-            hibernateSession.save(alum);
-            t.commit();
-        }
-        
-        return SUCCESS;
-    }    
-}
-*/

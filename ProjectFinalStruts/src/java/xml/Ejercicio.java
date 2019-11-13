@@ -5,6 +5,39 @@ import java.io.Serializable;
 
 public class Ejercicio implements Serializable{
     private String nombre,tipo,pregunta,resultado,numero,opcion1,opcion2,opcion3,opcion4;
+    private String opcion5, opcion6, opcion7, opcion8;
+
+    public String getOpcion5() {
+        return opcion5;
+    }
+
+    public void setOpcion5(String opcion5) {
+        this.opcion5 = opcion5;
+    }
+
+    public String getOpcion6() {
+        return opcion6;
+    }
+
+    public void setOpcion6(String opcion6) {
+        this.opcion6 = opcion6;
+    }
+
+    public String getOpcion7() {
+        return opcion7;
+    }
+
+    public void setOpcion7(String opcion7) {
+        this.opcion7 = opcion7;
+    }
+
+    public String getOpcion8() {
+        return opcion8;
+    }
+
+    public void setOpcion8(String opcion8) {
+        this.opcion8 = opcion8;
+    }
     private int copiaEjercicio;
 
     public int getCopiaEjercicio() {
