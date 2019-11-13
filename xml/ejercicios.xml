@@ -6,6 +6,10 @@
     <opcion2>0.65</opcion2>
     <opcion3>0.32</opcion3>
     <opcion4>0.66</opcion4>
+    <opcion5></opcion5>
+    <opcion6></opcion6>
+    <opcion7></opcion7>
+    <opcion8></opcion8>
     <resultado>1,4,2,3</resultado>
   </ejercicio>
   
@@ -15,6 +19,10 @@
     <opcion2>3.45</opcion2>
     <opcion3>5.32</opcion3>
     <opcion4>1.01</opcion4>
+    <opcion5></opcion5>
+    <opcion6></opcion6>
+    <opcion7></opcion7>
+    <opcion8></opcion8>
     <resultado>3,2,1,4</resultado>
   </ejercicio>
   
@@ -24,6 +32,10 @@
     <opcion2>1/10</opcion2>
     <opcion3>1/50</opcion3>
     <opcion4>1/1</opcion4>
+    <opcion5>310</opcion5>
+    <opcion6>29.1</opcion6>
+    <opcion7>5</opcion7>
+    <opcion8>1</opcion8>
     <resultado>4,2,3,1</resultado>
   </ejercicio>
   </ejercicios>
