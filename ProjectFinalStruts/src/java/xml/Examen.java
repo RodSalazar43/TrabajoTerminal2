@@ -5,6 +5,15 @@ import java.util.ArrayList;
 
 public class Examen implements Serializable{
     String nombre,fecha;
+    String numero;
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
     ArrayList<Ejercicio> ejercicios;
     ArrayList<Pregunta> preguntas;
     public Examen(){

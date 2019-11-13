@@ -17,6 +17,15 @@ public class AgregarEjerciciosAExamen {
     private String numeroEjercicios;
     private String nombreExamen;
     private int idProfesor;
+    private int numeroExamen;
+
+    public int getNumeroExamen() {
+        return numeroExamen;
+    }
+
+    public void setNumeroExamen(int numeroExamen) {
+        this.numeroExamen = numeroExamen;
+    }
 
     public int getIdProfesor() {
         return idProfesor;
@@ -57,11 +66,10 @@ public class AgregarEjerciciosAExamen {
         int indicador = 0;
         
         for(int i = 0; i < examenes.size(); i++){
-            if(this.nombreExamen.equals(examenes.get(i).getNombre())){
+            if(this.numeroExamen == Integer.parseInt(examenes.get(i).getNumero())){
                 indicador = i;
             }
         }    
-        
         Examen nuevo = examenes.get(indicador);
         nuevo.setEjercicios(xml.regresaEjerciciosA(numerosEjercicios));
         examenes.remove(indicador);
