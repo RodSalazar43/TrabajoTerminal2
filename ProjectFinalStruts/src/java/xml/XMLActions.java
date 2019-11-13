@@ -943,6 +943,7 @@ public class XMLActions {
         
         examen.setAttribute("fecha", "prueba");
         examen.setAttribute("nombre", "prueba");
+        examen.setAttribute("numero", "0");
         
         Element ejercicio = new Element("ejercicio");
         ejercicio.setAttribute("numero", "0");
