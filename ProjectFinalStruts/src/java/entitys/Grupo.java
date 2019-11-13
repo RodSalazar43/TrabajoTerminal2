@@ -30,6 +30,14 @@ public class Grupo  implements java.io.Serializable {
        this.rutaXmlasignados = rutaXmlasignados;
        this.alumnos = alumnos;
     }
+
+    public Grupo(String nombre, Integer ano, String turno, String rutaXmlasignados) {
+        this.nombre = nombre;
+        this.ano = ano;
+        this.turno = turno;
+        this.rutaXmlasignados = rutaXmlasignados;
+    }
+    
    
     public Integer getIdGrupo() {
         return this.idGrupo;

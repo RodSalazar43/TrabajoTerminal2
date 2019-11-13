@@ -86,21 +86,23 @@ public class AgregarUsuario implements Serializable {
         Transaction t = hibernateSession.beginTransaction();   
         
         cifrarContrasenas c = new cifrarContrasenas();
-        String nombre = this.nombres + this.apellidoPat + this.apellidoMat;
-        XMLActions xml = new XMLActions();
-        Grupo grupo = new Grupo();
         
-        //public Profesor(String rutaXmlpreguntas, String rutaXmlejercicios, String rutaXmlexamen, Set grupos) {
+        String nombre = this.nombres + this.apellidoPat + this.apellidoMat;
+        
+        XMLActions xml = new XMLActions();
+        
+        Grupo grupo = new Grupo("",2019,"","");
+        
         Set grupos = new HashSet(0);
         Profesor profe = new Profesor("xml/Profesor" + nombre + "/preguntas.xml", "xml/Profesor" + nombre + "/ejercicios.xml", "xml/Profesor" + nombre + "/examenes.xml", grupos);
+        grupo.setProfesor(profe);
         
-        //public Alumno(Grupo grupo, String rutaXmlrespuestas) {
         Alumno alum = new Alumno(grupo, "xml/Alumno" + nombre + "/respuestas.xml");
         
-        //public Usuario(Tipo tipo, String nombre, String apPaterno, String apMat, String nombreUsuario, String contrasena) {
         Tipo tu = (Tipo)hibernateSession.load(Tipo.class, this.tipousuario);
-        Usuario user = new Usuario(tu, this.nombres, this.apellidoPat, this.apellidoMat, this.nombreUsuario, this.contrasena);
+        Usuario user = new Usuario(tu, this.nombres, this.apellidoPat, this.apellidoMat, this.nombreUsuario, c.encriptar(this.contrasena));
         
+        xml.crearXMLEjercicio(nombre);
         profe.setUsuario(user);
         
         alum.setUsuario(user);
@@ -108,10 +110,35 @@ public class AgregarUsuario implements Serializable {
         user.setAlumno(alum);
         user.setProfesor(profe);
         
-        hibernateSession.save(alum);
-        t.commit();
-        hibernateSession.save(profe);
-        t.commit();
+        if(this.tipousuario == 2){
+            if(xml.crearXMLExamen(nombre)){
+                System.out.println("XML Examen creado");
+            }
+            else{
+                System.out.println("No lo cree jeje");
+            }
+            
+            if(xml.crearXMLPregunta(nombre)){
+                System.out.println("XML Preguntas creado");
+            }
+            else{
+                System.out.println("No lo cree jeje");
+            }
+            
+            if(xml.crearXMLEjercicio(nombre)){
+                System.out.println("XML Ejercicio creado");
+            }
+            else{
+                System.out.println("No lo cree jeje");
+            }
+            hibernateSession.save(profe);
+
+        }
+        
+        if(this.tipousuario == 3){ //Alumno
+            hibernateSession.save(alum);
+        }
+        
         hibernateSession.save(user);
         t.commit();
         return SUCCESS;
