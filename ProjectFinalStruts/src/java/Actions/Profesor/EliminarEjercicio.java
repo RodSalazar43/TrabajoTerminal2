@@ -43,9 +43,12 @@ public class EliminarEjercicio {
         String ruta = profesor.getRutaXmlejercicios();
         
         XMLActions xml = new XMLActions();
+        
         List listaEjercicios = xml.cargarXmlEjercicios(ruta);
         ArrayList<Ejercicio> ejercicios = xml.convierte2ArrayListEjercicios(listaEjercicios);
-        xml.eliminaEjercicio(ejercicios, this.numero);
+        
+        ejercicios = xml.eliminaEjercicio(ejercicios, this.numero);
+        
         if(xml.guardarXmlEjercicio(ejercicios, ruta) == true){
             return SUCCESS;
         }

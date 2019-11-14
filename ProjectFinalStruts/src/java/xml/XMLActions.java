@@ -1150,6 +1150,11 @@ public class XMLActions {
         preguntas.remove(numero - 1);
         return preguntas;
     }
+    
+    public ArrayList<Examen> eliminaExamen(ArrayList<Examen> examenes,int numero){
+        examenes.remove(numero - 1);
+        return examenes;
+    }
 
     public ArrayList<Ejercicio> modificaEjercicio(ArrayList<Ejercicio> ejercicios, String numero, Ejercicio ejercicioModificado) {
         int num=Integer.parseInt(numero);

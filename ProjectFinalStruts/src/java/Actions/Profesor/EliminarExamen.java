@@ -9,12 +9,13 @@ import org.hibernate.Transaction;
 import xml.Pregunta;
 import xml.XMLActions;
 import static Complementos.Operaciones.*;
+import xml.Examen;
 
 /**
  *
  * @author RodrigoSalazar
  */
-public class EliminarPregunta {
+public class EliminarExamen {
     private int numero;
     private int idProfesor;
 
@@ -40,16 +41,16 @@ public class EliminarPregunta {
         Transaction t = hibernateSession.beginTransaction();
         
         Profesor profesor = (Profesor)hibernateSession.load(Profesor.class, this.idProfesor);
-        String ruta = profesor.getRutaXmlpreguntas();
+        String ruta = profesor.getRutaXmlexamen();
         
         XMLActions xml = new XMLActions();
         
-        List listaPreguntas = xml.cargarXmlPreguntas(ruta);
-        ArrayList<Pregunta> preguntas = xml.convierte2ArrayListPreguntas(listaPreguntas);
+        List listaExamen = xml.cargarXmlExamenes(ruta);
+        ArrayList<Examen> examenes = xml.convierteList2ArrayListExamenAgregado(listaExamen);
         
-        preguntas = xml.eliminaPreguntas(preguntas, this.numero);
+        examenes = xml.eliminaExamen(examenes, this.numero);
         
-        if(xml.guardarXmlPregunta(preguntas, ruta) == true){
+        if(xml.guardarXMLExamenAgregado(examenes)){
             return SUCCESS;
         }
         else{
