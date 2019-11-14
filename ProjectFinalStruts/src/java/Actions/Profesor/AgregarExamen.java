@@ -15,7 +15,7 @@ import xml.XMLActions;
  *
  * @author RodrigoSalazar
  */
-public class AgregaExamen {
+public class AgregarExamen {
     private String nombre;
     private int idProfesor;
 

@@ -1157,14 +1157,21 @@ public class XMLActions {
     }
 
     public ArrayList<Ejercicio> modificaEjercicio(ArrayList<Ejercicio> ejercicios, String numero, Ejercicio ejercicioModificado) {
-        int num=Integer.parseInt(numero);
+        int num = Integer.parseInt(numero);
         ejercicios.remove(num-1);
         ejercicios.add(num-1, ejercicioModificado);
         return ejercicios;
     }
     
+    public ArrayList<Examen> modificaExamen(ArrayList<Examen> examenes, String numero, Examen examenModificado) {
+        int num = Integer.parseInt(numero);
+        examenes.remove(num - 1);
+        examenes.add(num - 1, examenModificado);
+        return examenes;
+    }
+    
     public ArrayList<Pregunta> modificaPregunta(ArrayList<Pregunta> preguntas, String numero, Pregunta preguntaModificada) {
-        int num=Integer.parseInt(numero);
+        int num = Integer.parseInt(numero);
         preguntas.remove(num-1);
         preguntas.add(num-1, preguntaModificada);
         return preguntas;

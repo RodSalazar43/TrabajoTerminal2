@@ -23,7 +23,43 @@ public class ModificarEjercicio {
     private String opcion2;
     private String opcion3;
     private String opcion4;
+    private String opcion5;
+    private String opcion6;
+    private String opcion7;
+    private String opcion8;
     private String resultado;
+
+    public String getOpcion5() {
+        return opcion5;
+    }
+
+    public void setOpcion5(String opcion5) {
+        this.opcion5 = opcion5;
+    }
+
+    public String getOpcion6() {
+        return opcion6;
+    }
+
+    public void setOpcion6(String opcion6) {
+        this.opcion6 = opcion6;
+    }
+
+    public String getOpcion7() {
+        return opcion7;
+    }
+
+    public void setOpcion7(String opcion7) {
+        this.opcion7 = opcion7;
+    }
+
+    public String getOpcion8() {
+        return opcion8;
+    }
+
+    public void setOpcion8(String opcion8) {
+        this.opcion8 = opcion8;
+    }
 
     public String getResultado() {
         return resultado;
@@ -103,7 +139,7 @@ public class ModificarEjercicio {
         Transaction t = hibernateSession.beginTransaction();
         
         Profesor profesor = (Profesor)hibernateSession.load(Profesor.class, this.idProfesor);
-        String ruta = profesor.getRutaXmlpreguntas();
+        String ruta = profesor.getRutaXmlejercicios();
         
         XMLActions xml = new XMLActions();        
         List lista = xml.cargarXmlEjercicios(ruta);
@@ -119,6 +155,10 @@ public class ModificarEjercicio {
         ejercicioModificado.setOpcion2(opcion2);
         ejercicioModificado.setOpcion3(opcion3);
         ejercicioModificado.setOpcion4(opcion4);
+        ejercicioModificado.setOpcion5(opcion5);
+        ejercicioModificado.setOpcion6(opcion6);
+        ejercicioModificado.setOpcion7(opcion7);
+        ejercicioModificado.setOpcion8(opcion8);
         ejercicioModificado.setResultado(resultado);
         ejercicioModificado.setTipo(original.getTipo());
         
