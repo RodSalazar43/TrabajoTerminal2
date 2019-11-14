@@ -75,6 +75,11 @@
         escribeTabla+="</tr>"
         escribeTabla+="</thead>"
         escribeTabla+="<tbody>"
+        var arreglo=new Array();
+        for(var m=0;m<ejerciciosExamen.length;m++){
+            arreglo.push(ejerciciosExamen[m].attributes[0].value)
+        }
+        
         
         for(var i=0;i<ejercicios.length;i++){
             for(var x=0;x<ejerciciosExamen.length;x++){
@@ -90,18 +95,35 @@
                         escribeTabla+="<th scope='row'><input type='checkbox' checked='checked'/></th>"
                         escribeTabla+="<td>"+nombreEjercicio+"</td>"
                         escribeTabla+="<td>"+tipoEjercicio+"</td>"
-                        escribeTabla+="</tr>"   
-                        continue;
+                        escribeTabla+="</tr>"
                 }else{
-                        if(){
-                            
+                    var impreso=0;
+                    for(var g=0;g<arreglo.length;g++){
+                        if(arreglo[g]==ejercicios[i].attributes[0].value){
+                            impreso++;
                         }
-                continue;
-            } 
+                    }
+                    if(impreso===0){
+                        var nombreEjercicio=ejercicios[i].getAttribute("nombre");
+                        var tipo=ejercicios[i].getAttribute("tipo");
+                        if(tipo==="DAD"){
+                            tipoEjercicio="Arrastrar y soltar"
+                        }else if(tipo==="Linea"){
+                        tipoEjercicio="Unir con una línea"
+                        }
+                        escribeTabla+="<tr>"
+                        escribeTabla+="<th scope='row'><input type='checkbox'/></th>"
+                        escribeTabla+="<td>"+nombreEjercicio+"</td>"
+                        escribeTabla+="<td>"+tipoEjercicio+"</td>"
+                        escribeTabla+="</tr>"
+                        arreglo.push(ejercicios[i].attributes[0].value)
+                    }
+                } 
             }
             if(ejerciciosExamen[i]===undefined){
                 break;
             }
+            console.log(arreglo)
         }
         escribeTabla+="</tbody>"
             document.getElementById("demo").innerHTML=escribeTabla;
