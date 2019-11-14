@@ -18,10 +18,10 @@
   <div class="align-items-center container">
       <div class="row">
           <div class="col-6">
-              <a class="btn btn-dark" href="verExamen.html">Mostrar Examenes</a>
+              <button class="btn btn-dark" onclick="redireccionaVerExamen()">Mostrar Examenes</button>
           </div>
           <div class="col-6">
-              <a class="btn btn-dark" href="agregaExamen.html">Crear examen</a>
+              <button class="btn btn-dark" onclick="redireccionaAgregaExamen()">Crear examen</button>
           </div>
       </div>
   </div>
@@ -42,6 +42,18 @@
       </center>
     <script type="text/javascript">
       document.getElementById("muestraExamen").addEventListener("click", cargaDatos);
+      
+      function redireccionaVerExamen(){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/verExamen.html?id='+id;
+    }
+      
+    function redireccionaAgregaExamen(numero){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/agregaExamen.html?id='+id;
+    }  
+      
+      
       var num;
       function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -82,41 +94,61 @@
         infoExamen +="</div>";
         infoExamen+="<hr class='bg-warning'>"
         var ejerciciosExamen=examen[num-1].getElementsByTagName("ejercicio");
-        console.log("Los ejercicios son del examen son:")
-        console.log(ejerciciosExamen)
-        console.log("Aqui esta: ")
         //console.log("Ejercicios del archivo")
         //console.log(ejercicios)
-        
-        
+        var tipoEjercicio="";
         for(var i=0;i<ejercicios.length;i++){
             for(var x=0;x<ejerciciosExamen.length;x++){
                if(ejerciciosExamen[x].attributes.numero.value===ejercicios[i].attributes.numero.value){
                 var nombreEjercicio=ejercicios[i].getAttribute("nombre");
-          var ins=ejercicios[i].getElementsByTagName("indicaciones")[0].textContent;
-          var opcion1=ejercicios[i].getElementsByTagName("opcion")[0].textContent;
-          var opcion2=ejercicios[i].getElementsByTagName("opcion")[1].textContent;
-          var opcion3=ejercicios[i].getElementsByTagName("opcion")[2].textContent;
-          var opcion4=ejercicios[i].getElementsByTagName("opcion")[3].textContent;
-          var resultado=ejercicios[i].getElementsByTagName("resultado")[0].textContent;
-        
-          console.log(nombreEjercicio)
-          console.log(ins)
-          console.log(opcion1)
-          console.log(opcion2)
-          console.log(opcion3)
-          console.log(opcion4)
-          console.log(resultado)
-          infoExamen+="<center><p class='h3'>Ejercicio: "+(i+1)+"</p></center>";
-          infoExamen+="<div class='card-columns'>";
-          infoExamen+="<label class='lead'>Nombre del ejercicio: </label><input type='text' class='form-control' value='"+nombreEjercicio+"' readOnly/><br></div>";
-          infoExamen+="<div class='card-columns'><label class='lead'> Instrucciones: </label><input type='text' class='form-control' value='"+ins+"' readOnly/><br></div>";
-          infoExamen+="<hr><div class='card-columns'><label class='lead'>Opcion 1: </label><input type='text' class='form-control' value='"+opcion1+"' readOnly/><br></div>";
-          infoExamen+="<div class='card-columns'><label class='lead'>Opcion 2: </label><input type='text' class='form-control' value='"+opcion2+"' readOnly/><br></div>";
-          infoExamen+="<div class='card-columns'><label class='lead'>Opcion 3: </label><input type='text' class='form-control' value='"+opcion3+"' readOnly/><br></div>";
-          infoExamen+="<div class='card-columns'><label class='lead'>Opcion 4: </label><input type='text' class='form-control' value='"+opcion4+"' readOnly/><br></div>";
-          infoExamen+="<hr><div class='card-columns'><label class='lead'>Resultado: </label><input type='text' class='form-control' value='"+resultado+"' readOnly/><br></div>";
-          infoExamen+="<hr class='bg-primary'>";
+                var ins=ejercicios[i].getElementsByTagName("indicaciones")[0].textContent;
+                var tipo=ejercicios[i].getAttribute("tipo");
+                console.log(tipo)
+                if(tipo==="DAD"){
+                    var opcion1=ejercicios[i].getElementsByTagName("opcion1")[0].textContent;
+                    var opcion2=ejercicios[i].getElementsByTagName("opcion2")[0].textContent;
+                    var opcion3=ejercicios[i].getElementsByTagName("opcion3")[0].textContent;
+                    var opcion4=ejercicios[i].getElementsByTagName("opcion4")[0].textContent;
+                    var resultado=ejercicios[i].getElementsByTagName("resultado")[0].textContent;
+                    tipoEjercicio="Arrastrar y soltar"
+                    infoExamen+="<center><p class='h3'>Ejercicio: "+(i+1)+"</p></center>";
+                    infoExamen+="<div class='card-columns'>";
+                    infoExamen+="<label class='lead'>Nombre del ejercicio: </label><input type='text' class='form-control' value='"+nombreEjercicio+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'> Instrucciones: </label><input type='text' class='form-control' value='"+ins+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'> Tipo de ejercicio: </label><input type='text' class='form-control' value='"+tipoEjercicio+"' readOnly/><br></div>";
+                    infoExamen+="<hr><div class='card-columns'><label class='lead'>Opcion 1: </label><input type='text' class='form-control' value='"+opcion1+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Opcion 2: </label><input type='text' class='form-control' value='"+opcion2+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Opcion 3: </label><input type='text' class='form-control' value='"+opcion3+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Opcion 4: </label><input type='text' class='form-control' value='"+opcion4+"' readOnly/><br></div>";
+                    infoExamen+="<hr><div class='card-columns'><label class='lead'>Resultado: </label><input type='text' class='form-control' value='"+resultado+"' readOnly/><br></div>";
+                    infoExamen+="<hr class='bg-primary'>";
+                }else if(tipo==="Linea"){
+                    var opcion1=ejercicios[i].getElementsByTagName("opcion1")[0].textContent;
+                    var opcion2=ejercicios[i].getElementsByTagName("opcion2")[0].textContent;
+                    var opcion3=ejercicios[i].getElementsByTagName("opcion3")[0].textContent;
+                    var opcion4=ejercicios[i].getElementsByTagName("opcion4")[0].textContent;
+                    var opcion5=ejercicios[i].getElementsByTagName("opcion5")[0].textContent;
+                    var opcion6=ejercicios[i].getElementsByTagName("opcion6")[0].textContent;
+                    var opcion7=ejercicios[i].getElementsByTagName("opcion7")[0].textContent;
+                    var opcion8=ejercicios[i].getElementsByTagName("opcion8")[0].textContent;
+                    tipoEjercicio="Unir con una línea"
+                    infoExamen+="<center><p class='h3'>Ejercicio: "+(i+1)+"</p></center>";
+                    infoExamen+="<div class='card-columns'>";
+                    infoExamen+="<label class='lead'>Nombre del ejercicio: </label><input type='text' class='form-control' value='"+nombreEjercicio+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'> Instrucciones: </label><input type='text' class='form-control' value='"+ins+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'> Tipo de ejercicio: </label><input type='text' class='form-control' value='"+tipoEjercicio+"' readOnly/><br></div>";
+                    infoExamen+="<hr><div class='card-columns'><label class='lead'>Opcion 1: </label><input type='text' class='form-control' value='"+opcion1+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Opcion 2: </label><input type='text' class='form-control' value='"+opcion2+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Opcion 3: </label><input type='text' class='form-control' value='"+opcion3+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Opcion 4: </label><input type='text' class='form-control' value='"+opcion4+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Respuesta opción 1: </label><input type='text' class='form-control' value='"+opcion5+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Respuesta opción 2: </label><input type='text' class='form-control' value='"+opcion6+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Respuesta opción 3: </label><input type='text' class='form-control' value='"+opcion7+"' readOnly/><br></div>";
+                    infoExamen+="<div class='card-columns'><label class='lead'>Respuesta opción 4: </label><input type='text' class='form-control' value='"+opcion8+"' readOnly/><br></div>";
+                    
+                }
+                
+                
             }else{
                 continue;
             } 

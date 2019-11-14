@@ -56,14 +56,30 @@
         tabla+="<td>";
         tabla+=examen[i].getAttribute("fecha");
         tabla+="</td>";
-        tabla+="<td><a type='button' href='infoExamen.html?numero="+(i+1)+"' class='btn btn-primary'>Ver examen</a>";
-        tabla+="<a type='button' href='modificaExamen.html?numero="+(i+1)+"' class='btn btn-warning'>Modificar</a>";
-        tabla+="<button type='button' onclick='eliminaExamen("+(i+1)+")' class='btn btn-danger'>Eliminar</button>";
-        tabla+="<a href='pruebaExamen.html?numero="+(i+1)+"' class='btn btn-info'>Probar examen</button>";
+        tabla+="<td><button class='btn btn-primary' onclick='redireccionaVerExamen("+(i+1)+")'>Ver examen</button>";
+        tabla+="<button class='btn btn-warning' onclick='redireccionaModificaExamen("+(i+1)+")'>Modificar</button>";
+        tabla+="<button onclick='eliminaExamen("+(i+1)+")' class='btn btn-danger'>Eliminar</button>";
+        tabla+="<a class='btn btn-info' onclick='redireccionaPruebaExamen("+(i+1)+")'>Probar examen</button>";
         tabla+="</td></tr>"
       }
       document.getElementById("demo").innerHTML=tabla;
     }
+    
+    function redireccionaVerExamen(numero){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/infoExamen.html?id='+id+'&numero='+numero;
+    }
+      
+    function redireccionaModificaExamen(numero){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/modificaExamen.html?id='+id+'&numero='+numero;
+    }  
+    
+    function redireccionaPruebaExamen(numero){
+          var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/pruebaExamen.html?id='+id+'&numero='+numero;
+      }
+    
     
     function eliminaExamen(numero){
          var opcion = confirm("¿Desea eliminar el examen número "+numero+"?");
@@ -78,6 +94,13 @@
             location.reload();
         });
         }
+    }
+    
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
   </script>
 

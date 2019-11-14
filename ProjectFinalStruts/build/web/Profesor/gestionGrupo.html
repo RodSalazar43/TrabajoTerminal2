@@ -16,15 +16,147 @@
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 </head>
 
-<body class="fondo-azulado">
+<body class="fondo-meredian">
   <noscript>Necesitas habilitar JavaScript para ejecutar la aplicación.</noscript>
   <div id="welcome"></div>
   <div id="navegaProfe"></div>
   <br>
-
-  <div id="alerta">
-
+<center>
+  <div class="container">
+      <div class="row bg-dark">
+          <div class="col-3">
+              <button class="btn btn-danger btn-outline-light" onclick="asignaExamen()">Asignar examen a un grupo</button>
+          </div>
+          <div class="col-3">
+              <button class="btn btn-primary btn-outline-light" onclick="asignaEjercicio()">Asignar ejercicio a un grupo</button>
+          </div>
+          <div class="col-3">
+              <button class="btn btn-success btn-outline-light">Ver calificaciones</button>
+          </div>
+          <div class="col-3">
+              <button class="btn btn-secondary btn-outline-light">Cambiar contraseña a grupo</button>
+          </div>
+      </div>
   </div>
+</center>
+<hr>
+<center>
+    <div id='muestraGrupo'></div>
+    <br><br>
+    <div class='container'>
+        <table id='muestraEjercicio' class="table">
+            
+        </table>
+        <table id='muestraExamen' class="table">
+            
+        </table>
+    </div>
+    <br>
+    <div id='muestraCalificaciones'> </div>
+</center>
+
+  <div id="alerta"></div>
+  <script>
+    var examen=0;  
+    function asignaExamen(){
+        if(examen===0){
+            cargarTablaExamen();
+            document.getElementById("muestraEjercicio").innerHTML="";
+            examen++;
+        }else{
+            document.getElementById("muestraExamen").innerHTML="";
+            examen=0;
+        }
+        
+      }
+
+function cargarTablaExamen(){
+      var xhr=new XMLHttpRequest();
+      xhr.onreadystatechange=function(){
+        cargarXMLExamen(this);
+      };
+      xhr.open("GET","../xml/examenes.xml",true);
+      xhr.send();
+    }
+
+    function cargarXMLExamen(xml){
+      var docXML=xml.responseXML;
+      var tabla="<tr><th scope='col' class='bg-danger'>Selecciona</th><th scope='col' class='bg-danger'>Nombre del examen</th><th scope='col' class='bg-danger'>Fecha del examen</th></tr>"
+      var examen=docXML.getElementsByTagName("examen");
+      for(var i=0;i<examen.length;i++){
+        tabla+="<tr class='bg-light'><th socpe='row'>";
+        tabla+="<input type='checkbox' name='ex"+(i+1)+"'></input>"
+        tabla+="</th><td>";
+        tabla+=examen[i].getAttribute("nombre");
+        tabla+="</td>";
+        tabla+="<td>";
+        tabla+=examen[i].getAttribute("fecha");
+        tabla+="</td>";
+        tabla+="</tr>"
+      }
+      tabla+="<br><br>"
+      tabla+="<button class='btn btn-warning'>Mostrar grupos</button>"
+      document.getElementById("muestraExamen").innerHTML=tabla;
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////
+    var ejercicio=0
+    function asignaEjercicio(){
+        if(ejercicio===0){
+            cargarTablaEjercicio();
+            document.getElementById("muestraExamen").innerHTML="";
+            ejercicio++;
+        }else{
+            document.getElementById("muestraEjercicio").innerHTML="";
+            ejercicio=0;
+        }
+        
+    }
+    function cargarTablaEjercicio() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        cargarXMLEjercicio(this);
+      };
+      xhr.open("GET", "../xml/ejercicios.xml", true);
+      xhr.send();
+    }
+
+    function cargarXMLEjercicio(xml) {
+      var docXML = xml.responseXML;
+      console.log(docXML)
+      var ayuda;
+      var tabla = "<tr><th scope='col' class='bg-primary'>Seleccionar</th><th scope='col' class='bg-primary'>Nombre del ejercicio</th><th scope='col' class='bg-primary'>Tipo de ejercicio</th></tr>"
+      var ejercicio = docXML.getElementsByTagName("ejercicio");
+      console.log(ejercicio)
+      for (var i = 0; i < ejercicio.length; i++) {
+        tabla += "<tr class='bg-light'><th socpe='row'>";
+        tabla += "<input type='checkbox' name='ej"+(i+1)+"' value='"+(i+1)+"'></input>"
+        tabla += "</th><td>";
+        tabla += ejercicio[i].getAttribute("nombre");
+        tabla += "</td>";
+        tabla+="<td>"
+        ayuda=ejercicio[i].getAttribute("tipo")
+        if(ayuda==="Linea"){
+            tabla+="Unir con lineas";
+        }else if(ayuda==="DAD"){
+            tabla+="Arrastrar y soltar"
+        }
+        tabla+="</td>"
+        tabla += "</tr>"
+      }
+      tabla+="<br><br>"
+      tabla+="<button class='btn btn-warning'>Mostrar grupos</button>"
+      document.getElementById("muestraEjercicio").innerHTML = tabla;
+    }
+    
+    
+  </script>
+  
+  
+  
+  
+  
+  
 <script type="text/javascript" src="js_react/gestionGrupo.js"></script></body>
 
 </html>
