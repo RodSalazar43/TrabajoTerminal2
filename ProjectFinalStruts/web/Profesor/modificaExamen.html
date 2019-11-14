@@ -22,70 +22,120 @@
   <hr>
   <div id="navegaProfe"></div>
   <br>
-
-  <nav aria-label="breadcrumb" class="contenido-chico">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a class="btn btn-primary" href="creaEjercicio.html">Crear un ejercicio nuevo</a></li>
-        <li class="breadcrumb-item" aria-current="page"><button id="muestraEjercicio" class="btn btn-success">Muestra ejercicios</button></li>
-      </ol>
-  </nav>
+  <button class="btn btn-danger" onclick="redireccionaVerExamen()">Regresar a la gestión de examen</button>
+<center>
+  <div class="container-fluid">
+              <div class="row">
+                  <div class="col-12">
+                      <button class="btn btn-light btn-lg btn-outline-dark" onclick="cargaDatos()">Cargar información del examen</button>
+                  </div>
+              </div>
+  </div>
+</center>
   <br><br><br>
 
   <div id="text">
-    <table id="demo" class="table table-hover table-dark">
+    <table id="demo" class="table table-hover table-dark container">
     </table>
   </div>
 
   <script>
-    document.getElementById("muestraEjercicio").addEventListener("click", cargarTabla);
-    function cargarTabla() {
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        cargarXML(this);
-      };
-      xhr.open("GET", "../xml/ejercicios.xml", true);
-      xhr.send();
+    
+    function redireccionaVerExamen(numero){
+          var id=getParameterByName("id");
+        window.location.href='verExamen.html?id='+id
     }
-
-    function cargarXML(xml) {
-      var docXML = xml.responseXML;
-      console.log(docXML)
-      var tabla = "<tr><th scope='col'>#</th><th scope='col'>Nombre del ejercicio</th><th scope='col'>Accionnes</th></tr>"
-      var ejercicio = docXML.getElementsByTagName("ejercicio");
-      console.log(ejercicio)
-      for (var i = 0; i < ejercicio.length; i++) {
-        tabla += "<tr><th socpe='row'>";
-        tabla += (i + 1);
-        tabla += "</th><td>";
-        tabla += ejercicio[i].getAttribute("nombre");
-        tabla += "</td>";
-        tabla += "<td><a class='btn btn-primary' href='infoEjercicio.html?numero="+(i+1)+"'>Ver ejercicio</a>";
-        tabla += "<a class='btn btn-danger' href='modificaEjercicio.html?numero="+(i+1)+"' >Modificar</a>";
-        tabla += "<button type='button' class='btn btn-warning' onclick='eliminaClick("+(i+1)+")'>Eliminar</button>";
-        tabla += "</td></tr>"
+    function cargaDatos() {
+        XMLEjercicios();
       }
-      document.getElementById("demo").innerHTML = tabla;
-    }
 
-    function eliminaClick(numero){
-      var opcion = confirm("Desea eliminar el ejercicio: "+numero);
-      if(opcion===true){
-        const data = new FormData(event.target);
-        //http://localhost/struts2react/input1.jsp
-        let url = `http://localhost:8080/ProjectFinalStruts/BorraEjercicio?numero=${numero}`;
-        alert('URL:' + url);
-        fetch(url).then(response => response.text()).then(data => {
-            alert(data);    
-            cargarTabla()
-        });
+      function cargarExamen(ejercicios) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          cargarXMLExamen(this,ejercicios);
+        };
+        xhr.open("GET", "../xml/examenes.xml", true);
+        xhr.send();
       }
+
+      function cargarXMLExamen(xml,ejercicios) {
+        var docXML = xml.responseXML;
+        var escribeTabla = '';
+        var examen = docXML.getElementsByTagName("examen");
+        var num=getParameterByName("numero")
+        var ejerciciosExamen=examen[num-1].getElementsByTagName("ejercicio");
+        //console.log("Ejercicios del archivo")
+        //console.log(ejercicios)
+        var tipoEjercicio="";
+        escribeTabla+="<thead>"
+        escribeTabla+="<tr>"
+        escribeTabla+="<th scope='col'>Selección</th>"
+        escribeTabla+="<th scope='col'>Nombre</th>"
+        escribeTabla+="<th scope='col'>Tipo</th>"
+        escribeTabla+="</tr>"
+        escribeTabla+="</thead>"
+        escribeTabla+="<tbody>"
         
+        for(var i=0;i<ejercicios.length;i++){
+            for(var x=0;x<ejerciciosExamen.length;x++){
+               if(ejerciciosExamen[x].attributes[0].value===ejercicios[i].attributes[0].value){
+                var nombreEjercicio=ejercicios[i].getAttribute("nombre");
+                var tipo=ejercicios[i].getAttribute("tipo");
+                if(tipo==="DAD"){
+                    tipoEjercicio="Arrastrar y soltar"
+                }else if(tipo==="Linea"){
+                    tipoEjercicio="Unir con una línea"
+                }
+                        escribeTabla+="<tr>"
+                        escribeTabla+="<th scope='row'><input type='checkbox' checked='checked'/></th>"
+                        escribeTabla+="<td>"+nombreEjercicio+"</td>"
+                        escribeTabla+="<td>"+tipoEjercicio+"</td>"
+                        escribeTabla+="</tr>"   
+                        continue;
+                }else{
+                        if(){
+                            
+                        }
+                continue;
+            } 
+            }
+            if(ejerciciosExamen[i]===undefined){
+                break;
+            }
+        }
+        escribeTabla+="</tbody>"
+            document.getElementById("demo").innerHTML=escribeTabla;
+      }
+      
+      function XMLEjercicios(){
+          var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          cargarXMLEjercicios(this);
+        };
+        xhr.open("GET", "../xml/ejercicios.xml", true);
+        xhr.send();
+      }
+      
+      function cargarXMLEjercicios(xml){
+        var docXML = xml.responseXML;
+        var ejercicios = docXML.getElementsByTagName("ejercicio");
+        console.log("Ejercicios en memoria")
+        cargarExamen(ejercicios);
+      }
+      
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
+      
+    
   </script>
 
   <div id="alerta">
 
   </div>
-<script type="text/javascript" src="js_react/verEj.js"></script></body>
+<script type="text/javascript" src="js_react/verExamen.js"></script></body>
 
 </html>
