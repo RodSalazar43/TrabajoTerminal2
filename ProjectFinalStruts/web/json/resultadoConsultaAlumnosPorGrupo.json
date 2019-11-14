@@ -1,0 +1,12 @@
+{
+	"idAlumno":{
+		"0":{
+			"nombre":"Rodrigo",
+			"Ap_Paterno":"Salazar",
+			"Ap_Materno":"Vazquez"},
+		"1":{
+			"nombre":"German",
+			"Ap_Paterno":"Anorve",
+			"Ap_Materno":"Pons"}
+	}
+}
