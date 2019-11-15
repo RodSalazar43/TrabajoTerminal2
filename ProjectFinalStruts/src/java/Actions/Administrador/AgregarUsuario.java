@@ -15,6 +15,7 @@ import Complementos.cifrarContrasenas;
 import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.Set;
+import org.hibernate.Query;
 
 /**
  *
@@ -87,17 +88,21 @@ public class AgregarUsuario implements Serializable {
         
         cifrarContrasenas c = new cifrarContrasenas();
         
-        String nombre = this.nombres + this.apellidoPat + this.apellidoMat;
-        
         XMLActions xml = new XMLActions();
+        
+        //Para obtener el último registro en la tabla usuarios
+        Query query = hibernateSession.createQuery("from Usuario order by idUsuario DESC");
+        query.setMaxResults(1);
+        Usuario u = (Usuario)query.uniqueResult();
+        int idLast = u.getIdUsuario() + 1;
         
         Grupo grupo = new Grupo("",2019,"","");
         
         Set grupos = new HashSet(0);
-        Profesor profe = new Profesor("hola", " ", " ", grupos);
+        Profesor profe = new Profesor("/xml/preguntas/preguntas" + idLast + ".xml", "/xml/ejercicios/ejercicios" + idLast + ".xml", "/xml/examenes/examenes" + idLast + ".xml", grupos);
         grupo.setProfesor(profe);
         
-        Alumno alum = new Alumno(grupo, " ");
+        Alumno alum = new Alumno(grupo, "/xml/respuestas/respuestas" + idLast + ".xml");
         
         Tipo tu = (Tipo)hibernateSession.load(Tipo.class, this.tipousuario);
         Usuario user = new Usuario(tu, this.nombres, this.apellidoPat, this.apellidoMat, this.nombreUsuario, c.encriptar(this.contrasena));
@@ -110,31 +115,36 @@ public class AgregarUsuario implements Serializable {
         user.setProfesor(profe);
         
         if(this.tipousuario == 2){ //profesor
-            /*if(xml.crearXMLExamen(nombre)){
+            if(xml.crearXMLExamen(idLast)){
                 System.out.println("XML Examen creado");
             }
             else{
                 System.out.println("No lo cree jeje");
             }
             
-            if(xml.crearXMLPregunta(nombre)){
+            if(xml.crearXMLPregunta(idLast)){
                 System.out.println("XML Preguntas creado");
             }
             else{
                 System.out.println("No lo cree jeje");
             }
             
-            if(xml.crearXMLEjercicio(nombre)){
+            if(xml.crearXMLEjercicio(idLast)){
                 System.out.println("XML Ejercicio creado");
             }
             else{
                 System.out.println("No lo cree jeje");
-            }*/
+            }
             hibernateSession.save(profe);
-
         }
         
         if(this.tipousuario == 3){ //Alumno
+            if(xml.crearXMLRespuestas(idLast)){
+                System.out.println("XML Ejercicio creado");
+            }
+            else{
+                System.out.println("No lo cree jeje");
+            }
             hibernateSession.save(alum);
         }
         

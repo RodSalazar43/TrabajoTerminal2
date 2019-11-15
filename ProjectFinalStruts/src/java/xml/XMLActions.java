@@ -937,8 +937,8 @@ public class XMLActions {
         return false;
     }
     
-    public boolean crearXMLExamen(String Nombre){
-        String nombreRuta = "xml/Profesor" + Nombre + "/examenes.xml";
+    public boolean crearXMLExamen(int idUsuario){
+        String nombreRuta = "/xml/examenes/examenes" + idUsuario + ".xml";
         Element root = new Element("examenes");
         
         Element examen = new Element("examen");
@@ -1017,9 +1017,8 @@ public class XMLActions {
         }
     }
     
-    public boolean crearXMLEjercicio(String Nombre){
-        //private String nombre,tipo,pregunta,resultado,numero,opcion1,opcion2,opcion3,opcion4;
-        String nombreRuta = "xml/Profesor" + Nombre + "/ejercicios.xml";
+    public boolean crearXMLEjercicio(int idUsuario){
+        String nombreRuta = "/xml/examenes/examenes" + idUsuario + ".xml";
         Element root = new Element("ejercicios");
         
         Element ejercicio = new Element("ejercicio");
@@ -1072,8 +1071,8 @@ public class XMLActions {
         }
     }
     
-    public boolean crearXMLPregunta(String Nombre){        
-        String nombreRuta = "xml/Profesor" + Nombre + "/preguntas.xml";
+    public boolean crearXMLPregunta(int idUsuario){        
+        String nombreRuta = "/xml/preguntas/preguntas" + idUsuario + ".xml";
         Element root = new Element("preguntas");
         
         Element pregunta = new Element("pregunta");
@@ -1109,8 +1108,8 @@ public class XMLActions {
         }
     }
     
-    public boolean crearXMLRespuestas(String Nombre){
-        String nombreRuta = "xml/Alumno" + Nombre + "/respuestas.xml";
+    public boolean crearXMLRespuestas(int idUsuario){
+        String nombreRuta = "/xml/respuestas/respuestas" + idUsuario + ".xml";
         Element root = new Element("respuestas");
         Element ejercicios = new Element("ejercicios");
         Element preguntas = new Element("preguntas");
