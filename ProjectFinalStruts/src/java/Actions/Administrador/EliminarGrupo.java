@@ -2,13 +2,8 @@ package Actions.Administrador;
 
 import java.io.Serializable;
 import static Complementos.Operaciones.*;
-import entitys.Alumno;
 import entitys.Grupo;
 import entitys.HibernateUtil;
-import entitys.Profesor;
-import java.util.Iterator;
-import java.util.Set;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -35,7 +30,7 @@ public class EliminarGrupo implements Serializable{
         
         Grupo grupo = (Grupo)hibernateSession.load(Grupo.class, this.id);
         
-        Grupo nuevoGrupo = new Grupo();
+        /*Grupo nuevoGrupo = new Grupo();
         
         //Para borrar los registros de este grupo en la tabla alumnos
         String hql = "FROM Alumno WHERE Grupo = " + grupo;
@@ -57,6 +52,7 @@ public class EliminarGrupo implements Serializable{
         t.commit();
         
         //Borramos el grupo
+*/
         hibernateSession.delete(grupo);
         t.commit();
         return SUCCESS;

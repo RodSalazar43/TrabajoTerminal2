@@ -2,16 +2,10 @@ package Actions.Administrador;
 
 import entitys.HibernateUtil;
 import entitys.Usuario;
-import entitys.Grupo;
-import entitys.Profesor;
-import entitys.Alumno;
 import static Complementos.Operaciones.SUCCESS;
 import java.io.Serializable;
-import java.util.Iterator;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import java.util.Set;
 
 /**
  *
@@ -36,25 +30,28 @@ public class EliminarUsuario implements Serializable{
         System.out.println("Id: "+this.id);
         Usuario usuario = (Usuario)hibernateSession.createQuery("from Usuario where idUsuario=" + this.id).uniqueResult();
         
-        switch(usuario.getTipo().getIdTipo()){
+        //Esto es una verdadera mamada
+        /*switch(usuario.getTipo().getIdTipo()){
             case 2: //profesor
                 
-                Profesor profe = (Profesor)hibernateSession.createQuery("from Profesor where idUsuario="+ this.id); 
+                Profesor profe = (Profesor)hibernateSession.load(Profesor.class, this.id);
                 Profesor profe2 = new Profesor();
                 
-                String hql = "FROM Grupo WHERE Profesor = " + profe;
+                String hql = "FROM Grupo WHERE idProfesor = " + profe.getIdUsuario();
                 Query query = hibernateSession.createQuery(hql);
                 Iterator results = query.iterate();
                 
                 while(results.hasNext()){
                     Grupo group = (Grupo)results.next();
                     group.setProfesor(profe2);
+                    
+                    hibernateSession.save(profe2);
                     hibernateSession.update(group);
-                    t.commit();
+                    
                 }
                 
                 hibernateSession.delete(profe);
-                t.commit();
+                
                 
                 break;
                 
@@ -66,9 +63,9 @@ public class EliminarUsuario implements Serializable{
                 hibernateSession.update(group);
                 
                 hibernateSession.delete(alum);
-                t.commit();
+
                 break;
-        }
+        }*/
                 
         hibernateSession.delete(usuario);
         t.commit();
