@@ -94,15 +94,14 @@ public class AgregarUsuario implements Serializable {
         Grupo grupo = new Grupo("",2019,"","");
         
         Set grupos = new HashSet(0);
-        Profesor profe = new Profesor("xml/Profesor" + nombre + "/preguntas.xml", "xml/Profesor" + nombre + "/ejercicios.xml", "xml/Profesor" + nombre + "/examenes.xml", grupos);
+        Profesor profe = new Profesor("hola", " ", " ", grupos);
         grupo.setProfesor(profe);
         
-        Alumno alum = new Alumno(grupo, "xml/Alumno" + nombre + "/respuestas.xml");
+        Alumno alum = new Alumno(grupo, " ");
         
         Tipo tu = (Tipo)hibernateSession.load(Tipo.class, this.tipousuario);
         Usuario user = new Usuario(tu, this.nombres, this.apellidoPat, this.apellidoMat, this.nombreUsuario, c.encriptar(this.contrasena));
         
-        xml.crearXMLEjercicio(nombre);
         profe.setUsuario(user);
         
         alum.setUsuario(user);
@@ -111,7 +110,7 @@ public class AgregarUsuario implements Serializable {
         user.setProfesor(profe);
         
         if(this.tipousuario == 2){ //profesor
-            if(xml.crearXMLExamen(nombre)){
+            /*if(xml.crearXMLExamen(nombre)){
                 System.out.println("XML Examen creado");
             }
             else{
@@ -130,7 +129,7 @@ public class AgregarUsuario implements Serializable {
             }
             else{
                 System.out.println("No lo cree jeje");
-            }
+            }*/
             hibernateSession.save(profe);
 
         }
