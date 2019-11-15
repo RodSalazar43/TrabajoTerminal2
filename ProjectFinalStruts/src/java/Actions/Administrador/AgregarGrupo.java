@@ -4,8 +4,10 @@ import entitys.Profesor;
 import java.util.HashSet;
 import java.util.Set;
 import static Complementos.Operaciones.*;
+import entitys.Alumno;
 import entitys.Grupo;
 import entitys.HibernateUtil;
+import entitys.Usuario;
 import java.io.IOException;
 import java.io.Serializable;
 import org.hibernate.Query;
@@ -19,18 +21,9 @@ import xml.XMLActions;
  */
 public class AgregarGrupo implements Serializable{
     
-    private int idGrupo;
     private String nombre;
     private int ano;
     private String turno;
-    
-    public int getIdGrupo() {
-        return idGrupo;
-    }
-
-    public void setIdGrupo(int idGrupo) {
-        this.idGrupo = idGrupo;
-    }
 
     public String getNombre() {
         return nombre;
@@ -67,6 +60,8 @@ public class AgregarGrupo implements Serializable{
         Grupo gru = (Grupo)query.uniqueResult();
         int idLast = gru.getIdGrupo() + 1;
         
+        XMLActions xml = new XMLActions();
+        
         Grupo grupo = new Grupo();
         
         grupo.setNombre(nombre);
@@ -74,14 +69,22 @@ public class AgregarGrupo implements Serializable{
         grupo.setTurno(turno);
         
         Set grupos = new HashSet(0);
-        Profesor profe = new Profesor("/xml/preguntas/preguntas.xml", "/xml/ejercicios/ejercicios.xml", "/xml/examenes/examenes.xml", grupos);
+        Set alumnos = new HashSet(0);
+        Usuario user = new Usuario();
+        Alumno alumno = new Alumno();
+        
+        Profesor profe = new Profesor("bandera", " ", " ", grupos);
+        
+        profe.setUsuario(user);
+        profe.setGrupos(grupos);
         
         grupo.setProfesor(profe);
-        
-        Set alumnos = new HashSet(0);
         grupo.setAlumnos(alumnos);
         
-        XMLActions xml = new XMLActions();
+        user.setAlumno(alumno);
+        user.setProfesor(profe);
+        
+        alumno.setGrupo(grupo);
         
         if(xml.crearXMLAsignado(idLast)){
             grupo.setRutaXmlasignados("/xml/asignados/asignados"  + idLast + ".xml");
@@ -91,6 +94,7 @@ public class AgregarGrupo implements Serializable{
             System.out.println("No lo cree jeje");
         }
         
+        hibernateSession.save(profe);
         hibernateSession.save(grupo);
         t.commit();
         

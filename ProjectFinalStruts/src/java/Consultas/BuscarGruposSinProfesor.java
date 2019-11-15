@@ -34,9 +34,9 @@ public class BuscarGruposSinProfesor {
         int contador=0;
         while(results.hasNext()){
             Grupo grupo = (Grupo)results.next();
-            int idProfesor = grupo.getProfesor().getIdUsuario();
+            String bandera = grupo.getProfesor().getRutaXmlpreguntas();
             
-            if(idProfesor == 0){
+            if(bandera.equals("bandera")){
                 JSONObject innerObj = new JSONObject();
                 innerObj.put("nombre", grupo.getNombre());
                 innerObj.put("id",grupo.getIdGrupo());

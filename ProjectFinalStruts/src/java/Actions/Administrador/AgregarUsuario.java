@@ -115,6 +115,7 @@ public class AgregarUsuario implements Serializable {
         user.setAlumno(alum);
         user.setProfesor(profe);
         
+        
         if(this.tipousuario == 2){ //profesor
             if(xml.crearXMLExamen(idLast)){
                 System.out.println("XML Examen creado");
@@ -146,6 +147,8 @@ public class AgregarUsuario implements Serializable {
             else{
                 System.out.println("No lo cree jeje");
             }
+            hibernateSession.save(profe);
+            hibernateSession.save(grupo);
             hibernateSession.save(alum);
         }
         

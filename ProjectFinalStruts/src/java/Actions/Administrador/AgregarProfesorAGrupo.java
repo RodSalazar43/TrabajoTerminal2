@@ -43,7 +43,7 @@ public class AgregarProfesorAGrupo implements Serializable{
         
         grupo.setProfesor(profesor);
         hibernateSession.update(grupo);
-        t.commit();
+        
         
         Set setProfesor = profesor.getGrupos();
         setProfesor.add(this.idGrupo);

@@ -108,5 +108,4 @@ public class Login extends ActionSupport implements SessionAware{
             return false;
         }
     }
-
 }
