@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import entitys.Tipo;
 import xml.XMLActions;
 import Complementos.cifrarContrasenas;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.Set;
@@ -81,7 +82,7 @@ public class AgregarUsuario implements Serializable {
         this.contrasena = contrasena;
     }
     
-    public String execute() throws UnsupportedEncodingException{
+    public String execute() throws UnsupportedEncodingException, IOException{
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
         Transaction t = hibernateSession.beginTransaction();   

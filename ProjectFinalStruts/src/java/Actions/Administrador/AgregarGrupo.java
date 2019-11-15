@@ -6,7 +6,9 @@ import java.util.Set;
 import static Complementos.Operaciones.*;
 import entitys.Grupo;
 import entitys.HibernateUtil;
+import java.io.IOException;
 import java.io.Serializable;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import xml.XMLActions;
@@ -54,19 +56,26 @@ public class AgregarGrupo implements Serializable{
         this.turno = turno;
     }
 
-    public String execute(){
+    public String execute() throws IOException{
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
         Transaction t = hibernateSession.beginTransaction();
         
+        //Para obtener el último registro en la tabla grupos
+        Query query = hibernateSession.createQuery("from Grupo order by idGrupo DESC");
+        query.setMaxResults(1);
+        Grupo gru = (Grupo)query.uniqueResult();
+        int idLast = gru.getIdGrupo() + 1;
+        
         Grupo grupo = new Grupo();
         
-        grupo.setIdGrupo(0);
         grupo.setNombre(nombre);
         grupo.setAno(ano);
         grupo.setTurno(turno);
         
-        Profesor profe = new Profesor();
+        Set grupos = new HashSet(0);
+        Profesor profe = new Profesor("/xml/preguntas/preguntas.xml", "/xml/ejercicios/ejercicios.xml", "/xml/examenes/examenes.xml", grupos);
+        
         grupo.setProfesor(profe);
         
         Set alumnos = new HashSet(0);
@@ -74,8 +83,12 @@ public class AgregarGrupo implements Serializable{
         
         XMLActions xml = new XMLActions();
         
-        if(xml.crearXMLAsignado(nombre)){
-            grupo.setRutaXmlasignados("xml/Grupo" + nombre + "/asignados.xml");
+        if(xml.crearXMLAsignado(idLast)){
+            grupo.setRutaXmlasignados("/xml/asignados/asignados"  + idLast + ".xml");
+            System.out.println("XML creado");
+        }
+        else{
+            System.out.println("No lo cree jeje");
         }
         
         hibernateSession.save(grupo);

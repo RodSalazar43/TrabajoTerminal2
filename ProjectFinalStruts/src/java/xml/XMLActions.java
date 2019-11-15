@@ -1,6 +1,7 @@
 package xml;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -937,8 +938,9 @@ public class XMLActions {
         return false;
     }
     
-    public boolean crearXMLExamen(int idUsuario){
-        String nombreRuta = "/xml/examenes/examenes" + idUsuario + ".xml";
+    public boolean crearXMLExamen(int idUsuario) throws IOException{
+        String nombreRuta = "/examenes" + idUsuario + ".xml";
+        System.out.println(nombreRuta);
         Element root = new Element("examenes");
         
         Element examen = new Element("examen");
@@ -957,9 +959,16 @@ public class XMLActions {
         examen.addContent(pregunta);
         
         root.addContent(examen);
+        
+        String rutaArchivo = ServletActionContext.getServletContext().getRealPath("/xml/examenes");
+        File archivo = new File(rutaArchivo + nombreRuta);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+        bw.close();
+        
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        
         try {
-            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/xml/examenes" + nombreRuta)));
             System.out.println("Archivo xml, guardado");
             return true;
         } catch (Exception e) {
@@ -968,15 +977,14 @@ public class XMLActions {
         }
     }
     
-    public boolean crearXMLAsignado(String Nombre){
-        String nombreRuta = "xml/Grupo" + Nombre + "/asignados.xml";
+    public boolean crearXMLAsignado(int idGrupo) throws IOException{
+        String nombreRuta = "/asignados" + idGrupo + ".xml";
+        
         Element root = new Element("asignados");
         
         Element examenes = new Element("examenes");
         Element ejercicios = new Element("ejercicios");
         Element preguntas = new Element("preguntas");
-        
-        //<examen numero="3"  grupoCompleto="si" alumno="0" grupo=""/>
 
         Element examen = new Element("examen");
         examen.setAttribute("numeroExamen", "0");
@@ -1006,9 +1014,14 @@ public class XMLActions {
         root.addContent(ejercicios);
         root.addContent(preguntas);
         
+        String rutaArchivo = ServletActionContext.getServletContext().getRealPath("/xml/asignados");
+        File archivo = new File(rutaArchivo + nombreRuta);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+        bw.close();
+        
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
-            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/xml/asignados" + nombreRuta)));
             System.out.println("Archivo xml, guardado");
             return true;
         } catch (Exception e) {
@@ -1017,8 +1030,8 @@ public class XMLActions {
         }
     }
     
-    public boolean crearXMLEjercicio(int idUsuario){
-        String nombreRuta = "/xml/examenes/examenes" + idUsuario + ".xml";
+    public boolean crearXMLEjercicio(int idUsuario) throws IOException{
+        String nombreRuta = "/ejercicios" + idUsuario + ".xml";
         Element root = new Element("ejercicios");
         
         Element ejercicio = new Element("ejercicio");
@@ -1059,10 +1072,14 @@ public class XMLActions {
         
         root.addContent(ejercicio);
         
+        String rutaArchivo = ServletActionContext.getServletContext().getRealPath("/xml/ejercicios");
+        File archivo = new File(rutaArchivo + nombreRuta);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+        bw.close();
 
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
-            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/xml/ejercicios" + nombreRuta)));
             System.out.println("Archivo xml, guardado");
             return true;
         } catch (Exception e) {
@@ -1071,8 +1088,8 @@ public class XMLActions {
         }
     }
     
-    public boolean crearXMLPregunta(int idUsuario){        
-        String nombreRuta = "/xml/preguntas/preguntas" + idUsuario + ".xml";
+    public boolean crearXMLPregunta(int idUsuario) throws IOException{        
+        String nombreRuta = "/preguntas" + idUsuario + ".xml";
         Element root = new Element("preguntas");
         
         Element pregunta = new Element("pregunta");
@@ -1096,10 +1113,15 @@ public class XMLActions {
         pregunta.addContent(respuesta);
         
         root.addContent(pregunta);
+        
+        String rutaArchivo = ServletActionContext.getServletContext().getRealPath("/xml/preguntas");
+        File archivo = new File(rutaArchivo + nombreRuta);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+        bw.close();
 
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
-            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/xml/preguntas" + nombreRuta)));
             System.out.println("Archivo xml, guardado");
             return true;
         } catch (Exception e) {
@@ -1108,8 +1130,8 @@ public class XMLActions {
         }
     }
     
-    public boolean crearXMLRespuestas(int idUsuario){
-        String nombreRuta = "/xml/respuestas/respuestas" + idUsuario + ".xml";
+    public boolean crearXMLRespuestas(int idUsuario) throws IOException{
+        String nombreRuta = "/respuestas" + idUsuario + ".xml";
         Element root = new Element("respuestas");
         Element ejercicios = new Element("ejercicios");
         Element preguntas = new Element("preguntas");
@@ -1129,9 +1151,14 @@ public class XMLActions {
         root.addContent(ejercicios);
         root.addContent(preguntas);
 
+        String rutaArchivo = ServletActionContext.getServletContext().getRealPath("/xml/preguntas");
+        File archivo = new File(rutaArchivo + nombreRuta);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+        bw.close();
+        
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
-            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(nombreRuta)));
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/xml/respuestas" + nombreRuta)));
             System.out.println("Archivo xml, guardado");
             return true;
         } catch (Exception e) {
