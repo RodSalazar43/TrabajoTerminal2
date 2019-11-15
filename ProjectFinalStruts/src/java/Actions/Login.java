@@ -1,10 +1,14 @@
 package Actions;
 
+import Complementos.cifrarContrasenas;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import entitys.Usuario;
 import entitys.Tipo;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Query;
@@ -82,8 +86,15 @@ public class Login extends ActionSupport implements SessionAware{
         Session session = sessionFactory.openSession();            //creo la session y la abro de hibernate
         session.beginTransaction();                              //comienzo la transaccion de hibernate
         Query query = session.createQuery("from Usuario where NombreUsuario=:username and contrasena=:password");  //query en hql
+        cifrarContrasenas cc=new cifrarContrasenas();
+        String cifrado="";
+        try {
+            cifrado=cc.encriptar(contra);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         query.setString("username", usuario);  //meto los parametros
-        query.setString("password", contra);
+        query.setString("password", cifrado);
         System.out.println("Se obtuvieron "+query.list().size());
         List list = query.list();    //creo la lista de los objetos obtenidos
         if (list.size() == 1) { //si solo es uno sucess

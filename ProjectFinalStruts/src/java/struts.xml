@@ -258,7 +258,7 @@
             <result name="success" type="redirect">
                 <param name="location">Profesor/Profesor.html?correcto=true</param>
             </result>
-            <result name="derror">
+            <result name="error">
                 <param name="location">Profesor/respuestas/agregarEjercicios2Examen.jsp?correcto=true</param>
             </result>
         </action>
