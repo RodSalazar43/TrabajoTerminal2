@@ -247,15 +247,6 @@
             </result>
         </action>
         
-        <action name="CrearCopiaEjercicio" class="Actions.Profesor.CrearCopiaEjercicio">             <!-- CrearCopiaEjercicio -->
-            <result name="success" type="redirect">
-                <param name="location">Profesor/Profesor.html?correcto=true</param>
-            </result>
-            <result name="error">
-                <param name="location">Profesor/Profesor.html?correcto=false</param>
-            </result>
-        </action>
-        
         <action name="AgregarEjerciciosAExamen" class="Actions.Profesor.AgregarEjerciciosAExamen">    <!-- AgregarEjerciciosAExamen -->
             <result name="success" type="redirect">
                 <param name="location">Profesor/Profesor.html?correcto=true</param>
@@ -299,6 +290,15 @@
         <action name="EliminarEjercicio" class="Actions.Profesor.EliminarEjercicio">    <!-- EliminarEjercicio -->
             <result name="success" type="redirect">
                 <param name="location">Profesor/respuestas/eliminarEjercicio.jsp?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
+            </result>
+        </action>
+        
+        <action name="CrearCopiaEjercicio" class="Actions.Profesor.CrearCopiaEjercicio">             <!-- CrearCopiaEjercicio -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/respuestas/agregarEjercicio.jsp?correcto=true</param>
             </result>
             <result name="error">
                 <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
