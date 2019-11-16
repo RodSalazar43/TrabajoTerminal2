@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejercicios>
+  <ejercicio numero="prueba" nombre="prueba" tipo="prueba" numeroEjercicio="0">
+    <indicaciones />
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <resultado />
+  </ejercicio>
+</ejercicios>

@@ -3,11 +3,12 @@ function muestraEjercicio(){
 }
 
 function cargarTabla() {
+      var id=getParameterByName("id");
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {
         cargarXML(this);
       };
-      xhr.open("GET", "../xml/ejercicios.xml", true);
+      xhr.open("GET", "../xml/ejercicios/ejercicios"+id+".xml", true);
       xhr.send();
     }
 
@@ -45,7 +46,8 @@ function cargarTabla() {
       var opcion = confirm("Desea eliminar el ejercicio: "+numero);
       console.log(opcion);
       if(opcion==true){
-        let url = 'http://localhost:8080/ProjectFinalStruts/BorraEjercicio?numero='+numero;
+          var id=getParameterByName("id");
+        let url = 'http://localhost:8080/ProjectFinalStruts/EliminarEjercicio?numero='+numero+'&idProfesor='+id;
         //alert('URL:' + url);
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    
