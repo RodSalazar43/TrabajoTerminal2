@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preguntas>
+  <pregunta numero="prueba" nombre="prueba" tipo="prueba" copiaPregunta="0">
+    <cuestionamiento />
+    <opcion1 />
+    <opcion2 />
+    <respuesta />
+  </pregunta>
+</preguntas>

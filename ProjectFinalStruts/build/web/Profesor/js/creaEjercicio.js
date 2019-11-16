@@ -3,13 +3,13 @@ function creaEjercicio(){
     var muestra=document.getElementById("opcion").selectedOptions[0].attributes.value;
     console.log(muestra.value)
     var formulario="";
+    var event;
     if(muestra.value==="Linea"){
         formulario+="<div class='contenido-grande alert-secondary'>"
         formulario+="<div class='card-header bg-dark'>"
         formulario+="<h3 class='text-center text-white'>Ingresa los datos del nuevo ejercicio a agregar</h3>"
         formulario+="</div>"
         formulario+="<div class='card-body'>"
-        formulario+="<form onsubmit='generaEjercicio()'>"
         formulario+="<label class='font-weight-bold'>Nombre del ejercicio:</label>"
         formulario+="<input class='form-control border-dark' type='text' name='nombre' value=''/ required>"
         formulario+="<label class='font-weight-bold'>Ingresa las instrucciones para el alumno:</label>"
@@ -57,7 +57,7 @@ function creaEjercicio(){
         formulario+="<button class='btn btn-success form-control' onclick='generaEjercicio()'>Guardar</button>"
         formulario+="<br><br>"
         formulario+="</div>"
-        formulario+="</form> </div>"
+        formulario+="</div>"
         tipo=muestra.value;
     }else if(muestra.value==="DAD"){
         formulario+="<div class='contenido-grande alert-secondary'>"
@@ -65,7 +65,6 @@ function creaEjercicio(){
         formulario+="<h3 class='text-center'>Ingresa los datos del nuevo ejercicio a agregar</h3>"
         formulario+="</div>"
         formulario+="<div class='card-body'>"
-        formulario+="<form onsubmit='generaEjercicio()'>"
         formulario+="<label class='font-weight-bold'>Nombre del ejercicio:</label>"
         formulario+="<input class='form-control border-dark' type='text' name='nombre' value=''/ required>"
         formulario+="<label class='font-weight-bold'>Ingresa las instrucciones para el alumno:</label>"
@@ -95,7 +94,7 @@ function creaEjercicio(){
         formulario+="<button class='btn btn-success form-control' onclick='generaEjercicio()'>Guardar</button>"
         formulario+="<br><br>"
         formulario+="</div>"
-        formulario+="</form> </div>"
+        formulario+="</div>"
         tipo=muestra.value;
     }else if(muestra.value==="---"){
         formulario="";
@@ -105,6 +104,7 @@ function creaEjercicio(){
 
 function generaEjercicio(){
     var id=getParameterByName("id");
+    console.log(id);
     var determinado="default";
     if(tipo==="DAD"){
         var nombre=document.getElementsByName("nombre");
@@ -114,10 +114,10 @@ function generaEjercicio(){
         var opcion3=document.getElementsByName("opcion3")
         var opcion4=document.getElementsByName("opcion4")
         var resultado=document.getElementsByName("resultado")
-     if(nombre[0].value===""||instruccion[0].value===""||opcion1[0].value===""||opcion2[0].value===""||opcion3[0].value===""||opcion4[0].value===""||resultado[0].value===""){
-        alert("Por favor llene el campo vacío");
-     }else{
-    let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjercicio?idProfesor='+id+'&nombre='+nombre[0].value+'&inst='+instruccion[0].value+'&op1='+opcion1[0].value+'&op2='+opcion2[0].value+'&op3='+opcion3[0].value+'&op4='+opcion4[0].value+'&op5='+opcion5[0].value+'&op6='+opcion6[0].value+'&op7='+opcion7[0].value+'&op8='+opcion8[0].value+'&res='+resultado[0].value+'&tipo='+tipo;
+        if(nombre[0].value===""||instruccion[0].value===""||opcion1[0].value===""||opcion2[0].value===""||opcion3[0].value===""||opcion4[0].value===""||resultado[0].value===""){
+            alert("Por favor llene el campo vacío");
+        }else{
+        let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjercicio?idProfesor='+id+'&nombre='+nombre[0].value+'&indicaciones='+instruccion[0].value+'&op1='+opcion1[0].value+'&op2='+opcion2[0].value+'&op3='+opcion3[0].value+'&op4='+opcion4[0].value+'&op5='+determinado+'&op6='+determinado+'&op7='+determinado+'&op8='+determinado+'&resultado='+resultado[0].value+'&tipo='+tipo;
         //alert('URL:' + url);
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    
@@ -135,10 +135,10 @@ function generaEjercicio(){
         var opcion6=document.getElementsByName("opcion6")
         var opcion7=document.getElementsByName("opcion7")
         var opcion8=document.getElementsByName("opcion8")
-        if(nombre[0].value===""||instruccion[0].value===""||opcion1[0].value===""||opcion2[0].value===""||opcion3[0].value===""||opcion4[0].value===""||resultado[0].value===""){
+        if(nombre[0].value===""||instruccion[0].value===""||opcion1[0].value===""||opcion2[0].value===""||opcion3[0].value===""||opcion4[0].value===""){
             alert("Por favor llene el campo vacío");
         }else{
-            let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjercicio?idProfesor='+id+'&nombre='+nombre[0].value+'&inst='+instruccion[0].value+'&op1='+opcion1[0].value+'&op2='+opcion2[0].value+'&op3='+opcion3[0].value+'&op4='+opcion4[0].value+'&op5='+determinado+'&op6='+determinado+'&op7='+determinado+'&op8='+determinado+'&res='+determinado+'&tipo='+tipo;
+            let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjercicio?idProfesor='+id+'&nombre='+nombre[0].value+'&indicaciones='+instruccion[0].value+'&op1='+opcion1[0].value+'&op2='+opcion2[0].value+'&op3='+opcion3[0].value+'&op4='+opcion4[0].value+'&op5='+opcion5[0].value+'&op6='+opcion6[0].value+'&op7='+opcion7[0].value+'&op8='+opcion8[0].value+'&resultado='+determinado+'&tipo='+tipo;
         //alert('URL:' + url);
             fetch(url).then(response => response.text()).then(data => {
                 alert(data);    

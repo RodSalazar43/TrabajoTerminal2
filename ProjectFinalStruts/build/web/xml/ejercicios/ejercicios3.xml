@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejercicios>
+  <ejercicio numero="1" nombre="1" tipo="DAD">
+    <indicaciones>Ordena de arriba hacia abajo de mayor a menor</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>3,2,1,4</resultado>
+  </ejercicio>
+  <ejercicio numero="2" nombre="hola" tipo="DAD">
+    <indicaciones>munod</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>3,2,1,4</resultado>
+  </ejercicio>
+</ejercicios>
