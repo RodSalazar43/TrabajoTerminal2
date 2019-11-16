@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../src/css/index.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <title>Numeros de decimales en Administrador</title>
+</head>
+
+<body class="fondo-meredian">
+  <noscript>Necesitas habilitar JavaScript para ejecutar la aplicación.</noscript>
+  <div id="welcome"></div>
+  <div class="card align-items-center chico">
+    <a class="btn btn-danger" onclick='redireccionaGestionaPregunta()'>Regresar</a>
+  </div>
+  <br>
+  
+  <div id='modificaPregunta'>
+      
+  </div>
+  
+  <script>
+   function redireccionaGestionaPregunta(){
+        var id=getParameterByName("id");
+        window.location.href='gestionaPregunta.html?id='+id;
+    }
+    
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+          
+  </script>
+<script type="text/javascript" src="js_react/gestionaPregunta.js"></script></body>
+
+</html>

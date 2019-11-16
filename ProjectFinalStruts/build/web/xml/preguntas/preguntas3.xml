@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preguntas>
-  <pregunta numero="prueba" nombre="prueba" tipo="prueba" copiaPregunta="0">
-    <cuestionamiento />
-    <opcion1 />
-    <opcion2 />
-    <respuesta />
-  </pregunta>
-  <pregunta numero="2" nombre="Hola" tipo="Operacion" copiaPregunta="0">
-    <cuestionamiento>[object NodeList]</cuestionamiento>
-    <opcion1>chido</opcion1>
-    <opcion2>default</opcion2>
-    <respuesta>1</respuesta>
-  </pregunta>
-  <pregunta numero="3" nombre="klsdkl" tipo="Operacion" copiaPregunta="0">
-    <cuestionamiento>[object NodeList]</cuestionamiento>
-    <opcion1>kladskds</opcion1>
-    <opcion2>default</opcion2>
-    <respuesta>1</respuesta>
+  <pregunta numero="prueba" nombre="prueba" tipo="Operacion">
+      <cuestionamiento>Hola mundo</cuestionamiento>
+      <opcion1>verdadero</opcion1>
+      <opcion2>falso</opcion2>
+      <respuesta>2</respuesta>
   </pregunta>
 </preguntas>
