@@ -1,5 +1,6 @@
 package Actions;
 
+import static Complementos.Operaciones.LOGOUT;
 import Complementos.cifrarContrasenas;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
@@ -107,5 +108,13 @@ public class Login extends ActionSupport implements SessionAware{
         } else {
             return false;
         }
+    }
+    
+    public String Logout(){
+        
+        sessionMap.remove("idUsuario");
+        sessionMap.invalidate();
+        
+        return LOGOUT;
     }
 }
