@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ejercicios>
-  <ejercicio numero="prueba" nombre="prueba" tipo="prueba">
+  <ejercicio numero="prueba" nombre="prueba" tipo="prueba" numeroEjercicio="0">
     <indicaciones />
     <opcion1 />
     <opcion2 />
     <opcion3 />
     <opcion4 />
-    <opcion5 />
-    <opcion6 />
-    <opcion7 />
-    <opcion8 />
     <resultado />
-  </ejercicio>
-  <ejercicio numero="2" nombre="lasdml" tipo="DAD">
-    <indicaciones>lksamadlkm</indicaciones>
-    <opcion1>lkasmdlk</opcion1>
-    <opcion2>mlaskmdl</opcion2>
-    <opcion3>kmaskdm</opcion3>
-    <opcion4>lkmadslkmd</opcion4>
-    <opcion5>default</opcion5>
-    <opcion6>default</opcion6>
-    <opcion7>default</opcion7>
-    <opcion8>default</opcion8>
-    <resultado>lkmasdlka</resultado>
   </ejercicio>
 </ejercicios>

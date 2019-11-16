@@ -17,7 +17,7 @@
   <title>Numeros de decimales en Administrador</title>
 </head>
 
-<body class="fondo-azulado">
+<body class="fondo-meredian">
   <noscript>Necesitas habilitar JavaScript para ejecutar la aplicación.</noscript>
   <div id="welcome"></div>
   <hr>
@@ -25,6 +25,7 @@
   <br>
 <center><div id="text">
     <button id="muestraExamen" class="btn btn-dark">Muestra examenes</button>
+    <button class="btn btn-light" onclick="gestionaPregunta()">Gestionar preguntas</button>
     <br><br>
       <table id="demo" class="table table-hover table-dark contenido-mediano">
       </table>
@@ -34,6 +35,12 @@
 </center>
   <script>
     document.getElementById("muestraExamen").addEventListener("click",cargarTabla);
+    
+    function creaPregunta(){
+        var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/gestionaPregunta.html?id='+id;
+    }
+    
     function cargarTabla(){
       var xhr=new XMLHttpRequest();
       xhr.onreadystatechange=function(){

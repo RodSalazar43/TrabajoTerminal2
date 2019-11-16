@@ -18,6 +18,15 @@ import xml.XMLActions;
 public class AgregarExamen {
     private String nombre;
     private int idProfesor;
+    private int numero;
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
     public int getIdProfesor() {
         return idProfesor;
@@ -52,7 +61,7 @@ public class AgregarExamen {
         Date fecha = new Date();
         
         String fechaString = "" + fecha.getDay() + "-" + fecha.getMonth() + "-" + fecha.getYear();
-        
+        this.setNumero(examenes.size()+1);
         examen.setNumero(Integer.toString(examenes.size() + 1));
         examen.setNombre(this.nombre);
         examen.setFecha(fechaString);

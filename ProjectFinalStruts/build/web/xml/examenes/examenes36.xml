@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<examenes>
-  <examen fecha="prueba" nombre="prueba" numero="0">
-    <ejercicio numero="0" />
-    <Pregunta numero="0" />
-  </examen>
-</examenes>

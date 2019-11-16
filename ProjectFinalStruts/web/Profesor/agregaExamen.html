@@ -17,7 +17,7 @@
   <title>Numeros de decimales en Administrador</title>
 </head>
 
-<body class="fondo-azulado">
+<body class="fondo-meredian">
   <noscript>Necesitas habilitar JavaScript para ejecutar la aplicación.</noscript>
   <div id="welcome"></div>
   <hr>
@@ -43,12 +43,14 @@
   <script>
     document.getElementById("muestraEjercicio").addEventListener("click",cargarTabla);
     var ayuda=0;
+    
     function muestraPregunta(){
+        var id=getParameterByName("id");
        var xhr=new XMLHttpRequest();
       xhr.onreadystatechange=function(){
         cargarXMLPregunta(this);
       };
-      xhr.open("GET","../xml/preguntas.xml",true);
+      xhr.open("GET","../xml/preguntas/preguntas"+id+".xml",true);
       xhr.send(); 
     }
     
@@ -76,11 +78,12 @@
     
     
     function cargarTabla(){
+        var id=getParameterByName("id");
       var xhr=new XMLHttpRequest();
       xhr.onreadystatechange=function(){
         cargarXML(this);
       };
-      xhr.open("GET","../xml/ejercicios.xml",true);
+      xhr.open("GET","../xml/ejercicios/ejercicios"+id+".xml",true);
       xhr.send();
     }
 
@@ -155,15 +158,23 @@
         console.log("Numeros ejercicio: "+numerosE)
         console.log("Numeros ejercicio: "+numerosP)
         var id=getParameterByName("id")
+        var numeroExamen=0;
         console.log(id)
         //http://localhost/struts2react/input1.jsp
-        let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjerciciosAExamen?idProfesor='+id+'&numeros='+numerosE+'&nombre='+nombre;
+        
+        let url1 = 'http://localhost:8080/ProjectFinalStruts/AgregaExamen?idProfesor='+id+'&nombre='+nombre;
+        fetch(url1).then(response => response.text()).then(data => {
+            alert(data);
+            numeroExamen=data;
+        });
+        
+        let url2 = 'http://localhost:8080/ProjectFinalStruts/AgregarEjerciciosAExamen?idProfesor='+id+'&numeroEjercicios='+numerosE+'&nombreExamen='+nombre+'&numeroExamen='+numeroExamen;
         //alert('URL:' + url);
-        fetch(url).then(response => response.text()).then(data => {
+        fetch(url2).then(response => response.text()).then(data => {
             alert(data);
         });
-        let url2 = 'http://localhost:8080/ProjectFinalStruts/AgregarPreguntasAExamen?idProfesor='+id+'&numeros='+numerosP+'&nombre='+nombre;
-        fetch(url2).then(response => response.text()).then(data => {
+        let url3 = 'http://localhost:8080/ProjectFinalStruts/AgregarPreguntasAExamen?idProfesor='+id+'&numeroPreguntas='+numerosP+'&nombreExamen='+nombre+'&numeroExamen='+numeroExamen;;
+        fetch(url3).then(response => response.text()).then(data => {
             alert(data);
         });
         
