@@ -1,5 +1,3 @@
-    var idUsuarioid;
-    
     function buscarUsuario(){
     var tabla="";
     tabla+="<center class='container bg-success'>"
@@ -16,33 +14,33 @@
                         tabla+="<br>"
                         tabla+="<div className='row'>"
                             tabla+="<div className='col'>"
-                                tabla+="<butoon class='btn btn-warning btn-lg btn-block' onclick='obtieneInfo()'>Buscar</button>"
+                                tabla+="<butoon class='btn btn-warning btn-lg btn-block' onclick='obtieneInfoUsuario()'>Buscar</button>"
                             tabla+="</div></div><br></div></center>"
     document.getElementById("modificaUsuario").innerHTML=tabla;
 }
 
-
-function obtieneInfo(){
+var idUsuarioid;
+function obtieneInfoUsuario(){
     var numero=document.getElementsByTagName("input");
     console.log(numero[0].value);
     let url = 'http://localhost:8080/ProjectFinalStruts/BuscarUnUsuario?idUsuario='+numero[0].value;
     fetch(url).then(response => response.text()).then(data => {
         alert(data);
         
-    muestraDatos();
+    muestraDatosUsuario();
     
     });
 }
 
-function muestraDatos(){
+function muestraDatosUsuario(){
     var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
             var dataArray = JSON.parse(this.responseText);
-            console.log(this)
+            //console.log(this)
             console.log(dataArray)
             var idUsuario=dataArray.idUsuario;
-            console.log(idUsuario)
+            //console.log(idUsuario)
             idUsuarioid=idUsuario[0].id;
     
             var formulario="<br><br>";
@@ -96,7 +94,7 @@ function muestraDatos(){
                                 formulario+="<br>"
                                 formulario+="<div class='row'>"
                                     formulario+="<div class='col'>"
-                                        formulario+="<button class='btn btn-info btn-outline-light btn-lg btn-block' onclick='guardarInfo()'>Guardar información</button>"
+                                        formulario+="<button class='btn btn-info btn-outline-light btn-lg btn-block' onclick='guardarInfoUsuario()'>Guardar información</button>"
                                     formulario+="</div></div><br></div></center>"
                                     
                                     
@@ -107,7 +105,7 @@ function muestraDatos(){
         xmlhttp.send();
     }
 
-function guardarInfo(){
+function guardarInfoUsuario(){
     var nombre=document.getElementsByName("nombre");
     var username=document.getElementsByName("username");
     var apaterno=document.getElementsByName("apaterno");
