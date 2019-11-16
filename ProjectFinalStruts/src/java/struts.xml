@@ -91,7 +91,7 @@
             </result>
         </action>
         
-        <action name="Logout" class="Actions.Logout">    <!-- Logout -->
+        <action name="Logout" class="Actions.Login" method="Logout">    <!-- Logout -->
             <result name="logout" type="redirect">
                 <param name="location">cerrarSesion.jsp?correcto=done</param>
             </result>         

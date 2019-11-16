@@ -2,8 +2,10 @@ package Actions.Administrador;
 
 import java.io.Serializable;
 import static Complementos.Operaciones.*;
+import Complementos.cifrarContrasenas;
 import entitys.HibernateUtil;
 import entitys.Usuario;
+import java.io.UnsupportedEncodingException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -68,18 +70,19 @@ public class ModificarUsuario implements Serializable{
         this.contrasena = contrasena;
     }
     
-    public String execute(){
+    public String execute() throws UnsupportedEncodingException{
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
         Transaction t = hibernateSession.beginTransaction();
         
         Usuario user = (Usuario)hibernateSession.load(Usuario.class, this.id);
         
+        cifrarContrasenas c = new cifrarContrasenas();
         user.setNombreUsuario(nombreUsuario);
         user.setNombre(nombres);
         user.setApPaterno(apellidoPat);
         user.setApMat(apellidoMat);
-        user.setContrasena(contrasena);
+        user.setContrasena(c.encriptar(this.contrasena));
         
         hibernateSession.update(user);
         t.commit();

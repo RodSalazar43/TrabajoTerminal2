@@ -1042,23 +1042,23 @@ public class XMLActions {
         ejercicio.setAttribute("numeroEjercicio","0");
         
         Element indicaciones = new Element("indicaciones");
-        indicaciones.setText(" ");
+        indicaciones.setText("vete a la verga");
         Element opcion1 = new Element("opcion1");
-        opcion1.setText(" ");
+        opcion1.setText("veamos si funciona");
         Element opcion2 = new Element("opcion2");
-        opcion2.setText(" ");
+        opcion2.setText("veamos si funciona");
         Element opcion3 = new Element("opcion3");
-        opcion3.setText(" ");
+        opcion3.setText("veamos si funciona");
         Element opcion4 = new Element("opcion4");
-        opcion4.setText(" ");
+        opcion4.setText("veamos si funciona");
         Element opcion5 = new Element("opcion5");
-        opcion5.setText(" ");
+        opcion5.setText("veamos si funciona");
         Element opcion6 = new Element("opcion6");
-        opcion6.setText(" ");
+        opcion6.setText("veamos si funciona");
         Element opcion7 = new Element("opcion7");
-        opcion7.setText(" ");
+        opcion7.setText("veamos si funciona");
         Element opcion8 = new Element("opcion8");
-        opcion8.setText(" ");
+        opcion8.setText("veamos si funciona");
         
         Element resultado = new Element("resultado");
         resultado.setText(" ");
@@ -1068,6 +1068,10 @@ public class XMLActions {
         ejercicio.addContent(opcion2);
         ejercicio.addContent(opcion3);
         ejercicio.addContent(opcion4);
+        ejercicio.addContent(opcion5);
+        ejercicio.addContent(opcion6);
+        ejercicio.addContent(opcion7);
+        ejercicio.addContent(opcion8);
         ejercicio.addContent(resultado);
         
         root.addContent(ejercicio);

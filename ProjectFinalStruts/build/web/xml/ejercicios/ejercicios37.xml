@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejercicios>
+  <ejercicio numero="prueba" nombre="prueba" tipo="prueba">
+    <indicaciones />
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado />
+  </ejercicio>
+  <ejercicio numero="2" nombre="2" tipo="DAD">
+    <indicaciones>ingrese la respuesta</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>1,2,3,4</resultado>
+  </ejercicio>
+  <ejercicio numero="3" nombre="3" tipo="DAD">
+    <indicaciones>ingrese la respuesta</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>1,2,3,4</resultado>
+  </ejercicio>
+  <ejercicio numero="4" nombre="4" tipo="DAD">
+    <indicaciones>ingrese la respuesta correcta</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>1,2,3,4</resultado>
+  </ejercicio>
+  <ejercicio numero="5" nombre="5" tipo="Linea">
+    <indicaciones>esto es otra prueba aver si si funca</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>default</resultado>
+  </ejercicio>
+  <ejercicio numero="6" nombre="veamos" tipo="DAD">
+    <indicaciones>veamos x2</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>3,6,1,2</resultado>
+  </ejercicio>
+</ejercicios>
