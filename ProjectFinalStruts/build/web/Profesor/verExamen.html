@@ -36,17 +36,18 @@
   <script>
     document.getElementById("muestraExamen").addEventListener("click",cargarTabla);
     
-    function creaPregunta(){
+    function gestionaPregunta(){
         var id=getParameterByName("id");
         window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/gestionaPregunta.html?id='+id;
     }
     
     function cargarTabla(){
       var xhr=new XMLHttpRequest();
+      var id=getParameterByName("id")
       xhr.onreadystatechange=function(){
         cargarXML(this);
       };
-      xhr.open("GET","../xml/examenes.xml",true);
+      xhr.open("GET","../xml/examenes/examenes"+id+".xml",true);
       xhr.send();
     }
 

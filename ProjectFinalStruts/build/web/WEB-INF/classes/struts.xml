@@ -122,13 +122,14 @@
                 <param name="location">Administrador/respuestas/datosCargados.jsp?correcto=done</param>
             </result>         
         </action>
-        
+        <!-- ***************************************************************************************************************** -->
+        <!-- ************************** Preguntas ***************  -->
         <action name="AgregarPregunta" class="Actions.Profesor.AgregarPregunta">             <!-- Agregar pregunta -->
             <result name="success" type="redirect">
-                <param name="location">Profesor/Profesor.html?correcto=true</param>
+                <param name="location">Profesor/respuestas/agregarEjercicio?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Profesor/Profesor.html?correcto=false</param>
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
             </result>
         </action>
         
@@ -149,6 +150,8 @@
                 <param name="location">Profesor/Profesor.html?correcto=false</param>
             </result>
         </action>
+        
+        <!-- ***************************************************************************************************************** -->
         
         <action name="RegistrarRespuestaPregunta" class="Actions.Alumno.RegistrarRespuestaPregunta">  <!-- Registrar respuesta pregunta -->
             <result name="success" type="redirect">

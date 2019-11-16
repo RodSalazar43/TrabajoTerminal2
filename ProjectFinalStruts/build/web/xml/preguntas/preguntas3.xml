@@ -6,4 +6,16 @@
     <opcion2 />
     <respuesta />
   </pregunta>
+  <pregunta numero="2" nombre="Hola" tipo="Operacion" copiaPregunta="0">
+    <cuestionamiento>[object NodeList]</cuestionamiento>
+    <opcion1>chido</opcion1>
+    <opcion2>default</opcion2>
+    <respuesta>1</respuesta>
+  </pregunta>
+  <pregunta numero="3" nombre="klsdkl" tipo="Operacion" copiaPregunta="0">
+    <cuestionamiento>[object NodeList]</cuestionamiento>
+    <opcion1>kladskds</opcion1>
+    <opcion2>default</opcion2>
+    <respuesta>1</respuesta>
+  </pregunta>
 </preguntas>

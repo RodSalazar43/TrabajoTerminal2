@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preguntas>
-  <pregunta numero="prueba" nombre="prueba" tipo="prueba" copiaPregunta="0">
+  <pregunta numero="prueba" nombre="prueba" tipo="prueba">
     <cuestionamiento />
     <opcion1 />
     <opcion2 />
