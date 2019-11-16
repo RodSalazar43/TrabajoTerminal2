@@ -19,7 +19,11 @@
     <a class="btn btn-danger" onclick='redireccionaGestionaPregunta()'>Regresar</a>
   </div>
   <br>
-<center><button class="btn btn-light" onclick="verPregunta()">Cargar información de la pregunta</button></center>
+<center>
+    <button class="btn btn-warning" onclick="copiarPregunta()">Crear una copia de esta pregunta</button>
+    <br><br>
+    <button class="btn btn-light btn-lg" onclick="verPregunta()">Cargar información de la pregunta</button>
+</center>
 <br>
 <br>
   <div id='verPregunta'>
@@ -30,6 +34,16 @@
    function redireccionaGestionaPregunta(){
         var id=getParameterByName("id");
         window.location.href='gestionaPregunta.html?id='+id;
+    }
+    
+    function copiarPregunta(){
+        var id=getParamterByName("id");
+        var numero=getParameterByName("numero");
+         let url = 'http://localhost:8080/ProjectFinalStruts/CrearCopiaPregunta?idProfesor='+id+'&numeroPregunta='+numero;
+        //alert('URL:' + url);
+            fetch(url).then(response => response.text()).then(data => {
+                alert(data);    
+            });
     }
     
     function getParameterByName(name) {

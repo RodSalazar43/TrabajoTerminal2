@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preguntas>
-  <pregunta numero="prueba" nombre="prueba" tipo="Operacion">
+  <pregunta numero="prueba" nombre="prueba" tipo="VF">
       <cuestionamiento>Hola mundo</cuestionamiento>
       <opcion1>verdadero</opcion1>
       <opcion2>falso</opcion2>
-      <respuesta>2</respuesta>
+      <respuesta>1</respuesta>
   </pregunta>
 </preguntas>

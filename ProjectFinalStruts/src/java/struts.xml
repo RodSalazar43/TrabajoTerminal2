@@ -151,6 +151,15 @@
             </result>
         </action>
         
+        <action name="CrearCopiaPregunta" class="Actions.Profesor.CrearCopiaPregunta">             <!-- CrearCopiaPregunta -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/respuestas/copiaPregunta.jsp?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
+            </result>
+        </action>
+        
         <!-- ***************************************************************************************************************** -->
         
         <action name="RegistrarRespuestaPregunta" class="Actions.Alumno.RegistrarRespuestaPregunta">  <!-- Registrar respuesta pregunta -->
@@ -217,15 +226,6 @@
         </action>
         
         <action name="AsignarPreguntaAAlumnos" class="Actions.Profesor.AsignarPreguntaAAlumnos">             <!-- Asignar Pregunta A Alumnos -->
-            <result name="success" type="redirect">
-                <param name="location">Profesor/Profesor.html?correcto=true</param>
-            </result>
-            <result name="error">
-                <param name="location">Profesor/Profesor.html?correcto=false</param>
-            </result>
-        </action>
-        
-        <action name="CrearCopiaPregunta" class="Actions.Profesor.CrearCopiaPregunta">             <!-- CrearCopiaPregunta -->
             <result name="success" type="redirect">
                 <param name="location">Profesor/Profesor.html?correcto=true</param>
             </result>
