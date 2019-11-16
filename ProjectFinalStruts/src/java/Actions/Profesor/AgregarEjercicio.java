@@ -163,7 +163,8 @@ public class AgregarEjercicio {
         
         datos.add(ejercicio);
         
-        if(xml.guardarXmlEjercicio(datos, ruta) == true){
+        if(xml.guardarXmlEjercicio(datos, ruta)){
+            System.out.println("si guarda el ejercicio");
             return SUCCESS;
         }
         else{

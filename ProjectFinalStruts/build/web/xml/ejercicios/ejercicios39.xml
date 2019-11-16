@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejercicios>
+  <ejercicio numero="prueba" nombre="prueba" tipo="prueba">
+    <indicaciones>vete a la verga</indicaciones>
+    <opcion1>veamos si funciona</opcion1>
+    <opcion2>veamos si funciona</opcion2>
+    <opcion3>veamos si funciona</opcion3>
+    <opcion4>veamos si funciona</opcion4>
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado />
+  </ejercicio>
+  <ejercicio numero="2" nombre="veamo" tipo="DAD">
+    <indicaciones>si funciona</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>alv</resultado>
+  </ejercicio>
+  <ejercicio numero="3" nombre="veamo" tipo="DAD">
+    <indicaciones>si funciona</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>alva</resultado>
+  </ejercicio>
+  <ejercicio numero="4" nombre="veamo" tipo="DAD">
+    <indicaciones>si funciona</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>alva</resultado>
+  </ejercicio>
+  <ejercicio numero="5" nombre="veamo" tipo="DAD">
+    <indicaciones>si funciona</indicaciones>
+    <opcion1 />
+    <opcion2 />
+    <opcion3 />
+    <opcion4 />
+    <opcion5 />
+    <opcion6 />
+    <opcion7 />
+    <opcion8 />
+    <resultado>alva</resultado>
+  </ejercicio>
+</ejercicios>
