@@ -65,6 +65,8 @@
             </result>
         </action>
         
+        
+        
         <action name="EliminarGrupo" class="Actions.Administrador.EliminarGrupo">             <!-- EliminarGrupo -->
             <result name="success" type="redirect">
                 <param name="location">Administrador/respuestas/eliminarUsuario.jsp?correcto=done</param>
@@ -272,6 +274,8 @@
             </result>
         </action>
         
+        <!-- *************************************************************************************************************************** -->
+        <!-- ************************   Ejercicios  -->
         <action name="AgregarEjercicio" class="Actions.Profesor.AgregarEjercicio">    <!-- AgregarEjercicio -->
             <result name="success" type="redirect">
                 <param name="location">Profesor/respuestas/agregarEjercicio.jsp?correcto=true</param>
@@ -280,6 +284,17 @@
                 <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
             </result>
         </action>
+        
+        
+        <action name="ModificarEjercicio" class="Actions.Profesor.ModificarEjercicio">    <!-- ModificarEjercicio -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/respuestas/modificarEjercicio.jsp?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
+            </result>
+        </action>
+        
         
         <action name="EliminarEjercicio" class="Actions.Profesor.EliminarEjercicio">    <!-- EliminarEjercicio -->
             <result name="success" type="redirect">
@@ -290,6 +305,8 @@
             </result>
         </action>
         
+        <!-- *************************************************************************************************************************** -->
+        <!-- *****************************************  Examen -->
         <action name="AgregarExamen" class="Actions.Profesor.AgregarExamen">    <!-- AgregarExamen -->
             <result name="success" type="redirect">
                 <param name="location">Profesor/Profesor.html?correcto=true</param>
@@ -316,5 +333,7 @@
                 <param name="location">Profesor/Profesor.html?correcto=false</param>
             </result>
         </action>
+        
+        <!-- *************************************************************************************************************  -->
     </package>
 </struts>

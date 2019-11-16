@@ -117,7 +117,7 @@ function generaEjercicio(){
         if(nombre[0].value===""||instruccion[0].value===""||opcion1[0].value===""||opcion2[0].value===""||opcion3[0].value===""||opcion4[0].value===""||resultado[0].value===""){
             alert("Por favor llene el campo vacío");
         }else{
-        let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjercicio?idProfesor='+id+'&nombre='+nombre[0].value+'&indicaciones='+instruccion[0].value+'&op1='+opcion1[0].value+'&op2='+opcion2[0].value+'&op3='+opcion3[0].value+'&op4='+opcion4[0].value+'&op5='+determinado+'&op6='+determinado+'&op7='+determinado+'&op8='+determinado+'&resultado='+resultado[0].value+'&tipo='+tipo;
+        let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjercicio?idProfesor='+id+'&nombre='+nombre[0].value+'&indicaciones='+instruccion[0].value+'&opcion1='+opcion1[0].value+'&opcion2='+opcion2[0].value+'&opcion3='+opcion3[0].value+'&opcion4='+opcion4[0].value+'&opcion5='+determinado+'&opcion6='+determinado+'&opcion7='+determinado+'&opcion8='+determinado+'&resultado='+resultado[0].value+'&tipo='+tipo;
         //alert('URL:' + url);
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    
@@ -138,7 +138,7 @@ function generaEjercicio(){
         if(nombre[0].value===""||instruccion[0].value===""||opcion1[0].value===""||opcion2[0].value===""||opcion3[0].value===""||opcion4[0].value===""){
             alert("Por favor llene el campo vacío");
         }else{
-            let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjercicio?idProfesor='+id+'&nombre='+nombre[0].value+'&indicaciones='+instruccion[0].value+'&op1='+opcion1[0].value+'&op2='+opcion2[0].value+'&op3='+opcion3[0].value+'&op4='+opcion4[0].value+'&op5='+opcion5[0].value+'&op6='+opcion6[0].value+'&op7='+opcion7[0].value+'&op8='+opcion8[0].value+'&resultado='+determinado+'&tipo='+tipo;
+            let url = 'http://localhost:8080/ProjectFinalStruts/AgregarEjercicio?idProfesor='+id+'&nombre='+nombre[0].value+'&indicaciones='+instruccion[0].value+'&opcion1='+opcion1[0].value+'&opcion2='+opcion2[0].value+'&opcion3='+opcion3[0].value+'&opcion4='+opcion4[0].value+'&opcion5='+opcion5[0].value+'&opcion6='+opcion6[0].value+'&opcion7='+opcion7[0].value+'&opcion8='+opcion8[0].value+'&resultado='+determinado+'&tipo='+tipo;
         //alert('URL:' + url);
             fetch(url).then(response => response.text()).then(data => {
                 alert(data);    

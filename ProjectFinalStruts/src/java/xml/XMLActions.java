@@ -279,7 +279,7 @@ public class XMLActions {
             
             //obtenemos los atributos
             ejercicio.setNumero(ejercicios.getAttributeValue("numero"));
-            ejercicio.setNombre(ejercicios.getAttributeValue("numero"));
+            ejercicio.setNombre(ejercicios.getAttributeValue("nombre"));
             ejercicio.setTipo(ejercicios.getAttributeValue("tipo"));
             
             //Obtenemos los elementos

@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ejercicios>
-  <ejercicio numero="1" nombre="1" tipo="DAD">
-    <indicaciones>Ordena de arriba hacia abajo de mayor a menor</indicaciones>
-    <opcion1 />
-    <opcion2 />
-    <opcion3 />
-    <opcion4 />
-    <opcion5 />
-    <opcion6 />
-    <opcion7 />
-    <opcion8 />
-    <resultado>3,2,1,4</resultado>
-  </ejercicio>
-  <ejercicio numero="2" nombre="hola" tipo="DAD">
-    <indicaciones>munod</indicaciones>
-    <opcion1 />
-    <opcion2 />
-    <opcion3 />
-    <opcion4 />
-    <opcion5 />
-    <opcion6 />
-    <opcion7 />
-    <opcion8 />
-    <resultado>3,2,1,4</resultado>
+  <ejercicio numero="1" nombre="hola" tipo="DAD">
+    <indicaciones>hola x2</indicaciones>
+    <opcion1>chido</opcion1>
+    <opcion2>lol</opcion2>
+    <opcion3>soy</opcion3>
+    <opcion4>un</opcion4>
+    <opcion5>default</opcion5>
+    <opcion6>default</opcion6>
+    <opcion7>default</opcion7>
+    <opcion8>default</opcion8>
+    <resultado>cacahuate</resultado>
   </ejercicio>
 </ejercicios>
