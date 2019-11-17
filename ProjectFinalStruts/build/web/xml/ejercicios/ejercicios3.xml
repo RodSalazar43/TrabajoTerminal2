@@ -1,11 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ejercicios>
-  <ejercicio numero="prueba" nombre="prueba" tipo="prueba" numeroEjercicio="0">
-    <indicaciones />
-    <opcion1 />
-    <opcion2 />
-    <opcion3 />
-    <opcion4 />
-    <resultado />
+<ejercicios xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/gerpo/OneDrive/Escritorio/xml/esquemaEjercicio.xsd">
+<ejercicio numero="1" tipo="DAD" nombre="Ordena los números decimales">
+    <indicaciones>Ordena los numeros de mayor a menor de arriba hacia abajo</indicaciones>
+    <opcion1>0.69</opcion1>
+    <opcion2>0.65</opcion2>
+    <opcion3>0.32</opcion3>
+    <opcion4>0.66</opcion4>
+    <opcion5></opcion5>
+    <opcion6></opcion6>
+    <opcion7></opcion7>
+    <opcion8></opcion8>
+    <resultado>1,4,2,3</resultado>
   </ejercicio>
-</ejercicios>
+  
+  <ejercicio numero="2" tipo="DAD" nombre="Ordena números enteros con decimales">
+    <indicaciones>Pinta de cualquier color el numero mas grande</indicaciones>
+    <opcion1>2.54</opcion1>
+    <opcion2>3.45</opcion2>
+    <opcion3>5.32</opcion3>
+    <opcion4>1.01</opcion4>
+    <opcion5></opcion5>
+    <opcion6></opcion6>
+    <opcion7></opcion7>
+    <opcion8></opcion8>
+    <resultado>3,2,1,4</resultado>
+  </ejercicio>
+  
+  <ejercicio numero="3" tipo="Linea" nombre="Une los numeros que son similares">
+    <indicaciones>Une los númneros con la que corresponda</indicaciones>
+    <opcion1>3.1*100</opcion1>
+    <opcion2>2.91*10</opcion2>
+    <opcion3>0.05*100</opcion3>
+    <opcion4>0.1*10</opcion4>
+    <opcion5>310</opcion5>
+    <opcion6>29.1</opcion6>
+    <opcion7>5</opcion7>
+    <opcion8>1</opcion8>
+    <resultado>4,2,3,1</resultado>
+  </ejercicio>
+  </ejercicios>

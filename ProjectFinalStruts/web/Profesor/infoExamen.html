@@ -27,7 +27,7 @@
   </div>
 </center>
   <br>
-  <center><button id="muestraExamen" class="btn btn-success btn-lg">Cargar Datos del examen</button></center>
+  <center><button id="muestraExamen" class="btn btn-success btn-lg">Cargar datos del examen</button></center>
   <br>
   <center>
   <div class="container-fluid">
@@ -66,16 +66,17 @@
         XMLEjercicios();
       }
 
-      function cargarExamen(numero,ejercicios) {
+      function cargarExamen(numero,ejercicios,preguntas) {
+          var id=getParameterByName("id")
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-          cargarXMLExamen(this, numero,ejercicios);
+          cargarXMLExamen(this, numero,ejercicios,preguntas);
         };
-        xhr.open("GET", "../xml/examenes.xml", true);
+        xhr.open("GET", "../xml/examenes/examenes"+id+".xml", true);
         xhr.send();
       }
 
-      function cargarXMLExamen(xml,numero,ejercicios) {
+      function cargarXMLExamen(xml,numero,ejercicios,preguntas) {
         var docXML = xml.responseXML;
         var infoExamen = '';
         var examen = docXML.getElementsByTagName("examen");
@@ -94,6 +95,7 @@
         infoExamen +="</div>";
         infoExamen+="<hr class='bg-warning'>"
         var ejerciciosExamen=examen[num-1].getElementsByTagName("ejercicio");
+        var preguntasExamen=examen[num-1].getElementsByTagName("pregunta");
         //console.log("Ejercicios del archivo")
         //console.log(ejercicios)
         var tipoEjercicio="";
@@ -153,21 +155,60 @@
                 continue;
             } 
             }
+            
             if(ejerciciosExamen[i]===undefined){
                 break;
             }
             
           
         }
+        
+        infoExamen+="<hr>";
+        console.log(preguntas)
+        console.log(preguntasExamen)
+            for(var i=0;i<preguntas.length;i++){
+                for(var x=0;x<preguntasExamen.length;x++){
+                    if(preguntasExamen[x].attributes.numero.value==preguntas[i].attributes.numero.value){
+                        infoExamen+="<center><p class='h3'>Pregunta: "+(i+1)+"</p></center>";
+                        //infoExamen+="<div class='card-columns'>";
+                        var nombrePregunta=preguntas[i].getAttribute("nombre");
+                        var tipo=preguntas[i].getAttribute("tipo");
+                        var opcion1=preguntas[i].getElementsByTagName("opcion1")[0].textContent;
+                        var opcion2=preguntas[i].getElementsByTagName("opcion2")[0].textContent;
+                        var respuesta=preguntas[i].getElementsByTagName("respuesta")[0].textContent;
+                        console.log(respuesta)
+                        var cuestionamiento=preguntas[i].getElementsByTagName("cuestionamiento")[0].textContent;
+                        infoExamen+="<div class='card-columns'><label class='lead'>Nombre de la pregunta: </label><input type='text' class='form-control' value='"+nombrePregunta+"' readOnly/><br></div>";
+                        infoExamen+="<div class='card-columns'><label class='lead'>Cuestionamiento: </label><input type='text' class='form-control' value='"+cuestionamiento+"' readOnly/><br></div>";
+                        if(tipo==="Operacion"){
+                            var nuevoTipo="Operación matemática"
+                            infoExamen+="<div class='card-columns'><label class='lead'>El tipo de pregunta es: </label><input type='text' class='form-control' value='"+nuevoTipo+"' readOnly/><br></div>";
+                            infoExamen+="<div class='card-columns'><label class='lead'>La respuesta correcta es: </label><input type='text' class='form-control' value='"+opcion1+"' readOnly/><br></div>";
+                        }else if(tipo==="VF"){
+                            var nuevoTipo="Verdadero o falso";
+                            infoExamen+="<div class='card-columns'><label class='lead'>El tipo de pregunta es: </label><input type='text' class='form-control' value='"+nuevoTipo+"' readOnly/><br></div>";
+                            if(respuesta==1){
+                                infoExamen+="<div class='card-columns'><label class='lead'>La respuesta correcta es: </label><input type='text' class='form-control' value='"+opcion1+"' readOnly/><br></div>";
+                            }else if(respuesta==2){
+                                infoExamen+="<div class='card-columns'><label class='lead'>La respuesta correcta es: </label><input type='text' class='form-control' value='"+opcion2+"' readOnly/><br></div>";
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        
+        
             document.getElementById("cuerpo").innerHTML=infoExamen;
       }
       
       function XMLEjercicios(){
+          var id=getParameterByName("id")
           var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
           cargarXMLEjercicios(this);
         };
-        xhr.open("GET", "../xml/ejercicios.xml", true);
+        xhr.open("GET", "../xml/ejercicios/ejercicios"+id+".xml", true);
         xhr.send();
       }
       
@@ -175,10 +216,27 @@
         var docXML = xml.responseXML;
         var ejercicios = docXML.getElementsByTagName("ejercicio");
         console.log("Ejercicios en memoria")
+        cargarPreguntas(ejercicios)
+        
+      }
+      
+      function cargarPreguntas(ejercicios){
+          var id=getParameterByName("id")
+          var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          cargarXMLPreguntas(this,ejercicios);
+        };
+        xhr.open("GET", "../xml/preguntas/preguntas"+id+".xml", true);
+        xhr.send();
+      }
+      
+      function cargarXMLPreguntas(xml,ejercicios){
+        var docXML = xml.responseXML;
+        var pregunta = docXML.getElementsByTagName("pregunta");
+        console.log("Preguntas en memoria")
         var numero = getParameterByName('numero');
         num=numero;
-        console.log(numero)
-        cargarExamen(numero,ejercicios);
+        cargarExamen(numero,ejercicios,pregunta);
       }
       
     </script>

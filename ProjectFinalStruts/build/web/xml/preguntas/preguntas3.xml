@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<preguntas>
-  <pregunta numero="prueba" nombre="prueba" tipo="VF">
-      <cuestionamiento>Hola mundo</cuestionamiento>
-      <opcion1>verdadero</opcion1>
-      <opcion2>falso</opcion2>
-      <respuesta>1</respuesta>
-  </pregunta>
+<preguntas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/gerpo/OneDrive/Escritorio/xml/esquemaPregunta.xsd">
+    <pregunta numero="1" tipo="VF" nombre="Hi">
+	<cuestionamiento>¿Es verdadero o falso que 1.5 + 1.2= 2.9?</cuestionamiento>
+        <opcion1>Verdadero</opcion1>
+        <opcion2>Falso</opcion2>
+	<respuesta>2</respuesta>
+    </pregunta>
+    <pregunta numero="2" tipo="Operacion" nombre="Hola">
+        <cuestionamiento>¿Cuánto es 3.009 + 1.05?</cuestionamiento>
+        <opcion1>4.059</opcion1>
+        <opcion2></opcion2>
+        <respuesta>1</respuesta>
+    </pregunta>
+    <pregunta numero="3" tipo="Operacion" nombre="Probando">
+        <cuestionamiento>¿Cuánto es 4.009 + 1.06?</cuestionamiento>
+        <opcion1>4.059</opcion1>
+        <opcion2></opcion2>
+        <respuesta>1</respuesta>
+    </pregunta>
 </preguntas>

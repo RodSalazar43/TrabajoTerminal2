@@ -50,11 +50,12 @@
       }
 
       function cargarExamen(ejercicios) {
+          var id=getParameterByName("id")
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
           cargarXMLExamen(this,ejercicios);
         };
-        xhr.open("GET", "../xml/examenes.xml", true);
+        xhr.open("GET", "../xml/examenes/examenes"+id+".xml", true);
         xhr.send();
       }
 
@@ -130,11 +131,12 @@
       }
       
       function XMLEjercicios(){
+          var id=getParameterByName("id")
           var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
           cargarXMLEjercicios(this);
         };
-        xhr.open("GET", "../xml/ejercicios.xml", true);
+        xhr.open("GET", "../xml/ejercicios/ejercicios"+id+".xml", true);
         xhr.send();
       }
       

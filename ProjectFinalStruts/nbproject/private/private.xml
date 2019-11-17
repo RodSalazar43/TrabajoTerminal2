@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/Profesor/respuestas/agregaExamen.jsp</file>
             <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AgregarPreguntasAExamen.java</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/Profesor/agregaExamen.html</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/noIniciaSesion.jsp</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/src/java/struts.xml</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/exitoso.jsp</file>
-            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AgregarExamen.java</file>
+            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/xml/preguntas/preguntas3.xml</file>
+            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/Profesor/infoExamen.html</file>
+            <file>file:/C:/Users/gerpo/Documents/TrabajoTerminal2/ProjectFinalStruts/web/xml/examenes/examenes3.xml</file>
         </group>
     </open-files>
 </project-private>
