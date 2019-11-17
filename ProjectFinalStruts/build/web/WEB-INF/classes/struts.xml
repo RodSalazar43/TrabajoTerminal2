@@ -15,7 +15,7 @@
             <result name="alumno" type="redirect">
                 <param name="location">exitoso.jsp?id=${id}&amp;tipo=Alumno</param>
             </result>
-            <result name="none">/index.html</result>
+            <result name="none">/noIniciaSesion.jsp</result>
         </action>
         <!-- *********************************************************************************************************** -->
         
@@ -296,7 +296,7 @@
         <!-- *****************************************  Examen -->
         <action name="AgregarExamen" class="Actions.Profesor.AgregarExamen">    <!-- AgregarExamen -->
             <result name="success" type="redirect">
-                <param name="location">Profesor/Profesor.html?correcto=true</param>
+                <param name="location">Profesor/respuestas/agregaExamen.jsp?numero=${numero}&amp;correcto=true</param>
             </result>
             <result name="error">
                 <param name="location">Profesor/Profesor.html?correcto=false</param>

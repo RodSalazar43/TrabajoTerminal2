@@ -156,18 +156,20 @@
     
     function creaExamen(numerosP,nombre,numerosE){
         console.log("Numeros ejercicio: "+numerosE)
-        console.log("Numeros ejercicio: "+numerosP)
+        console.log("Numeros pregunta: "+numerosP)
         var id=getParameterByName("id")
         var numeroExamen=0;
-        console.log(id)
+        //console.log(id)
         //http://localhost/struts2react/input1.jsp
         
-        let url1 = 'http://localhost:8080/ProjectFinalStruts/AgregaExamen?idProfesor='+id+'&nombre='+nombre;
+        let url1 = 'http://localhost:8080/ProjectFinalStruts/AgregarExamen?idProfesor='+id+'&nombre='+nombre;
         fetch(url1).then(response => response.text()).then(data => {
-            alert(data);
+            //alert(data);
             numeroExamen=data;
+            console.log(data)
+            console.log(numeroExamen)
         });
-        
+        //console.log(numeroExamen)
         let url2 = 'http://localhost:8080/ProjectFinalStruts/AgregarEjerciciosAExamen?idProfesor='+id+'&numeroEjercicios='+numerosE+'&nombreExamen='+nombre+'&numeroExamen='+numeroExamen;
         //alert('URL:' + url);
         fetch(url2).then(response => response.text()).then(data => {
