@@ -61,16 +61,17 @@ public class AgregarExamen {
         Date fecha = new Date();
         
         String fechaString = "" + fecha.getDay() + "-" + fecha.getMonth() + "-" + fecha.getYear();
-        this.setNumero(examenes.size()+1);
-        examen.setNumero(Integer.toString(examenes.size() + 1));
+        //this.setNumero(examenes.size()+1);
+        int x = Integer.parseInt(examenes.get(0).getNumero()) + 1;
+        examen.setNumero(Integer.toString(x));
         examen.setNombre(this.nombre);
         examen.setFecha(fechaString);
         examen.setEjercicios(xml.generaArregloEjercicios());
         examen.setPreguntas(xml.generaArregloPreguntas());
-        
+        System.out.println("El nuevo examen tendra el numero " + Integer.toString(examenes.size() + 1));
         examenes.add(examen);
         
-        if(xml.guardarXMLExamenAgregado(examenes)){
+        if(xml.guardarXMLExamenAgregado(examenes, rutaExamen)){
             return SUCCESS;
         }else{
             return ERROR;

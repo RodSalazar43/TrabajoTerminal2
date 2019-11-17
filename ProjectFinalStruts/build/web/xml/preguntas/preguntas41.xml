@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preguntas>
+  <pregunta numero="0" nombre="prueba" tipo="prueba">
+    <cuestionamiento />
+    <opcion1 />
+    <opcion2 />
+    <respuesta />
+  </pregunta>
+  <pregunta numero="2" nombre="Esto es un ejemplo" tipo="Operacion">
+    <cuestionamiento>[object NodeList]</cuestionamiento>
+    <opcion1>9</opcion1>
+    <opcion2>default</opcion2>
+    <respuesta>1</respuesta>
+  </pregunta>
+  <pregunta numero="3" nombre="Esto es un ejemplo" tipo="VF">
+    <cuestionamiento>[object NodeList]</cuestionamiento>
+    <opcion1>verdadero</opcion1>
+    <opcion2>falso</opcion2>
+    <respuesta>1</respuesta>
+  </pregunta>
+</preguntas>

@@ -48,7 +48,7 @@ public class CrearCopiaEjercicio{
         List listas = xml.cargarXmlEjercicios(ruta);
         ArrayList<Ejercicio> datos = xml.convierte2ArrayListEjercicios(listas);
         
-        Ejercicio eac = datos.get(this.numeroEjercicio);
+        Ejercicio eac = datos.get(this.numeroEjercicio - 1);
         
         ejercicio.setNumero(Integer.toString(listas.size() + 1));
         ejercicio.setPregunta(eac.getPregunta());

@@ -69,7 +69,7 @@ public class ModificarExamen {
         
         examenes = xml.modificaExamen(examenes, numero, examenModificado);
         
-        if(xml.guardarXMLExamenAgregado(examenes)){
+        if(xml.guardarXMLExamenAgregado(examenes, ruta)){
             return SUCCESS;
         }else{
             return ERROR;

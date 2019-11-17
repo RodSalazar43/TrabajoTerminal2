@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import xml.Examen;
 import xml.XMLActions;
 import static Complementos.Operaciones.*;
+import xml.Ejercicio;
 
 /**
  *
@@ -66,16 +67,20 @@ public class AgregarEjerciciosAExamen {
         int indicador = 0;
         
         for(int i = 0; i < examenes.size(); i++){
-            if(this.numeroExamen == Integer.parseInt(examenes.get(i).getNumero())){
+            if((this.numeroExamen - 1) == Integer.parseInt(examenes.get(i).getNumero())){
+                System.out.println("Si coincide");
                 indicador = i;
+                System.out.println("La posición en el arreglo es " + indicador + "=" + i);
             }
-        }    
+        }
+        
         Examen nuevo = examenes.get(indicador);
-        nuevo.setEjercicios(xml.regresaEjerciciosA(numerosEjercicios));
+        ArrayList<Ejercicio> ejerciciosGuardados = nuevo.getEjercicios();
+        nuevo.setEjercicios(xml.regresaEjerciciosA(ejerciciosGuardados, numerosEjercicios));
         examenes.remove(indicador);
         examenes.add(nuevo);
         
-        if(xml.guardarXMLExamenAgregado(examenes)){
+        if(xml.guardarXMLExamenAgregado(examenes, rutaExamen)){
             return SUCCESS;
         }else{
             return ERROR;
