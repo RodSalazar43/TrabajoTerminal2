@@ -37,7 +37,13 @@
   <div id="text">
     <table id="demo" class="table table-hover table-dark container">
     </table>
+      <br><br>
+      
+      <table id="preguntas" class="table table-hover table-dark container">
+    </table>
   </div>
+  
+  
 
   <script>
     
@@ -49,22 +55,23 @@
         XMLEjercicios();
       }
 
-      function cargarExamen(ejercicios) {
+      function cargarExamen(ejercicios,preguntas) {
           var id=getParameterByName("id")
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-          cargarXMLExamen(this,ejercicios);
+          cargarXMLExamen(this,ejercicios,preguntas);
         };
         xhr.open("GET", "../xml/examenes/examenes"+id+".xml", true);
         xhr.send();
       }
 
-      function cargarXMLExamen(xml,ejercicios) {
+      function cargarXMLExamen(xml,ejercicios,preguntas) {
         var docXML = xml.responseXML;
         var escribeTabla = '';
         var examen = docXML.getElementsByTagName("examen");
         var num=getParameterByName("numero")
         var ejerciciosExamen=examen[num-1].getElementsByTagName("ejercicio");
+        var preguntasExamen=examen[num-1].getElementsByTagName("pregunta");
         //console.log("Ejercicios del archivo")
         //console.log(ejercicios)
         var tipoEjercicio="";
@@ -80,7 +87,10 @@
         for(var m=0;m<ejerciciosExamen.length;m++){
             arreglo.push(ejerciciosExamen[m].attributes[0].value)
         }
-        
+        var arregloPreguntas=new Array();
+        for(var m=0;m<preguntasExamen.length;m++){
+            arregloPreguntas.push(preguntasExamen[m].attributes[0].value)
+        }
         
         for(var i=0;i<ejercicios.length;i++){
             for(var x=0;x<ejerciciosExamen.length;x++){
@@ -126,8 +136,70 @@
             }
             console.log(arreglo)
         }
+        
+        var tipoPregunta=""
+        var escribeTablaPregunta=""
+        
+        escribeTablaPregunta+="<thead>"
+        escribeTablaPregunta+="<tr>"
+        escribeTablaPregunta+="<th scope='col'>Selección</th>"
+        escribeTablaPregunta+="<th scope='col'>Nombre</th>"
+        escribeTablaPregunta+="<th scope='col'>Tipo</th>"
+        escribeTablaPregunta+="</tr>"
+        escribeTablaPregunta+="</thead>"
+        escribeTablaPregunta+="<tbody>"
+        
+        
+        for(var i=0;i<preguntas.length;i++){
+            for(var x=0;x<preguntasExamen.length;x++){
+               if(preguntasExamen[x].attributes[0].value===preguntas[i].attributes[0].value){
+                var nombrePregunta=preguntas[i].getAttribute("nombre");
+                var tipo=preguntas[i].getAttribute("tipo");
+                if(tipo==="VF"){
+                    tipoPregunta="Arrastrar y soltar"
+                }else if(tipo==="Operacion"){
+                    tipoPregunta="Unir con una línea"
+                }
+                        escribeTablaPregunta+="<tr>"
+                        escribeTablaPregunta+="<th scope='row'><input type='checkbox' checked='checked'/></th>"
+                        escribeTablaPregunta+="<td>"+nombrePregunta+"</td>"
+                        escribeTablaPregunta+="<td>"+tipoPregunta+"</td>"
+                        escribeTablaPregunta+="</tr>"
+                }else{
+                    var impreso=0;
+                    for(var g=0;g<arregloPreguntas.length;g++){
+                        if(arregloPreguntas[g]==preguntas[i].attributes[0].value){
+                            impreso++;
+                        }
+                    }
+                    if(impreso===0){
+                        var nombrePregunta=preguntas[i].getAttribute("nombre");
+                        var tipo=preguntas[i].getAttribute("tipo");
+                        if(tipo==="DAD"){
+                            tipoPregunta="Arrastrar y soltar"
+                        }else if(tipo==="Linea"){
+                            tipoPregunta="Unir con una línea"
+                        }
+                        escribeTablaPregunta+="<tr>"
+                        escribeTablaPregunta+="<th scope='row'><input type='checkbox'/></th>"
+                        escribeTablaPregunta+="<td>"+nombrePregunta+"</td>"
+                        escribeTablaPregunta+="<td>"+tipoPregunta+"</td>"
+                        escribeTablaPregunta+="</tr>"
+                        arregloPreguntas.push(preguntas[i].attributes[0].value)
+                    }
+                } 
+            }
+            if(preguntasExamen[i]===undefined){
+                break;
+            }
+            console.log(arregloPreguntas)
+        }
+        
+        
         escribeTabla+="</tbody>"
+        escribeTablaPregunta="</tbody>"
             document.getElementById("demo").innerHTML=escribeTabla;
+            document.getElementById("preguntas").innerHTML=escribeTablaPregunta;
       }
       
       function XMLEjercicios(){
@@ -144,7 +216,8 @@
         var docXML = xml.responseXML;
         var ejercicios = docXML.getElementsByTagName("ejercicio");
         console.log("Ejercicios en memoria")
-        cargarExamen(ejercicios);
+        cargarPregunta(ejercicios)
+        
       }
       
       function getParameterByName(name) {
@@ -152,6 +225,23 @@
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    
+    function cargarPregunta(ejercicios){
+        var id=getParameterByName("id")
+          var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          cargarXMLPreguntas(this,ejercicios);
+        };
+        xhr.open("GET", "../xml/preguntas/preguntas"+id+".xml", true);
+        xhr.send();
+    }
+    
+    function cargarXMLPreguntas(xml,ejercicios){
+        var docXML = xml.responseXML;
+        var preguntas = docXML.getElementsByTagName("pregunta");
+        
+        cargarExamen(ejercicios,preguntas);
     }
       
     
