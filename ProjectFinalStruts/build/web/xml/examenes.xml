@@ -11,7 +11,8 @@
   </examen>
   <examen numero="1" nombre="Primer parcial 2019" fecha="2019-30-08">
     <ejercicio numero="1" />
-    <ejercicio numero="2" />
     <ejercicio numero="3" />
+    <pregunta numero="2" />
+    <pregunta numero="3" />
   </examen>
 </examenes>
