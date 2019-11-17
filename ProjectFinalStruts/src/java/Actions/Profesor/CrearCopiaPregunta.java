@@ -57,7 +57,6 @@ public class CrearCopiaPregunta {
         pregunta.setOpcion2(pac.getOpcion2());
         pregunta.setRespuesta(pac.getRespuesta());
         pregunta.setTipo(pac.getTipo());
-        pregunta.setCopiaPregunta(Integer.parseInt(pac.getNumero()));
         
         datos.add(pregunta);
         

@@ -220,7 +220,6 @@ public class XMLActions {
             ejercicio.setNombre(dato);
             dato=ejercicios.getAttributeValue("tipo");
             ejercicio.setTipo(dato);
-            ejercicio.setCopiaEjercicio(Integer.parseInt(ejercicios.getAttributeValue("copiaEjercicio")));
             dato=ejercicios.getAttributeValue("numero");
             ejercicio.setNumero(dato);
             String pregunta=ejercicios.getChildText("indicaciones");
@@ -255,7 +254,6 @@ public class XMLActions {
             pregunta.setNombre(preguntas.getAttributeValue("nombre"));
             pregunta.setNumero(preguntas.getAttributeValue("numero"));
             pregunta.setTipo(preguntas.getAttributeValue("tipo"));
-            pregunta.setCopiaPregunta(Integer.parseInt(preguntas.getAttributeValue("copiaPregunta")));
             
             //obtenemos los elementos
             pregunta.setIndicaciones(preguntas.getChildText("cuestionamiento"));
@@ -689,17 +687,25 @@ public class XMLActions {
             ejercicio.setAttribute("numero", ej.getNumero());
             ejercicio.setAttribute("tipo", ej.getTipo());
             ejercicio.setAttribute("nombre", ej.getNombre());
-            ejercicio.setAttribute("copiaEjercicio", Integer.toString(ej.getCopiaEjercicio()));
             Element pregunta = new Element("indicaciones");
             pregunta.setText(ej.getPregunta());
-            Element opcion1=new Element("opcion");
+            Element opcion1=new Element("opcion1");
             opcion1.setText(ej.getOpcion1());
-            Element opcion2=new Element("opcion");
+            Element opcion2=new Element("opcion2");
             opcion2.setText(ej.getOpcion2());
-            Element opcion3=new Element("opcion");
+            Element opcion3=new Element("opcion3");
             opcion3.setText(ej.getOpcion3());
-            Element opcion4=new Element("opcion");
+            Element opcion4=new Element("opcion4");
             opcion4.setText(ej.getOpcion4());
+            Element opcion5=new Element("opcion5");
+            opcion5.setText(ej.getOpcion5());
+            Element opcion6=new Element("opcion6");
+            opcion6.setText(ej.getOpcion6());
+            Element opcion7=new Element("opcion7");
+            opcion7.setText(ej.getOpcion7());
+            Element opcion8=new Element("opcion8");
+            opcion8.setText(ej.getOpcion8());
+            
             Element resultado = new Element("resultado");
             resultado.setText(ej.getResultado());
             ejercicio.addContent(pregunta);
@@ -707,6 +713,12 @@ public class XMLActions {
             ejercicio.addContent(opcion2);
             ejercicio.addContent(opcion3);
             ejercicio.addContent(opcion4);
+            ejercicio.addContent(opcion5);
+            ejercicio.addContent(opcion6);
+            ejercicio.addContent(opcion7);
+            ejercicio.addContent(opcion8);
+            
+            
             ejercicio.addContent(resultado);
             root.addContent(ejercicio);
         }
@@ -734,7 +746,6 @@ public class XMLActions {
             pregunta.setAttribute("numero", pg.getNumero());
             pregunta.setAttribute("nombre", pg.getNombre());
             pregunta.setAttribute("tipo", pg.getTipo());
-            pregunta.setAttribute("copiaPregunta", Integer.toString(pg.getCopiaPregunta()));
             
             //establecemos elementos
             Element cuestionamiento = new Element("cuestionamiento");
@@ -1036,13 +1047,12 @@ public class XMLActions {
         
         Element ejercicio = new Element("ejercicio");
         
-        ejercicio.setAttribute("numero", "prueba");
+        ejercicio.setAttribute("numero", "0");
         ejercicio.setAttribute("nombre", "prueba");
         ejercicio.setAttribute("tipo", "prueba");
-        ejercicio.setAttribute("numeroEjercicio","0");
         
         Element indicaciones = new Element("indicaciones");
-        indicaciones.setText("vete a la verga");
+        indicaciones.setText("Vas a ignorar este ejercicio jeje");
         Element opcion1 = new Element("opcion1");
         opcion1.setText("veamos si funciona");
         Element opcion2 = new Element("opcion2");
@@ -1061,7 +1071,7 @@ public class XMLActions {
         opcion8.setText("veamos si funciona");
         
         Element resultado = new Element("resultado");
-        resultado.setText(" ");
+        resultado.setText("Este es el resultado");
         
         ejercicio.addContent(indicaciones);
         ejercicio.addContent(opcion1);
@@ -1097,10 +1107,9 @@ public class XMLActions {
         Element root = new Element("preguntas");
         
         Element pregunta = new Element("pregunta");
-        pregunta.setAttribute("numero", "prueba");
+        pregunta.setAttribute("numero", "0");
         pregunta.setAttribute("nombre", "prueba");
         pregunta.setAttribute("tipo", "prueba");
-        pregunta.setAttribute("copiaPregunta", "0");
         
         Element cuestionamiento = new Element("cuestionamiento");
         cuestionamiento.setText(" ");

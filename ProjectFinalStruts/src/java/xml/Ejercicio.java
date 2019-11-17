@@ -38,15 +38,6 @@ public class Ejercicio implements Serializable{
     public void setOpcion8(String opcion8) {
         this.opcion8 = opcion8;
     }
-    private int copiaEjercicio;
-
-    public int getCopiaEjercicio() {
-        return copiaEjercicio;
-    }
-
-    public void setCopiaEjercicio(int copiaEjercicio) {
-        this.copiaEjercicio = copiaEjercicio;
-    }
 
     public Ejercicio(){   
     }

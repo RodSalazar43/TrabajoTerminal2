@@ -100,7 +100,6 @@ public class AgregarPregunta {
         pregunta.setOpcion2(opcion2);
         pregunta.setRespuesta(respuesta);
         pregunta.setTipo(tipo);
-        pregunta.setCopiaPregunta(0);
         
         datos.add(pregunta);
         
