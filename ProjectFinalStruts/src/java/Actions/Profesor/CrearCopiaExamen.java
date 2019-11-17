@@ -50,7 +50,7 @@ public class CrearCopiaExamen {
         List listaExamen = xml.cargarXmlExamenes(ruta);
         ArrayList<Examen> examenes = xml.convierteList2ArrayListExamenAgregado(listaExamen);
         
-        Examen original = examenes.get(this.numeroExamen);
+        Examen original = examenes.get(this.numeroExamen - 1);
         
         examen.setNumero(Integer.toString(listaExamen.size() + 1));
         examen.setNombre(original.getNombre());
@@ -66,7 +66,7 @@ public class CrearCopiaExamen {
         
         examenes.add(examen);
         
-        if(xml.guardarXMLExamenAgregado(examenes)){
+        if(xml.guardarXMLExamenAgregado(examenes, ruta)){
             return SUCCESS;
         }else{
             return ERROR;

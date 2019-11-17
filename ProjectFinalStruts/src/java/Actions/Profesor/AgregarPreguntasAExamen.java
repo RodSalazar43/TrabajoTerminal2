@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import xml.Examen;
 import xml.XMLActions;
 import static Complementos.Operaciones.*;
+import xml.Pregunta;
 
 /**
  *
@@ -66,17 +67,18 @@ public class AgregarPreguntasAExamen {
         int indicador = 0;
         
         for(int i = 0; i < examenes.size(); i++){
-            if(this.numeroExamen == Integer.parseInt(examenes.get(i).getNumero())){
+            if((this.numeroExamen - 1) == Integer.parseInt(examenes.get(i).getNumero())){
                 indicador = i;
             }
         }    
         
         Examen nuevo = examenes.get(indicador);
-        nuevo.setPreguntas(xml.regresaPreguntasA(numerosPreguntas));
+        ArrayList<Pregunta> preguntasGuardadas = nuevo.getPreguntas();
+        nuevo.setPreguntas(xml.regresaPreguntasA(preguntasGuardadas, numerosPreguntas));
         examenes.remove(indicador);
         examenes.add(nuevo);
         
-        if(xml.guardarXMLExamenAgregado(examenes)){
+        if(xml.guardarXMLExamenAgregado(examenes, rutaExamen)){
             return SUCCESS;
         }else{
             return ERROR;

@@ -120,12 +120,12 @@ public class XMLActions {
         
     }
     
-    public boolean guardarXMLExamenAgregado(ArrayList<Examen> examenes){
+    public boolean guardarXMLExamenAgregado(ArrayList<Examen> examenes, String ruta){
         Element root=new Element("examenes");
-        
+        System.out.println("El arrayList tiene " + examenes.size() + " examenes");
         for(int i = 0;i < examenes.size();i++){
             Examen examen_datos= examenes.get(i);
-            
+            System.out.println("El numero del examen es " + examen_datos.getNumero());
             Element examen_element=new Element("examen");
             
             examen_element.setAttribute("numero", examen_datos.getNumero());
@@ -135,29 +135,27 @@ public class XMLActions {
             ArrayList<Ejercicio> ejercicios = examen_datos.getEjercicios();
             ArrayList<Pregunta> preguntas = examen_datos.getPreguntas();
             
-            Element ejercicio_element;
-            Element pregunta_element;
-            
             for (int x = 0; x < ejercicios.size(); x++) {
+                Element ejercicio_element = new Element("ejercicio");
                 Ejercicio ejercicio = ejercicios.get(x);
-                ejercicio_element=new Element("ejercicio");
+                //ejercicio_element=new Element("ejercicio");
                 ejercicio_element.setAttribute("numero", ejercicio.getNumero());
                 examen_element.addContent(ejercicio_element);
             }
             
             for(int j = 0; j < preguntas.size(); j++){
+                Element pregunta_element = new Element("pregunta");
                 Pregunta pregunta = preguntas.get(j);
-                pregunta_element = new Element("pregunta");
+                //pregunta_element = new Element("pregunta");
                 pregunta_element.setAttribute("numero", pregunta.getNumero());
                 examen_element.addContent(pregunta_element);
-                
             }
             //Aqui va lo de las preguntas
             root.addContent(examen_element);
         }
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
-            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath("xml/examenes.xml")));
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(ruta)));
             System.out.println("Archivo xml, guardado");
             return true;
             //C:\Users\German Pons\Documents\NetBeansProjects\ProyectFinal\build\web\xml
@@ -539,7 +537,7 @@ public class XMLActions {
         try {
             Document document = (Document) builder.build(xmlFile);
             Element rootNode = document.getRootElement();
-            list = rootNode.getChildren();
+            list = rootNode.getChildren("examen");
             return list;
         } catch (IOException io) {
             System.out.println(io.getMessage());
@@ -1232,14 +1230,13 @@ public class XMLActions {
         return ejercicios;
     }
     
-    public ArrayList<Ejercicio> regresaEjerciciosA(String[] numeros){
-        ArrayList<Ejercicio> ejercicios = new ArrayList<>();
+    public ArrayList<Ejercicio> regresaEjerciciosA(ArrayList<Ejercicio> ejerciciosGuardados, String[] numeros){
         for(int i = 0;i < numeros.length;i++){
             Ejercicio eje = new Ejercicio();
             eje.setNumero(numeros[i]);
-            ejercicios.add(eje);
+            ejerciciosGuardados.add(eje);
         }
-        return ejercicios;
+        return ejerciciosGuardados;
     }
     
     public ArrayList<Ejercicio> generaArregloEjercicios(){
@@ -1247,18 +1244,6 @@ public class XMLActions {
         
         Ejercicio ejercicio = new Ejercicio();
         ejercicio.setNumero("0");
-        ejercicio.setNombre("PrimerEjercicio");
-        ejercicio.setOpcion1("1");
-        ejercicio.setOpcion2("2");
-        ejercicio.setOpcion3("3");
-        ejercicio.setOpcion4("4");
-        ejercicio.setOpcion5("5");
-        ejercicio.setOpcion6("6");
-        ejercicio.setOpcion7("7");
-        ejercicio.setOpcion8("8");
-        ejercicio.setPregunta("Pregunta");
-        ejercicio.setResultado("Resultado");
-        ejercicio.setTipo("Tipo");
         
         ejercicios.add(ejercicio);
         return ejercicios;
@@ -1270,25 +1255,18 @@ public class XMLActions {
         Pregunta pregunta = new Pregunta();
         
         pregunta.setNumero("0");
-        pregunta.setNombre("PrimerPregunta");
-        pregunta.setOpcion1("1");
-        pregunta.setOpcion2("2");
-        pregunta.setIndicaciones("indicaciones");
-        pregunta.setRespuesta("respuesta");
-        pregunta.setTipo("Tipo");
         
         preguntas.add(pregunta);
         return preguntas;
     }
     
-    public ArrayList<Pregunta> regresaPreguntasA(String[] numeros){
-        ArrayList<Pregunta> preguntas = new ArrayList<>();
+    public ArrayList<Pregunta> regresaPreguntasA(ArrayList<Pregunta> preguntasGuardadas, String[] numeros){
         for(int i = 0;i < numeros.length;i++){
             Pregunta pre = new Pregunta();
             pre.setNumero(numeros[i]);
-            preguntas.add(pre);
+            preguntasGuardadas.add(pre);
         }
-        return preguntas;
+        return preguntasGuardadas;
     }
 
 }

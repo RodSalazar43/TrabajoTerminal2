@@ -48,9 +48,9 @@ public class EliminarExamen {
         List listaExamen = xml.cargarXmlExamenes(ruta);
         ArrayList<Examen> examenes = xml.convierteList2ArrayListExamenAgregado(listaExamen);
         
-        examenes = xml.eliminaExamen(examenes, this.numero);
+        examenes = xml.eliminaExamen(examenes, (this.numero - 1));
         
-        if(xml.guardarXMLExamenAgregado(examenes)){
+        if(xml.guardarXMLExamenAgregado(examenes, ruta)){
             return SUCCESS;
         }
         else{

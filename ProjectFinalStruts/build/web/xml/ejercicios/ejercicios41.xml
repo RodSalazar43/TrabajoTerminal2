@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejercicios>
+  <ejercicio numero="0" nombre="prueba" tipo="prueba">
+    <indicaciones>Vas a ignorar este ejercicio jeje</indicaciones>
+    <opcion1>veamos si funciona</opcion1>
+    <opcion2>veamos si funciona</opcion2>
+    <opcion3>veamos si funciona</opcion3>
+    <opcion4>veamos si funciona</opcion4>
+    <opcion5>veamos si funciona</opcion5>
+    <opcion6>veamos si funciona</opcion6>
+    <opcion7>veamos si funciona</opcion7>
+    <opcion8>veamos si funciona</opcion8>
+    <resultado>Este es el resultado</resultado>
+  </ejercicio>
+  <ejercicio numero="2" nombre="prueba" tipo="prueba">
+    <indicaciones>Vas a ignorar este ejercicio jeje</indicaciones>
+    <opcion1>veamos si funciona</opcion1>
+    <opcion2>veamos si funciona</opcion2>
+    <opcion3>veamos si funciona</opcion3>
+    <opcion4>veamos si funciona</opcion4>
+    <opcion5>veamos si funciona</opcion5>
+    <opcion6>veamos si funciona</opcion6>
+    <opcion7>veamos si funciona</opcion7>
+    <opcion8>veamos si funciona</opcion8>
+    <resultado>Este es el resultado</resultado>
+  </ejercicio>
+  <ejercicio numero="3" nombre="Veamos si funciona" tipo="DAD">
+    <indicaciones>contesta este ejercicio</indicaciones>
+    <opcion1>4</opcion1>
+    <opcion2>64</opcion2>
+    <opcion3>432</opcion3>
+    <opcion4>3</opcion4>
+    <opcion5>default</opcion5>
+    <opcion6>default</opcion6>
+    <opcion7>default</opcion7>
+    <opcion8>default</opcion8>
+    <resultado>1,4,2,5</resultado>
+  </ejercicio>
+</ejercicios>

@@ -48,7 +48,7 @@ public class CrearCopiaPregunta {
         List listas = xml.cargarXmlPreguntas(ruta);
         ArrayList<Pregunta> datos = xml.convierte2ArrayListPreguntas(listas);
         
-        Pregunta pac = datos.get(this.numeroPregunta);
+        Pregunta pac = datos.get(this.numeroPregunta - 1);
         
         pregunta.setNumero(Integer.toString(listas.size() + 1));
         pregunta.setIndicaciones(pac.getIndicaciones());
