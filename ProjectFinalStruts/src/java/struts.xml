@@ -335,10 +335,10 @@
         
         <action name="ModificarExamen" class="Actions.Profesor.ModificarExamen">    <!-- ModificarExamen -->
             <result name="success" type="redirect">
-                <param name="location">Profesor/Profesor.html?correcto=true</param>
+                <param name="location">Profesor/respuestas/modificarExamen.jsp?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Profesor/Profesor.html?correcto=false</param>
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
             </result>
         </action>
         
