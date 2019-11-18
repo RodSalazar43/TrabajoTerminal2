@@ -355,21 +355,20 @@
                     siguiente+="<p class='lead'>Instrucciones: "+ins+"</p>";
                     siguiente+="</div>";
                     siguiente+="</div>";                                       
-                    canvas+="<br><br>"
                     canvas+="<div class='row justify-content-around'>"
-                    canvas+="<div class='col-4 bg-secondary'>"
+                    canvas+="<div class='col-4 bg-secondary h3 text-white'>"
                     canvas+=opcion1
                     canvas+="</div>"
-                    canvas+="<div class='col-4 bg-success'>"
+                    canvas+="<div class='col-4 bg-success h3 text-white'>"
                     canvas+=opcion2
                     canvas+="</div>"
                     canvas+="</div>"
                     canvas+="<canvas id='linea1' width='500px' height='400px' onclick='dibuja()' onmousemove='procesoDibuja()' style='background-color: black;'>Su navegador no soporta canvas :( </canvas>"    
                     canvas+="<div class='row justify-content-around'>"
-                    canvas+="<div class='col-4 bg-danger'>"
+                    canvas+="<div class='col-4 bg-danger h3 text-white'>"
                     canvas+=opcion6
                     canvas+="</div>"
-                    canvas+="<div class='col-4 bg-warning'>"
+                    canvas+="<div class='col-4 bg-warning h3 text-white'>"
                     canvas+=opcion5
                     canvas+="</div>"
                     canvas+="</div>"
@@ -541,12 +540,29 @@
                 console.log("Coordenada y:"+y)
                 return {
                     x: window.event.clientX-700,
-                    y: window.event.clientY-475 
+                    y: window.event.clientY-450 
                 };
             }
             
             function obtieneRespuestasLinea(){
                 console.log(todas_las_coordenadas);
+                var correctas=0;
+                for(var i=0;i<todas_las_coordenadas.length;i++){
+                    var x1=todas_las_coordenadas[0].x1;
+                    var y1=todas_las_coordenadas[0].y1;
+                    var x2=todas_las_coordenadas[0].x2;
+                    var y2=todas_las_coordenadas[0].y2;
+                    if(x1-53<=0&&500-x2<=53){
+                        if(y1-53<=0&&400-y2<=53){
+                            console.log("Punto adentro");
+                            correctas++;
+                        }
+                    }
+                }
+                alert("Obtuviste "+correctas+" respuestas correctas")
+                numeritoExamen++;
+                siguienteEjercicio()
+                
             }
             
             
