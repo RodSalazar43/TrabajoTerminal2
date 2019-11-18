@@ -40,7 +40,7 @@
       </div>
     </center>
   <center>
-  <div id="canvas">
+      <div id="canvas" onload="">
   </div>
       </center>
     <script>
@@ -333,6 +333,18 @@
                 }else if(tipo=="Linea"){
                     var nombreEjercicio=todosEjercicios[numeritoEjercicio].getAttribute("nombre");
                     var ins=todosEjercicios[numeritoEjercicio].getElementsByTagName("indicaciones")[0].textContent;
+                    var opcion1=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion1")[0].textContent;
+                    var opcion2=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion2")[0].textContent;
+                    var opcion3=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion3")[0].textContent;
+                    var opcion4=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion4")[0].textContent;
+                    var opcion5=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion5")[0].textContent;
+                    var opcion6=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion6")[0].textContent;
+                    var opcion7=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion7")[0].textContent;
+                    var opcion8=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion8")[0].textContent;
+                    
+                    
+
+                    
                     var canvas=""
                     siguiente+="<p class='lead fondo-superman text-link'>Nombre del examen: "+nombre+"</p>";
                     siguiente+="<p class='lead fondo-superman text-light'>Fecha de creación del examen: "+fecha+"</p>";
@@ -342,23 +354,27 @@
                     siguiente+="<hr>";
                     siguiente+="<p class='lead'>Instrucciones: "+ins+"</p>";
                     siguiente+="</div>";
-                    siguiente+="</div>";
-                    canvas+="<center class='container'>"
+                    siguiente+="</div>";                                       
+                    canvas+="<br><br>"
                     canvas+="<div class='row justify-content-around'>"
-                    canvas+=    "<div class='col-4'>"
-                      canvas+=    "  One of two columns"
-                       canvas+= "</div>"
-                       canvas+= "<div class=¿col-4'>"
-                          canvas+=  "One of two columns"
-                        canvas+="</div>"
+                    canvas+="<div class='col-4 bg-secondary'>"
+                    canvas+=opcion1
                     canvas+="</div>"
-                    canvas+="<p class='float-left'>Opcion 1</p><br>"
-                    canvas+="<p class='float-left'>Opcion 2</p>"
-                    canvas+="<canvas class='col-6' id='linea1' width='500px' height='400px' onclick='dibuja()' onmousemove='procesoDibuja()' style='background-color: black;'>Su navegador no soporta canvas :( </canvas>"
-                     canvas+="<p class='float-right'>Opcion 3</p><br>"
-                     canvas+="<p class='float-right'>Opcion 4</p>"
-                    canvas+="</center>"
+                    canvas+="<div class='col-4 bg-success'>"
+                    canvas+=opcion2
+                    canvas+="</div>"
+                    canvas+="</div>"
+                    canvas+="<canvas id='linea1' width='500px' height='400px' onclick='dibuja()' onmousemove='procesoDibuja()' style='background-color: black;'>Su navegador no soporta canvas :( </canvas>"    
+                    canvas+="<div class='row justify-content-around'>"
+                    canvas+="<div class='col-4 bg-danger'>"
+                    canvas+=opcion6
+                    canvas+="</div>"
+                    canvas+="<div class='col-4 bg-warning'>"
+                    canvas+=opcion5
+                    canvas+="</div>"
+                    canvas+="</div>"
                     //console.log(siguiente)
+                    siguiente+="<button class='btn btn-outline-danger form-control' onclick='obtieneRespuestasLinea()'>Evaluar</button>"
                     document.getElementById("cuerpo").innerHTML=siguiente;
                     document.getElementById("canvas").innerHTML=canvas
                 }
@@ -370,6 +386,20 @@
               siguienteEjercicio()
             }          
       }
+      
+      function cargaOpcionesEjercicio(){
+          alert("hola")
+                var elemento=document.getElementById("linea1");
+                var lienzo=elemento.getContext("2d");
+                lienzo.font = "bold 22px sans-serif";
+                lienzo.fillText("Hola a todos",50,50)
+            }
+            
+            
+            
+            
+            
+            
 
     </script>
     
@@ -377,6 +407,7 @@
             var numeroClick=0;
             var coordenada1;
             var todas_las_coordenadas=new Array();
+            
             function dibuja() {
 	        var canvas = document.getElementById("linea1");
                 var coordenadas;
@@ -384,8 +415,23 @@
                 numeroClick++;
 		        if (canvas && canvas.getContext) {
 		            var ctx = canvas.getContext("2d");
+                            var ctx2 = canvas.getContext("2d");
                     console.log(numeroClick)
 			        if (ctx) {
+                            ctx2.strokeStyle= "#0f0"    
+                            ctx2.beginPath();
+                            ctx2.arc(25,25,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx2.beginPath();
+                            ctx2.arc(475,25,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx2.beginPath();
+                            ctx2.arc(25,375,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx2.beginPath();
+                            ctx2.arc(475,375,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            
                         if(numeroClick===1){
                             ctx.lineWidth = 3;
 		            ctx.strokeStyle = "#f00";
@@ -422,15 +468,30 @@
                 var canvas = document.getElementById("linea1");
                 if (canvas && canvas.getContext) {
 		            var ctx = canvas.getContext("2d");
-                    console.log(numeroClick)
+                            var ctx2=canvas.getContext("2d")
+                            console.log(numeroClick)
 			if (ctx) {
-                        ctx.strokeStyle = "#f00";
+                            ctx2.strokeStyle= "#0f0"    
+                            ctx2.beginPath();
+                            ctx2.arc(25,25,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx2.beginPath();
+                            ctx2.arc(475,25,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx2.beginPath();
+                            ctx2.arc(25,375,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx2.beginPath();
+                            ctx2.arc(475,375,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx.strokeStyle = "#f00";
                         for(var i=0;i<todas_las_coordenadas.length;i++){
                             ctx.beginPath();
                             linea=todas_las_coordenadas[i];
 			    ctx.moveTo(linea.x1, linea.y1);
                             ctx.lineTo(linea.x2, linea.y2);
 			    ctx.stroke();
+                            
                         }
                     }
                 }
@@ -441,7 +502,22 @@
                 var coordenadas;
 		        if (canvas && canvas.getContext) {
 		            var ctx = canvas.getContext("2d");
+                            var ctx2 = canvas.getContext("2d");
 			        if (ctx) {
+                            ctx2.strokeStyle= "#0f0"    
+                            ctx2.beginPath();
+                            ctx2.arc(25,25,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx2.beginPath();
+                            ctx2.arc(475,25,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx2.beginPath();
+                            ctx2.arc(25,375,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            ctx2.beginPath();
+                            ctx2.arc(475,375,25,0,(Math.PI/180)*360,true);
+                            ctx2.stroke();
+                            
                         if(numeroClick===1){
                             ctx.lineWidth = 3;
 			    ctx.strokeStyle = "#ff0";
@@ -465,9 +541,15 @@
                 console.log("Coordenada y:"+y)
                 return {
                     x: window.event.clientX-700,
-                    y: window.event.clientY-250 
+                    y: window.event.clientY-475 
                 };
             }
+            
+            function obtieneRespuestasLinea(){
+                console.log(todas_las_coordenadas);
+            }
+            
+            
         </script>
     
   <script type="text/javascript" src="js_react/exPrueba.js"></script></body>
