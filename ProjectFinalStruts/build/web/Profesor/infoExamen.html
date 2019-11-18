@@ -15,14 +15,19 @@
   <noscript>Necesitas habilitar JavaScript para ejecutar la aplicación.</noscript>
   <div id="welcome"></div>
 <center>
-  <div class="align-items-center container">
+  <div class="align-items-center container bg-warning">
       <div class="row">
-          <div class="col-6">
+          <div class="col-4">
               <button class="btn btn-dark" onclick="redireccionaVerExamen()">Mostrar Examenes</button>
           </div>
-          <div class="col-6">
+          <div class="col-4">
+              <button class="btn btn-secondary btn-block" onclick="creaCopia()">Crear copia de este examen</button>
+          </div>
+          <div class="col-4">
               <button class="btn btn-dark" onclick="redireccionaAgregaExamen()">Crear examen</button>
           </div>
+          
+          
       </div>
   </div>
 </center>
@@ -238,6 +243,18 @@
         num=numero;
         cargarExamen(numero,ejercicios,pregunta);
       }
+      
+      function creaCopia(){
+          var id=getParameterByName("id");
+          var numero=getParameterByName("numero")
+          let url = 'http://localhost:8080/ProjectFinalStruts/CrearCopiaExamen?idProfesor='+id+'&numeroExamen='+numero;
+        //alert('URL:' + url);
+            fetch(url).then(response => response.text()).then(data => {
+                alert(data);    
+            });
+            //location.reload()
+      }
+      
       
     </script>
     <script type="text/javascript" src="js_react/infoEj.js"></script>

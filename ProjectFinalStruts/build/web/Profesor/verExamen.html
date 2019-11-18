@@ -92,10 +92,11 @@
     function eliminaExamen(numero){
          var opcion = confirm("¿Desea eliminar el examen número "+numero+"?");
       if(opcion===true){
-        const data = new FormData(event.target);
+          var id=getParameterByName("id")
+        //const data = new FormData(event.target);
         //http://localhost/struts2react/input1.jsp
-        let url = `http://localhost:8080/ProjectFinalStruts/BorraExamen?numero=${numero}`;
-        alert('URL:' + url);
+        let url = 'http://localhost:8080/ProjectFinalStruts/EliminarExamen?numero='+numero+'&idProfesor='+id;
+        //alert('URL:' + url);
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    
             cargarTabla();
