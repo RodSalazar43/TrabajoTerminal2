@@ -293,6 +293,15 @@
         </action>
         
         
+        <action name="CrearCopiaExamen" class="Actions.Profesor.CrearCopiaExamen">             <!-- CrearCopiaExamen -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/respuestas/agregadoCorrectamente.jsp?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
+            </result>
+        </action>
+        
          <action name="BuscarGruposPorProfesor" class="Consultas.BuscarGruposPorProfesor">             <!-- Buscar Grupos por profesor -->
             <result name="success" type="redirect">
                 <param name="location">Profesor/respuestas/datosCargados.jsp?correcto=true</param>
@@ -326,10 +335,10 @@
         
         <action name="EliminarExamen" class="Actions.Profesor.EliminarExamen">    <!-- EliminarExamen -->
             <result name="success" type="redirect">
-                <param name="location">Profesor/Profesor.html?correcto=true</param>
+                <param name="location">Profesor/respuestas/eliminarExamen.jsp?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Profesor/Profesor.html?correcto=false</param>
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
             </result>
         </action>
         
