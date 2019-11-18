@@ -11,7 +11,7 @@
 	<examen fecha="2019-08-11" nombre="Tercer parcial 2019" numero="3">
 		<ejercicio numero="1"></ejercicio>
 		<ejercicio numero="2"></ejercicio>
-		<pregunta numero="1"></pregunta>
+		<pregunta numero="3"></pregunta>
 	</examen>
 </examenes>
 
