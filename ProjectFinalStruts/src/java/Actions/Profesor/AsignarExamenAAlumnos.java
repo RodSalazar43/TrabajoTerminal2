@@ -18,8 +18,17 @@ import xml.XMLActions;
  */
 public class AsignarExamenAAlumnos {
     private String numerosAlumnos;
+    private String numerosExamenes;
     private int idGrupo;
     private int numeroExamen;
+
+    public String getNumerosExamenes() {
+        return numerosExamenes;
+    }
+
+    public void setNumerosExamenes(String numerosExamenes) {
+        this.numerosExamenes = numerosExamenes;
+    }
 
     public String getNumerosAlumnos() {
         return numerosAlumnos;
@@ -63,16 +72,19 @@ public class AsignarExamenAAlumnos {
         ArrayList<PreguntasAsignadas> datosPreguntas = xml.convierte2ArrayListPreguntasAsignadas(preguntas);
         
         String cachos[] = this.numerosAlumnos.split(",");
+        String numeros[] = this.numerosExamenes.split(",");
         
         for (String cacho : cachos) {
-            ExamenesAsignados ea = new ExamenesAsignados();
+            for(String numero: numeros){
+                ExamenesAsignados ea = new ExamenesAsignados();
             
-            ea.setGrupoCompleto("no");
-            ea.setIdGrupo(this.idGrupo);
-            ea.setNumeroAlumno(Integer.parseInt(cacho));
-            ea.setNumeroExamen(this.numeroExamen);
-            
-            datosExamenes.add(ea);
+                ea.setGrupoCompleto("no");
+                ea.setIdGrupo(this.idGrupo);
+                ea.setNumeroAlumno(Integer.parseInt(cacho));
+                ea.setNumeroExamen(Integer.parseInt(numero));
+
+                datosExamenes.add(ea);
+            }
         }
         
         if(xml.guardarXmlAsignados(datosExamenes, datosEjercicios, datosPreguntas, ruta)){
