@@ -292,6 +292,18 @@
             </result>
         </action>
         
+        
+         <action name="BuscarGruposPorProfesor" class="Actions.Consultas.BuscarGruposPorProfesor">             <!-- Buscar Grupos por profesor -->
+            <result name="success" type="redirect">
+                <param name="location">Profesor/respuestas/datosCargados.jsp?correcto=true</param>
+            </result>
+            <result name="error">
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
+            </result>
+        </action>
+        
+        
+        
         <!-- *************************************************************************************************************************** -->
         <!-- *****************************************  Examen -->
         <action name="AgregarExamen" class="Actions.Profesor.AgregarExamen">    <!-- AgregarExamen -->

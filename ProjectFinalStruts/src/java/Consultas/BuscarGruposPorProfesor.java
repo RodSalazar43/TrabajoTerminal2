@@ -47,6 +47,7 @@ public class BuscarGruposPorProfesor {
                 JSONObject innerObj = new JSONObject();
                 innerObj.put("nombre", grupoActual.getNombre());
                 innerObj.put("turno", grupoActual.getTurno());
+                innerObj.put("id", grupoActual.getIdGrupo());
                 
                 obj.put(contador, innerObj);
                 raiz.put("idGrupo",obj);

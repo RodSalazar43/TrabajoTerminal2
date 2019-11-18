@@ -41,7 +41,6 @@
 </center>
 <hr>
 <center>
-    <div id='muestraGrupo'></div>
     <br><br>
     <div class='container'>
         <table id='muestraEjercicio' class="table">
@@ -52,12 +51,23 @@
         </table>
     </div>
     <br>
+        <div id='muestraGrupo'></div>
+    <br>
     <div id='muestraCalificaciones'> </div>
 </center>
 
   <div id="alerta"></div>
   <script>
     var examen=0;  
+    
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    
+    
     function asignaExamen(){
         if(examen===0){
             cargarTablaExamen();
@@ -71,11 +81,12 @@
       }
 
 function cargarTablaExamen(){
+        var id=getParameterByName("id");
       var xhr=new XMLHttpRequest();
       xhr.onreadystatechange=function(){
         cargarXMLExamen(this);
       };
-      xhr.open("GET","../xml/examenes.xml",true);
+      xhr.open("GET","../xml/examenes/examenes"+id+".xml",true);
       xhr.send();
     }
 
@@ -95,7 +106,7 @@ function cargarTablaExamen(){
         tabla+="</tr>"
       }
       tabla+="<br><br>"
-      tabla+="<button class='btn btn-warning'>Mostrar grupos</button>"
+      tabla+="<button class='btn btn-warning' onclick='solicitaDatos()'>Mostrar grupos</button>"
       document.getElementById("muestraExamen").innerHTML=tabla;
     }
     
@@ -113,11 +124,12 @@ function cargarTablaExamen(){
         
     }
     function cargarTablaEjercicio() {
+      var id=getParameterByName("id");
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {
         cargarXMLEjercicio(this);
       };
-      xhr.open("GET", "../xml/ejercicios.xml", true);
+      xhr.open("GET", "../xml/ejercicios/ejercicios"+id+".xml", true);
       xhr.send();
     }
 
@@ -145,9 +157,42 @@ function cargarTablaExamen(){
         tabla += "</tr>"
       }
       tabla+="<br><br>"
-      tabla+="<button class='btn btn-warning'>Mostrar grupos</button>"
+      tabla+="<button class='btn btn-warning' onclick='solicitaDatos()'>Mostrar grupos</button>"
       document.getElementById("muestraEjercicio").innerHTML = tabla;
     }
+    
+    function solicitaDatos(){
+        var id=getParameterByName("id")
+        let url = 'http://localhost:8080/ProjectFinalStruts/BuscarGruposPorProfesor?idProfesor='+id;;
+        //alert('URL:' + url);
+        fetch(url).then(response => response.text()).then(data => {
+            alert(data);
+            cargaGruposProfesor();
+        });
+    }
+    
+    
+    function cargaGruposProfesor(){
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            //console.log(this)
+            muestraGruposProfesor(this);
+         };
+        xhr.open("GET", "../json/resultadoConsultaGruposPorProfesor.json", true);
+        xhr.send();
+    }
+    
+    function muestraGruposProfesor(json){
+        var docJson = json.response;
+        var archivojson=JSON.parse(docJson);
+        //console.log(archivojson)
+        var idGrupo=archivojson.idGrupo;
+        console.log(idGrupo)
+        
+        var muestraGrupos=""     
+         document.getElementById("muestraGrupo").innerHTML=muestraGrupos;
+    }
+    
     
     
   </script>

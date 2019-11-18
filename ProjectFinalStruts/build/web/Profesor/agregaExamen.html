@@ -169,18 +169,29 @@
             console.log(data)
             console.log(numeroExamen)
         });
+        
+        agregaEjercicios(numeroExamen,numerosE,nombre);
+        agregaPreguntas(numeroExamen,numerosP,nombre)
         //console.log(numeroExamen)
+    }
+    
+    function agregaEjercicios(numeroExamen,numerosE,nombre){
+        var id=getParameterByName("id")
         let url2 = 'http://localhost:8080/ProjectFinalStruts/AgregarEjerciciosAExamen?idProfesor='+id+'&numeroEjercicios='+numerosE+'&nombreExamen='+nombre+'&numeroExamen='+numeroExamen;
         //alert('URL:' + url);
         fetch(url2).then(response => response.text()).then(data => {
             alert(data);
         });
+    }
+    
+    function agregaPreguntas(numeroExamen,numerosP,nombre){
+        var id=getParameterByName("id")
         let url3 = 'http://localhost:8080/ProjectFinalStruts/AgregarPreguntasAExamen?idProfesor='+id+'&numeroPreguntas='+numerosP+'&nombreExamen='+nombre+'&numeroExamen='+numeroExamen;;
         fetch(url3).then(response => response.text()).then(data => {
             alert(data);
         });
-        
     }
+    
     
     function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
