@@ -10,6 +10,7 @@ import xml.XMLActions;
 import static Complementos.Operaciones.*;
 import xml.Ejercicio;
 import xml.Examen;
+import xml.Pregunta;
 
 /**
  *
@@ -19,8 +20,24 @@ public class ModificarExamen {
     private int idProfesor;
     private String numero;
     private String nombre;
-    
+    private String numerosEjercicios;
+    private String numerosPreguntas;
 
+    public String getNumerosEjercicios() {
+        return numerosEjercicios;
+    }
+
+    public void setNumerosEjercicios(String numerosEjercicios) {
+        this.numerosEjercicios = numerosEjercicios;
+    }
+
+    public String getNumerosPreguntas() {
+        return numerosPreguntas;
+    }
+
+    public void setNumerosPreguntas(String numerosPreguntas) {
+        this.numerosPreguntas = numerosPreguntas;
+    }
     
     public int getIdProfesor() {
         return idProfesor;
@@ -64,8 +81,15 @@ public class ModificarExamen {
         examenModificado.setNumero(original.getNumero());
         examenModificado.setNombre(this.nombre);
         examenModificado.setFecha(original.getFecha());
-        examenModificado.setEjercicios(original.getEjercicios());
-        examenModificado.setPreguntas(original.getPreguntas());
+        
+        String[] ejercicios = this.numerosEjercicios.split(",");
+        String[] preguntas = this.numerosPreguntas.split(",");
+        
+        ArrayList<Ejercicio> ejerciciosA = new ArrayList<>();
+        ArrayList<Pregunta> preguntasA = new ArrayList<>();
+        
+        examenModificado.setEjercicios(xml.regresaEjerciciosA(ejerciciosA, ejercicios));
+        examenModificado.setPreguntas(xml.regresaPreguntasA(preguntasA, ejercicios));
         
         examenes = xml.modificaExamen(examenes, numero, examenModificado);
         
