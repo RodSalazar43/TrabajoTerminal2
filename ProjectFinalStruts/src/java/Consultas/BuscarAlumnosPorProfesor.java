@@ -70,6 +70,7 @@ public class BuscarAlumnosPorProfesor {
 
                     innerObj.put("nombre", usuario.getNombre());
                     innerObj.put("id", usuario.getIdUsuario());
+                    innerObj.put("idGrupo", grupo.getIdGrupo());
                     innerObj.put("apPaterno", usuario.getApPaterno());
                     innerObj.put("apMaterno", usuario.getApMat());
                     innerObj.put("grupo", grupo.getNombre());

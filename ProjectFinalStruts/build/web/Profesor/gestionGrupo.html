@@ -186,7 +186,7 @@
                 break;
             }
             muestraAlumno+="<tr>"
-            muestraAlumno+="<th scope='row'><input type='checkbox' name='alumno' value='"+idAlumno[i].id+"'></th>"
+            muestraAlumno+="<th scope='row'><input type='checkbox' id='"+idAlumno[i].idGrupo+"' name='alumno' value='"+idAlumno[i].id+"'></th>" //este es el id es del alumno 
             muestraAlumno+="<td>"+idAlumno[i].nombre+"</td>"
             muestraAlumno+="<td>"+idAlumno[i].apPaterno+"</td>"
             muestraAlumno+="<td>"+idAlumno[i].apMaterno+"</td>"
@@ -209,6 +209,7 @@
         var ejercicios=document.getElementsByName("ej")
         var examenes=document.getElementsByName("ex")
         var alumnosSeleccionados=""
+        var gruposSeleccionados=""
         var ejerciciosSeleccionados=""
         var examenesSeleccionados=""
         var ayuda=0;
@@ -216,9 +217,11 @@
             if(alumnos[i].checked===true){
                 if(ayuda===0){
                     alumnosSeleccionados=alumnos[i].value;
+                    gruposSeleccionados=alumnos[i].id;
                     ayuda++;
                 }else{
                     alumnosSeleccionados+=","+alumnos[i].value;
+                    gruposSeleccionados+=","+alumnos[i].id
                 }
             }
         }
@@ -246,10 +249,20 @@
                 }
             }
         }
-        console.log(examenesSeleccionados)
-        console.log(ejerciciosSeleccionados)
-        console.log(alumnosSeleccionados)
         
+        var id=getParameterByName("id")
+        let url = 'http://localhost:8080/ProjectFinalStruts/AsignarEjercicioAAlumnos?idGrupo='+gruposSeleccionados+'&numerosAlumnos='+alumnosSeleccionados+'&numerosEjercicios='+ejerciciosSeleccionados;
+        //alert('URL:' + url);
+        fetch(url).then(response => response.text()).then(data => {
+            alert(data);
+        });
+        
+        var id=getParameterByName("id")
+        let url2 = 'http://localhost:8080/ProjectFinalStruts/AsignarExamenAAlumnos?idGrupo='+gruposSeleccionados+'&numerosAlumnos='+alumnosSeleccionados+'&numerosExamenes='+examenesSeleccionados;
+        //alert('URL:' + url);
+        fetch(url2).then(response => response.text()).then(data => {
+            alert(data);
+        });
         
         
         
