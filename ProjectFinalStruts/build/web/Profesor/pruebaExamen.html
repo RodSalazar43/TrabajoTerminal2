@@ -39,6 +39,10 @@
         </div>
       </div>
     </center>
+  <center>
+  <div id="canvas">
+  </div>
+      </center>
     <script>
     function cargarTodo(){
         XMLEjercicios();
@@ -151,6 +155,9 @@
       var respuestasCorrectas='';
       let numeritoEjercicio=0;
       let numeritoExamen=0;
+      var examenes;
+      var todosEjercicios;
+      var todasPreguntas;
       
       
       function cargarXML(xml, numero ,ejercicios,pregunta) {
