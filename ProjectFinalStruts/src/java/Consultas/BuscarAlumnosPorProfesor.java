@@ -57,7 +57,6 @@ public class BuscarAlumnosPorProfesor {
         hql = "FROM Alumno";
         query = hibernateSession.createQuery(hql);
         results = query.iterate();
-        
         while(results.hasNext()){
             Alumno alumnoActual = (Alumno)results.next();
             
@@ -70,13 +69,14 @@ public class BuscarAlumnosPorProfesor {
                     JSONObject innerObj = new JSONObject();
 
                     innerObj.put("nombre", usuario.getNombre());
-                    innerObj.put("Ap_Paterno", usuario.getApPaterno());
-                    innerObj.put("Ap_Materno", usuario.getApMat());
-                    innerObj.put("Grupo", grupo.getNombre());
-                    innerObj.put("Ano", grupo.getAno());
-                    innerObj.put("Turno", grupo.getTurno());
+                    innerObj.put("id", usuario.getIdUsuario());
+                    innerObj.put("apPaterno", usuario.getApPaterno());
+                    innerObj.put("apMaterno", usuario.getApMat());
+                    innerObj.put("grupo", grupo.getNombre());
+                    innerObj.put("ano", grupo.getAno());
+                    innerObj.put("turno", grupo.getTurno());
 
-                    obj.put(usuario.getIdUsuario(), innerObj);
+                    obj.put(contador, innerObj);
                     raiz.put("idAlumno",obj);
                     contador++;
                 }
