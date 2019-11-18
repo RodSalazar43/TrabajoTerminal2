@@ -191,10 +191,10 @@
         
         <action name="AsignarExamenAGrupo" class="Actions.Profesor.AsignarExamenAGrupo">             <!-- Asignar Examen A Grupo -->
             <result name="success" type="redirect">
-                <param name="location">Profesor/Profesor.html?correcto=true</param>
+                <param name="location">Profesor/respuestas/agregadoCorrectamente.jsp?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Profesor/Profesor.html?correcto=false</param>
+                <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
             </result>
         </action>
         
@@ -293,7 +293,7 @@
         </action>
         
         
-         <action name="BuscarGruposPorProfesor" class="Actions.Consultas.BuscarGruposPorProfesor">             <!-- Buscar Grupos por profesor -->
+         <action name="BuscarGruposPorProfesor" class="Consultas.BuscarGruposPorProfesor">             <!-- Buscar Grupos por profesor -->
             <result name="success" type="redirect">
                 <param name="location">Profesor/respuestas/datosCargados.jsp?correcto=true</param>
             </result>

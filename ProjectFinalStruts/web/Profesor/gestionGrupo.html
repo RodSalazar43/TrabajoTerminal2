@@ -96,7 +96,7 @@ function cargarTablaExamen(){
       var examen=docXML.getElementsByTagName("examen");
       for(var i=0;i<examen.length;i++){
         tabla+="<tr class='bg-light'><th socpe='row'>";
-        tabla+="<input type='checkbox' name='ex"+(i+1)+"'></input>"
+        tabla+="<input type='checkbox' name='ex' value='"+examen[i].getAttribute("numero")+"'></input>"
         tabla+="</th><td>";
         tabla+=examen[i].getAttribute("nombre");
         tabla+="</td>";
@@ -142,7 +142,7 @@ function cargarTablaExamen(){
       console.log(ejercicio)
       for (var i = 0; i < ejercicio.length; i++) {
         tabla += "<tr class='bg-light'><th socpe='row'>";
-        tabla += "<input type='checkbox' name='ej"+(i+1)+"' value='"+(i+1)+"'></input>"
+        tabla += "<input type='checkbox' name='ej' value='"+(i+1)+"'></input>"
         tabla += "</th><td>";
         tabla += ejercicio[i].getAttribute("nombre");
         tabla += "</td>";
@@ -203,7 +203,7 @@ function cargarTablaExamen(){
                 break;
             }
             muestraGrupo+="<tr>"
-            muestraGrupo+="<th scope='row'><input type='checkbox'></th>"
+            muestraGrupo+="<th scope='row'><input type='radio' name='grupo' value='"+idGrupo[i].id+"'></th>"
             muestraGrupo+="<td>"+idGrupo[i].nombre+"</td>"
             console.log(idGrupo[i].nombre)
             muestraGrupo+="<td>"+idGrupo[i].turno+"</td>"
@@ -213,9 +213,93 @@ function cargarTablaExamen(){
         }
         muestraGrupo+="</tbody>"
         muestraGrupo+="</table>"
+        muestraGrupo+="<center class='row'>"
+        if(examen===0){
+            muestraGrupo+="<button class='btn btn-secondary btn-outline-light btn-block' onclick='asigna2GrupoEjercicios()'>Asignar ejercicios a grupo</button>"
+        }else{
+            muestraGrupo+="<button class='btn btn-secondary btn-outline-light btn-block' onclick='asigna2GrupoExamen()'>Asignar examenes a grupo</button>"
+        }
+        
+        muestraGrupo+="</center>"
          document.getElementById("muestraGrupo").innerHTML=muestraGrupo;
     }
     
+    function asigna2GrupoExamen(){
+        var grupo=document.getElementsByName("grupo")
+        console.log(grupo[0].checked)
+        console.log(grupo)
+        var examenes=document.getElementsByName("ex");
+        var grupoSeleccionado;
+        for(var i=0;i<grupo.length;i++){
+            if(grupo[i].checked===true){
+                grupoSeleccionado=grupo[i];
+            }
+        }
+        if(grupoSeleccionado===undefined){
+            alert("Por favor seleccione un grupo");
+        }
+        var ayuda=0;
+        //console.log(examenes)
+        var examenSeleccionado=""
+        for(var x=0;x<examenes.length;x++){
+            if(examenes[x].checked===true){
+                if(ayuda===0){
+                    examenSeleccionado=examenes[x].value;
+                    //console.log(examenes[i].value)
+                    ayuda++;
+                    continue;
+                }else{
+                    examenSeleccionado+=","+examenes[x].value;
+                    //console.log(examenes[i].value)
+                }
+            }
+        }
+        console.log(examenSeleccionado)
+        console.log(grupoSeleccionado.value)
+        let url = 'http://localhost:8080/ProjectFinalStruts/AsignarExamenAGrupo?idGrupo='+grupoSeleccionado.value+'&numeroExamen='+examenSeleccionado;
+        //alert('URL:' + url);
+        fetch(url).then(response => response.text()).then(data => {
+            alert(data);    
+        });
+        
+        location.reload();
+    }
+    function asigna2GrupoEjercicios(){
+        var grupo=document.getElementsByName("grupo")
+        console.log(grupo[0].checked)
+        console.log(grupo)
+        var grupoSeleccionado;
+        var ejercicios=document.getElementsByName("ej")
+        for(var i=0;i<grupo.length;i++){
+            if(grupo[i].checked===true){
+                grupoSeleccionado=grupo[i];
+            }
+        }
+        if(grupoSeleccionado===undefined){
+            alert("Por favor seleccione un grupo");
+        }
+        
+        var ayuda=0;
+        var ejercicioSeleccionado=""
+        for(var x=0;x<ejercicios.length;x++){
+            if(ejercicios[x].checked===true){
+                if(ayuda===0){
+                    ejercicioSeleccionado=ejercicios[x].value;
+                    ayuda++;
+                }else{
+                    ejercicioSeleccionado+=","+ejercicios[x].value;
+                }
+            }
+        }
+        console.log(ejercicioSeleccioado)        
+        
+        let url = 'http://localhost:8080/ProjectFinalStruts/AsignarEjercicioAGrupo?idGrupo='+grupoSeleccionado.value+'&numeroEjercicio='+ejercicioSeleccioado;
+        //alert('URL:' + url);
+        fetch(url).then(response => response.text()).then(data => {
+            alert(data);    
+        });
+        location.reload();
+    }
     
     
   </script>
