@@ -260,8 +260,8 @@
           var nombreExamen=document.getElementsByName("cambioNombreExamen")[0].value
           var ejerciciosSeleccionados=""
           var preguntasSeleccionadas=""
-          console.log(ejercicios)
-          console.log(preguntas)
+          //console.log(ejercicios)
+          //console.log(preguntas)
           var ayuda=0;
           for(var i=0;i<ejercicios.length;i++){
               if(ejercicios[i].checked===true){
@@ -293,6 +293,17 @@
           //console.log(preguntasSeleccionadas)
           //console.log(nombreExamen)
           ////////////////////////////////////////////////////////////////////////////////////////////////Aqui se hace la petición para cambiar todo
+          
+          var id=getParameterByName("id")
+          var numeroExamen=getParameterByName("numero")
+          
+          let url = 'http://localhost:8080/ProjectFinalStruts/ModificarExamen?idProfesor='+id+'&nombre='+nombreExamen+'&numero='+numeroExamen+'&numerosEjercicios='+ejerciciosSeleccionados+'&numerosPreguntas='+preguntasSeleccionadas;
+        //alert('URL:' + url);
+            fetch(url).then(response => response.text()).then(data => {
+                alert(data);    
+            });
+          
+          
           
           
       }
