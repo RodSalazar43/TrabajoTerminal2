@@ -32,8 +32,17 @@
               </div>
   </div>
 </center>
-  <br><br><br>
-
+  <br><br>
+  <center class="jumbotron bg-dark"><h2 class="text-white">Al cargar los ejercicios y preguntas selecciona lo que quieras cambiar en el examen</h2></center>
+  <br>
+  <center>
+  <div id="nombreExamen" class='container'>
+      
+  </div>
+      </center>
+      
+      
+  <br><br>
   <div id="text">
     <table id="demo" class="table table-hover table-dark container">
     </table>
@@ -41,6 +50,7 @@
       
       <table id="preguntas" class="table table-hover table-dark container">
     </table>
+      <div id="guarda" ></div>
   </div>
   
   
@@ -75,10 +85,10 @@
         //console.log("Ejercicios del archivo")
         //console.log(ejercicios)
         var tipoEjercicio="";
-        escribeTabla+="<thead>"
+        escribeTabla+="<thead class='bg-success'>"
         escribeTabla+="<tr>"
         escribeTabla+="<th scope='col'>Selección</th>"
-        escribeTabla+="<th scope='col'>Nombre</th>"
+        escribeTabla+="<th scope='col'>Nombre del ejercicio</th>"
         escribeTabla+="<th scope='col'>Tipo</th>"
         escribeTabla+="</tr>"
         escribeTabla+="</thead>"
@@ -103,7 +113,7 @@
                     tipoEjercicio="Unir con una línea"
                 }
                         escribeTabla+="<tr>"
-                        escribeTabla+="<th scope='row'><input type='checkbox' checked='checked'/></th>"
+                        escribeTabla+="<th scope='row'><input type='checkbox' name='ej' value='"+ejercicios[i].getAttribute("numero")+"' checked='checked'/></th>"
                         escribeTabla+="<td>"+nombreEjercicio+"</td>"
                         escribeTabla+="<td>"+tipoEjercicio+"</td>"
                         escribeTabla+="</tr>"
@@ -123,7 +133,7 @@
                         tipoEjercicio="Unir con una línea"
                         }
                         escribeTabla+="<tr>"
-                        escribeTabla+="<th scope='row'><input type='checkbox'/></th>"
+                        escribeTabla+="<th scope='row'><input type='checkbox'  name='ej' value='"+ejercicios[i].getAttribute("numero")+"' /></th>"
                         escribeTabla+="<td>"+nombreEjercicio+"</td>"
                         escribeTabla+="<td>"+tipoEjercicio+"</td>"
                         escribeTabla+="</tr>"
@@ -134,73 +144,159 @@
             if(ejerciciosExamen[i]===undefined){
                 break;
             }
-            console.log(arreglo)
+            //console.log(arreglo)
         }
         
-        var tipoPregunta=""
-        var escribeTablaPregunta=""
         
-        escribeTablaPregunta+="<thead>"
-        escribeTablaPregunta+="<tr>"
-        escribeTablaPregunta+="<th scope='col'>Selección</th>"
-        escribeTablaPregunta+="<th scope='col'>Nombre</th>"
-        escribeTablaPregunta+="<th scope='col'>Tipo</th>"
-        escribeTablaPregunta+="</tr>"
-        escribeTablaPregunta+="</thead>"
-        escribeTablaPregunta+="<tbody>"
+        console.log(preguntas)
+        console.log(preguntasExamen)
         
+        var escribePreguntas=""
+        escribePreguntas+="<thead class='bg-light text-dark'>"
+            escribePreguntas+="<tr>"
+            escribePreguntas+="<th scope='col'>Selección</th>"
+            escribePreguntas+="<th scope='col'>Nombre de la pregunta</th>"
+            escribePreguntas+="<th scope='col'>Tipo</th>"
+            escribePreguntas+="</tr>"
+            escribePreguntas+="</thead>"
+            escribePreguntas+="<tbody>"
         
-        for(var i=0;i<preguntas.length;i++){
+        if(preguntasExamen.length==0){
+            for(var i=0;i<preguntas.length;i++){
+                 var nombrePregunta=preguntas[i].getAttribute("nombre")
+                 var tipoPregunta=preguntas[i].getAttribute("tipo")
+                 var nuevoTipoP=""
+                 if(tipoPregunta==="VF"){
+                     nuevoTipoP="Verdadero o falso"
+                 }else if(tipoPregunta==="Operacion"){
+                     nuevoTipoP="Operación matemática"
+                 }
+                 escribePreguntas+="<tr>"
+                 escribePreguntas+="<th scope='row'><input type='checkbox' name='pregunta' value='"+preguntas[i].getAttribute("numero")+"'/></th>"
+                 escribePreguntas+="<td>"+nombrePregunta+"</td>"
+                 escribePreguntas+="<td>"+nuevoTipoP+"</td>"
+                 escribePreguntas+="</tr>"
+            }
+            
+        }else{
+            console.log(preguntas.length)
+            for(var r=0;r<preguntas.length;r++){
+                console.log(r)
             for(var x=0;x<preguntasExamen.length;x++){
-               if(preguntasExamen[x].attributes[0].value===preguntas[i].attributes[0].value){
-                var nombrePregunta=preguntas[i].getAttribute("nombre");
-                var tipo=preguntas[i].getAttribute("tipo");
-                if(tipo==="VF"){
-                    tipoPregunta="Arrastrar y soltar"
-                }else if(tipo==="Operacion"){
-                    tipoPregunta="Unir con una línea"
+                //console.log(x)
+                var numeroPregEx=preguntasExamen[x].getAttribute("numero")
+                var numeroPreg=preguntas[r].getAttribute("numero")
+                //console.log(numeroPregEx)
+                //console.log(numeroPreg)
+               if(preguntasExamen[x].attributes[0].value===preguntas[r].attributes[0].value){
+                var nombrePregunta=preguntas[r].getAttribute("nombre");
+                var tipoP=preguntas[r].getAttribute("tipo");
+                var nuevoTipoPre=""
+                if(tipoP==="VF"){
+                    nuevoTipoPre="Verdadero o falso"
+                }else if(tipoP==="Operacion"){
+                    nuevoTipoPre="Operación matemática"
                 }
-                        escribeTablaPregunta+="<tr>"
-                        escribeTablaPregunta+="<th scope='row'><input type='checkbox' checked='checked'/></th>"
-                        escribeTablaPregunta+="<td>"+nombrePregunta+"</td>"
-                        escribeTablaPregunta+="<td>"+tipoPregunta+"</td>"
-                        escribeTablaPregunta+="</tr>"
+                        escribePreguntas+="<tr>"
+                        escribePreguntas+="<th scope='row'><input type='checkbox' checked='checked' name='pregunta' value='"+preguntas[r].getAttribute("numero")+"'/></th>"
+                        escribePreguntas+="<td>"+nombrePregunta+"</td>"
+                        escribePreguntas+="<td>"+nuevoTipoPre+"</td>"
+                        escribePreguntas+="</tr>"
                 }else{
                     var impreso=0;
                     for(var g=0;g<arregloPreguntas.length;g++){
-                        if(arregloPreguntas[g]==preguntas[i].attributes[0].value){
+                        if(arregloPreguntas[g]==preguntas[r].attributes[0].value){
                             impreso++;
                         }
                     }
                     if(impreso===0){
-                        var nombrePregunta=preguntas[i].getAttribute("nombre");
-                        var tipo=preguntas[i].getAttribute("tipo");
-                        if(tipo==="DAD"){
-                            tipoPregunta="Arrastrar y soltar"
-                        }else if(tipo==="Linea"){
-                            tipoPregunta="Unir con una línea"
+                        var nombrePregunta=preguntas[r].getAttribute("nombre");
+                        var tipoP=preguntas[r].getAttribute("tipo");
+                        var nuevoTipoPre=""
+                        if(tipoP==="VF"){
+                            nuevoTipoPre="Verdadero o falso"
+                        }else if(tipoP==="Operacion"){
+                            nuevoTipoPre="Operación matemática"
                         }
-                        escribeTablaPregunta+="<tr>"
-                        escribeTablaPregunta+="<th scope='row'><input type='checkbox'/></th>"
-                        escribeTablaPregunta+="<td>"+nombrePregunta+"</td>"
-                        escribeTablaPregunta+="<td>"+tipoPregunta+"</td>"
-                        escribeTablaPregunta+="</tr>"
-                        arregloPreguntas.push(preguntas[i].attributes[0].value)
+                        escribePreguntas+="<tr>"
+                        escribePreguntas+="<th scope='row'><input type='checkbox' name='pregunta' value='"+preguntas[r].getAttribute("numero")+"' /></th>"
+                        escribePreguntas+="<td>"+nombrePregunta+"</td>"
+                        escribePreguntas+="<td>"+nuevoTipoPre+"</td>"
+                        escribePreguntas+="</tr>"
+                        arregloPreguntas.push(preguntas[r].attributes[0].value)
                     }
                 } 
             }
-            if(preguntasExamen[i]===undefined){
-                break;
+            //if(preguntasExamen[r]===undefined){
+            //    break;
+            //}
+            //console.log(arregloPreguntas)
             }
-            console.log(arregloPreguntas)
+        
         }
         
         
         escribeTabla+="</tbody>"
-        escribeTablaPregunta="</tbody>"
+        escribePreguntas+="</tbody>"
+        //escribeTablaPregunta="</tbody>"
+        //console.log(escribeTablaPregunta)
             document.getElementById("demo").innerHTML=escribeTabla;
-            document.getElementById("preguntas").innerHTML=escribeTablaPregunta;
+            document.getElementById("preguntas").innerHTML=escribePreguntas;
+            
+            
+            var cambioNombreExamen=examen[num-1].getAttribute("nombre");
+            var nombreExamen="<p class='h4'>Nombre del examen: </p><input class='input-group-text' type=text name='cambioNombreExamen' value='"+cambioNombreExamen+"' />"
+            document.getElementById("nombreExamen").innerHTML=nombreExamen;
+            
+            
+            var guarda=""
+          guarda+="<button class='btn btn-block btn-warning btn-outline-light' onclick='guardaTodoExamen()'>Guardar cambios de examen</button>"
+          document.getElementById("guarda").innerHTML=guarda;
       }
+      
+      function guardaTodoExamen(){
+          var ejercicios=document.getElementsByName("ej")
+          var preguntas=document.getElementsByName("pregunta")
+          var nombreExamen=document.getElementsByName("cambioNombreExamen")[0].value
+          var ejerciciosSeleccionados=""
+          var preguntasSeleccionadas=""
+          console.log(ejercicios)
+          console.log(preguntas)
+          var ayuda=0;
+          for(var i=0;i<ejercicios.length;i++){
+              if(ejercicios[i].checked===true){
+                  if(ayuda===0){
+                    ejerciciosSeleccionados=ejercicios[i].value;
+                    ayuda++;
+                  }else{
+                      ejerciciosSeleccionados+=","+ejercicios[i].value;
+                  }
+                  
+              }
+          }
+          ayuda=0;
+          for(var i=0;i<preguntas.length;i++){
+              if(preguntas[i].checked===true){
+                  if(ayuda===0){
+                    preguntasSeleccionadas=preguntas[i].value;
+                    ayuda++;
+                  }else{
+                      preguntasSeleccionadas+=","+preguntas[i].value;
+                  }
+                  
+              }
+          }
+          
+          //console.log("Ejercicios: ")
+          //console.log(ejerciciosSeleccionados)
+          //console.log("Preguntas: ")
+          //console.log(preguntasSeleccionadas)
+          //console.log(nombreExamen)
+          ////////////////////////////////////////////////////////////////////////////////////////////////Aqui se hace la petición para cambiar todo
+          
+          
+      }
+      
       
       function XMLEjercicios(){
           var id=getParameterByName("id")
@@ -240,7 +336,7 @@
     function cargarXMLPreguntas(xml,ejercicios){
         var docXML = xml.responseXML;
         var preguntas = docXML.getElementsByTagName("pregunta");
-        
+        console.log("Pregungas en memoria")
         cargarExamen(ejercicios,preguntas);
     }
       
