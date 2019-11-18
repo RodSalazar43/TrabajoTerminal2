@@ -62,10 +62,10 @@ public class AgregarExamen {
         
         String fechaString = "" + fecha.getDay() + "-" + fecha.getMonth() + "-" + fecha.getYear();
         //this.setNumero(examenes.size()+1);
-        int x = Integer.parseInt(examenes.get(0).getNumero()) + 1;
-        examen.setNumero(Integer.toString(x));
+        
+        examen.setNumero(Integer.toString(examenes.size() + 1));
         examen.setNombre(this.nombre);
-        examen.setFecha(fechaString);
+        examen.setFecha(fecha.toString());
         examen.setEjercicios(xml.generaArregloEjercicios());
         examen.setPreguntas(xml.generaArregloPreguntas());
         System.out.println("El nuevo examen tendra el numero " + Integer.toString(examenes.size() + 1));
