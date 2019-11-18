@@ -13,7 +13,7 @@
                 <param name="location">exitoso.jsp?id=${id}&amp;tipo=Profesor</param>
             </result>
             <result name="alumno" type="redirect">
-                <param name="location">exitoso.jsp?id=${id}&amp;tipo=Alumno</param>
+                <param name="location">exitoso.jsp?id=${id}&amp;tipo=Alumno&amp;idGrupo=${idGrupo}</param>
             </result>
             <result name="none">/noIniciaSesion.jsp</result>
         </action>
