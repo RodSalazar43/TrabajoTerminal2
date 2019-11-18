@@ -26,11 +26,11 @@
     >
     <div id="welcome"></div>
     <div class="card align-items-center chico">
-      <a class="btn btn-light" href="verExamen.html">Mostrar Examenes</a>
-      <a class="btn btn-light" href="creaExamen.html">Crear examen</a>
+      <a class="btn btn-light" onclick='redireccionaVerExamen()'>Mostrar Examenes</a>
+      <a class="btn btn-light" onclick='redireccionaAgregaExamen()'>Crear examen</a>
     </div>
     <hr />
-    <button onclick="cargaDatos()" class="btn btn-secondary card text-primary form-control">Comenzar examen</button>
+    <button onclick="cargarTodo()" class="btn btn-secondary card text-primary form-control">Comenzar examen</button>
     <br>
     <center>
       <div id="muestraExamen">
@@ -40,11 +40,69 @@
       </div>
     </center>
     <script>
-        function creaEventos(){
+    function cargarTodo(){
+        XMLEjercicios();
+    }    
+    
+    
+    function XMLEjercicios(){
+          var id=getParameterByName("id")
+          var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          cargarXMLEjercicios(this);
+          //console.log(this)
+        };
+        xhr.open("GET", "../xml/ejercicios/ejercicios"+id+".xml", true);
+        xhr.send();
+      }
+      
+      function cargarXMLEjercicios(xml){
+        var docXML = xml.responseXML;
+        var ejercicios = docXML.getElementsByTagName("ejercicio");
+        console.log("Ejercicios en memoria")
+        cargarPreguntas(ejercicios)
+        
+      }
+      
+      function cargarPreguntas(ejercicios){
+          var id=getParameterByName("id")
+          var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          cargarXMLPreguntas(this,ejercicios);
+        };
+        xhr.open("GET", "../xml/preguntas/preguntas"+id+".xml", true);
+        xhr.send();
+      }
+      
+      function cargarXMLPreguntas(xml,ejercicios){
+        var docXML = xml.responseXML;
+        var pregunta = docXML.getElementsByTagName("pregunta");
+        console.log("Preguntas en memoria")
+        var numero = getParameterByName('numero');
+        num=numero;
+        //console.log(pregunta)
+        //console.log(ejercicios)
+        cargaDatos(numero,ejercicios,pregunta);
+      }
+    
+    
+    
+    function redireccionaVerExamen(){
+          var id=getParameterByName("id");
+        window.location.href='verExamen.html?id='+id;
+    }
+      
+    function redireccionaAgregaExamen(){
+          var id=getParameterByName("id");
+        window.location.href='agregaExamen.html?id='+id;
+    } 
+    
+    function creaEventos(){
             var dropTarget = document.querySelector(".wrapper");
           dropTarget.addEventListener("dragover", function(event) {
           event.preventDefault();
       });
+      
       var draggables = document.querySelectorAll(".task");
           for (let i = 0; i < draggables.length; i++) {
             draggables[i].addEventListener("dragstart", function(ev) {
@@ -63,9 +121,10 @@
 
         }
       
-      document.getElementById("muestraExamen").addEventListener("click", cargaDatos);
-      var nombre,ins,opcion1,opcion2,opcion3,opcion4,resultado;
-      var numero;
+      //document.getElementById("muestraExamen").addEventListener("click", cargaDatos);
+      
+      //var nombre,ins,opcion1,opcion2,opcion3,opcion4,resultado;
+      //var numero;
       
       function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -74,79 +133,108 @@
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
       }
 
-      function cargaDatos() {
+      function cargaDatos(numero,ejercicios,pregunta) {
         numero = getParameterByName('numero');
-        cargarTodo(numero);
+        cargarExamen(numero,ejercicios,pregunta);
       }
 
-      function cargarTodo(numero) {
+      function cargarExamen(numero,ejercicios,pregunta) {
+        var id=getParameterByName("id")
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-          cargarXML(this, numero);
+          cargarXML(this, numero,ejercicios,pregunta);
         };
-        xhr.open("GET", "../xml/examenes.xml", true);
+        xhr.open("GET", "../xml/examenes/examenes"+id+".xml", true);
         xhr.send();
       }
 
       var respuestasCorrectas='';
       let numeritoEjercicio=0;
-      function cargarXML(xml, num) {
+      let numeritoExamen=0;
+      
+      
+      function cargarXML(xml, numero ,ejercicios,pregunta) {
+        var num=getParameterByName("numero")
         var docXML = xml.responseXML;
         var infoExamen = '';
         var examen = docXML.getElementsByTagName("examen");
         console.log("Elementos en memoria")
-        console.log(examen)
-        console.log(examen[num-1])
+        //console.log(ejercicios)
+        //console.log(preggunta)
+        //console.log(examen)
+        //console.log(num)
+        //console.log(examen[num-1])
         var nombre=examen[num-1].getAttribute("nombre");
         var fecha=examen[num-1].getAttribute("fecha");
+        var tipo=examen[num-1].getAttribute("tipo");
         console.log("Nombre de examen: "+nombre)
         console.log("Fecha: "+fecha)
-        var ejercicios=examen[num-1].getElementsByTagName("ejercicio");
-        console.log()
-            console.log(ejercicios[0])
-          var nombreEjercicio=ejercicios[0].getAttribute("nombre");
-          var ins=ejercicios[numeritoEjercicio].getElementsByTagName("indicaciones")[0].textContent;
-          var opcion1=ejercicios[numeritoEjercicio].getElementsByTagName("opcion")[0].textContent;
-          var opcion2=ejercicios[numeritoEjercicio].getElementsByTagName("opcion")[1].textContent;
-          var opcion3=ejercicios[numeritoEjercicio].getElementsByTagName("opcion")[2].textContent;
-          var opcion4=ejercicios[numeritoEjercicio].getElementsByTagName("opcion")[3].textContent;
-          var resultado=ejercicios[numeritoEjercicio].getElementsByTagName("resultado")[0].textContent;
-        
-          respuestasCorrectas+=resultado;
-          infoExamen+="<p class='lead fondo-superman text-link'>Nombre del examen: "+nombre+"</p>";
-          infoExamen+="<p class='lead fondo-superman text-light'>Fecha de creación del examen: "+fecha+"</p>";
-          infoExamen+="<div class='contenido-mediano card'>";
-          infoExamen+="<div class='header-card bg-light'>"
-          infoExamen+="<p class='lead'>Nombre del ejercicio: "+nombreEjercicio+"</p>";
-          infoExamen+="<hr>";
-          infoExamen+="<p class='lead'>Instrucciones: "+ins+"</p>";
-          infoExamen+="</div>";
-          infoExamen+="<div class='body-card'>";
-          infoExamen+="<div class='wrapper'>";
-          infoExamen+="<div class='box' id='primero'>"
-          infoExamen+="<div id='opcion1' class='task' draggable='true'>";
-          infoExamen+=""+opcion1+"";
-          infoExamen+="</div>";
-          infoExamen+="<div id='opcion2' class='task' draggable='true'>";
-          infoExamen+=""+opcion2+"";
-          infoExamen+="</div>";
-          infoExamen+="<div id='opcion3' class='task' draggable='true'>";
-          infoExamen+=""+opcion3+"";
-          infoExamen+="</div>"
-          infoExamen+="<div id='opcion4' class='task' draggable='true'>"
-          infoExamen+=""+opcion4+"";
-          infoExamen+="</div>";
-          infoExamen+="</div>";
-          infoExamen+="<div class='box' id='segundo'></div>";
-          infoExamen+="</div>";
-          infoExamen+="</div>";
-          infoExamen+="<div class='footer-card bg-success'>";
-          infoExamen+="<p class='font-weight-bold lead'>Ordena de arriba hacia abajo</p>";
-          infoExamen+="</div>"
-          infoExamen+="</div>"
-          infoExamen+="<button class='btn btn-outline-danger form-control' onclick='obtieneRespuestas()'>Evaluar</button>"
-          document.getElementById("cuerpo").innerHTML=infoExamen;
-          creaEventos();
+        var ejerciciosExamen=examen[num-1].getElementsByTagName("ejercicio");
+        //console.log()
+         //console.log(ejerciciosExamen)
+         //console.log(ejerciciosExamen[numeritoExamen].attributes[0].value)             
+            if(ejerciciosExamen[numeritoExamen].attributes[0].value===ejercicios[numeritoEjercicio].attributes[0].value){
+             console.log(ejerciciosExamen[numeritoExamen])
+            //console.log(ejercicios[numeritoEjercicio])
+            tipo=ejercicios[numeritoEjercicio].getAttribute("tipo");
+            if(tipo=="DAD"){
+                document.getElementById("cuerpo").innerHTML=""
+                respuestasCorrectas+=resultado;
+                var nombreEjercicio=ejercicios[numeritoEjercicio].getAttribute("nombre");
+                var ins=ejercicios[numeritoEjercicio].getElementsByTagName("indicaciones")[0].textContent;
+                var opcion1=ejercicios[numeritoEjercicio].getElementsByTagName("opcion1")[0].textContent;
+                var opcion2=ejercicios[numeritoEjercicio].getElementsByTagName("opcion2")[0].textContent;
+                var opcion3=ejercicios[numeritoEjercicio].getElementsByTagName("opcion3")[0].textContent;
+                var opcion4=ejercicios[numeritoEjercicio].getElementsByTagName("opcion4")[0].textContent;
+                var resultado=ejercicios[numeritoEjercicio].getElementsByTagName("resultado")[0].textContent;
+                infoExamen+="<p class='lead fondo-superman text-link'>Nombre del examen: "+nombre+"</p>";
+                infoExamen+="<p class='lead fondo-superman text-light'>Fecha de creación del examen: "+fecha+"</p>";
+                infoExamen+="<div class='contenido-mediano card'>";
+                infoExamen+="<div class='header-card bg-light'>"
+                infoExamen+="<p class='lead'>Nombre del ejercicio: "+nombreEjercicio+"</p>";
+                infoExamen+="<hr>";
+                infoExamen+="<p class='lead'>Instrucciones: "+ins+"</p>";
+                infoExamen+="</div>";
+                infoExamen+="<div class='body-card'>";
+                infoExamen+="<div class='wrapper'>";
+                infoExamen+="<div class='box' id='primero'>"
+                infoExamen+="<div id='opcion1' class='task' draggable='true'>";
+                infoExamen+=""+opcion1+"";
+                infoExamen+="</div>";
+                infoExamen+="<div id='opcion2' class='task' draggable='true'>";
+                infoExamen+=""+opcion2+"";
+                infoExamen+="</div>";
+                infoExamen+="<div id='opcion3' class='task' draggable='true'>";
+                infoExamen+=""+opcion3+"";
+                infoExamen+="</div>"
+                infoExamen+="<div id='opcion4' class='task' draggable='true'>"
+                infoExamen+=""+opcion4+"";
+                infoExamen+="</div>";
+                infoExamen+="</div>";
+                infoExamen+="<div class='box' id='segundo'></div>";
+                infoExamen+="</div>";
+                infoExamen+="</div>";
+                infoExamen+="<div class='footer-card bg-success'>";
+                infoExamen+="<p class='font-weight-bold lead'>Ordena de arriba hacia abajo</p>";
+                infoExamen+="</div>"
+                infoExamen+="</div>"
+                infoExamen+="<button class='btn btn-outline-danger form-control' onclick='obtieneRespuestas()'>Evaluar</button>"
+                document.getElementById("cuerpo").innerHTML=infoExamen;
+                creaEventos();
+            }else if(tipo=="Linea"){
+                infoExamen+="<h2>Hola</h2>"
+                document.getElementById("cuerpo").innerHTML=infoExamen;
+            }
+             numeritoExamen++;
+         }else{
+             numeritoEjercicio++;
+         }
+         
+                 
+        /*
+          
+          */
+          
       }
       
       function obtieneRespuestas(){
@@ -164,9 +252,9 @@
               }
               
           }
-          console.log(respuestasObtenidas);
-          console.log(respuestasCorrectas);
-          if(respuestasObtenidas===respuestasCorrectas){
+          //console.log(respuestasObtenidas);
+          //console.log(respuestasCorrectas);
+          if(respuestasObtenidas==respuestasCorrectas){
               alert("Respondido correctamente");
           }else{
               alert("Respondido incorrectamente");

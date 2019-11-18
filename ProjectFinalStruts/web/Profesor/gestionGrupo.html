@@ -25,16 +25,21 @@
 <center>
   <div class="container">
       <div class="row bg-dark">
-          <div class="col-3">
+          <div class="col-4">
               <button class="btn btn-danger btn-outline-light" onclick="asignaExamen()">Asignar examen a un grupo</button>
           </div>
-          <div class="col-3">
+          <div class="col-4">
               <button class="btn btn-primary btn-outline-light" onclick="asignaEjercicio()">Asignar ejercicio a un grupo</button>
           </div>
-          <div class="col-3">
+          <div class="col-4">
+              <button class="btn btn-warning btn-outline-success text-dark" onclick="muestraEjerciciosExamenes()">Asigna a un alumnos</button>
+          </div>
+      </div>
+      <div class="row bg-dark">
+          <div class="col-6">
               <button class="btn btn-success btn-outline-light">Ver calificaciones</button>
           </div>
-          <div class="col-3">
+          <div class="col-6">
               <button class="btn btn-secondary btn-outline-light" onclick="muestraContrasena()">Cambiar contraseña a grupo</button>
           </div>
       </div>
@@ -57,9 +62,214 @@
     <div id='muestraCalificaciones'> </div>
 </center>
 
+<br>
+<div id="muestraAlumno"></div>
+
   <div id="alerta"></div>
   <script>
     var examen=0;  
+    
+    function muestraEjerciciosExamenes(){
+      var id=getParameterByName("id");
+      var xhr=new XMLHttpRequest();
+      xhr.onreadystatechange=function(){
+        cargarXMLExamenAlumno(this);
+      };
+      xhr.open("GET","../xml/examenes/examenes"+id+".xml",true);
+      xhr.send();
+        
+    }
+    
+    function cargarXMLExamenAlumno(xml){
+      var docXML=xml.responseXML;
+      var tabla="<tr><th scope='col' class='bg-info'>Selecciona</th><th scope='col' class='bg-info'>Nombre del examen</th><th scope='col' class='bg-info'>Fecha del examen</th></tr>"
+      var examen=docXML.getElementsByTagName("examen");
+      for(var i=0;i<examen.length;i++){
+        tabla+="<tr class='bg-light'><th socpe='row'>";
+        tabla+="<input type='checkbox' name='ex' value='"+examen[i].getAttribute("numero")+"'></input>"
+        tabla+="</th><td>";
+        tabla+=examen[i].getAttribute("nombre");
+        tabla+="</td>";
+        tabla+="<td>";
+        tabla+=examen[i].getAttribute("fecha");
+        tabla+="</td>";
+        tabla+="</tr>"
+      }
+      tabla+="<br><br>"
+      tabla+="<button class='btn btn-warning' onclick='asginar2Alumno()'>Mostrar alumnos</button>"
+      document.getElementById("muestraExamen").innerHTML=tabla;
+      muestraEjerciciosAlumnos();
+    }
+    
+    function muestraEjerciciosAlumnos() {
+      var id=getParameterByName("id");
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        cargarXMLEjercicioAlumno(this);
+      };
+      xhr.open("GET", "../xml/ejercicios/ejercicios"+id+".xml", true);
+      xhr.send();
+    }
+    
+    function cargarXMLEjercicioAlumno(xml) {
+      var docXML = xml.responseXML;
+      console.log(docXML)
+      var ayuda;
+      var tabla = "<tr><th scope='col' class='bg-secondary'>Seleccionar</th><th scope='col' class='bg-secondary'>Nombre del ejercicio</th><th scope='col' class='bg-secondary'>Tipo de ejercicio</th></tr>"
+      var ejercicio = docXML.getElementsByTagName("ejercicio");
+      console.log(ejercicio)
+      for (var i = 0; i < ejercicio.length; i++) {
+        tabla += "<tr class='bg-light'><th socpe='row'>";
+        tabla += "<input type='checkbox' name='ej' value='"+(i+1)+"'></input>"
+        tabla += "</th><td>";
+        tabla += ejercicio[i].getAttribute("nombre");
+        tabla += "</td>";
+        tabla+="<td>"
+        ayuda=ejercicio[i].getAttribute("tipo")
+        if(ayuda==="Linea"){
+            tabla+="Unir con lineas";
+        }else if(ayuda==="DAD"){
+            tabla+="Arrastrar y soltar"
+        }
+        tabla+="</td>"
+        tabla += "</tr>"
+      }
+      tabla+="<br><br>"
+      document.getElementById("muestraEjercicio").innerHTML = tabla;
+      
+    }
+    
+    
+    
+    function asginar2Alumno(){
+        var id=getParameterByName("id")
+        let url = 'http://localhost:8080/ProjectFinalStruts/BuscarAlumnosPorProfesor?idProfesor='+id;;
+        //alert('URL:' + url);
+        fetch(url).then(response => response.text()).then(data => {
+            alert(data);
+            cargaAlumnosProfesor();
+        });
+    }
+    
+    function cargaAlumnosProfesor(){
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            muestraAlumnosProfesor(this);
+         };
+        xhr.open("GET", "../json/resultadoAlumnosPorProfesor.json", true);
+        xhr.send();
+    }
+    
+    function muestraAlumnosProfesor(json){
+        var docJson = json.responseText;
+        var archivojson=JSON.parse(docJson);
+        //console.log(archivojson)
+        var idAlumno=archivojson.idAlumno;        
+        console.log(idAlumno[4])
+        var muestraAlumno=""     
+        muestraAlumno+="<table class='container table table-hover table-dark'>"
+        muestraAlumno+="<thead class='bg-warning'>"
+        muestraAlumno+="<tr>"
+        muestraAlumno+="<th scope='col'>Selecciona</th>"
+        muestraAlumno+="<th scope='col'>Nombre</th>"
+        muestraAlumno+="<th scope='col'>Apellido paterno</th>"
+        muestraAlumno+="<th scope='col'>Apellido materno</th>"
+        muestraAlumno+="<th scope='col'>Grupo</th>"
+        muestraAlumno+="<th scope='col'>Año</th>"
+        muestraAlumno+="<th scope='col'>Turno</th>"
+        muestraAlumno+="</tr>"
+        muestraAlumno+="</thead>"
+        muestraAlumno+="<tbody>"
+        var i=0;
+        while(true){
+            if(idAlumno[i]===undefined){
+                break;
+            }
+            muestraAlumno+="<tr>"
+            muestraAlumno+="<th scope='row'><input type='checkbox' id='"+idAlumno[i].idGrupo+"' name='alumno' value='"+idAlumno[i].id+"'></th>" //este es el id es del alumno 
+            muestraAlumno+="<td>"+idAlumno[i].nombre+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].apPaterno+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].apMaterno+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].grupo+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].ano+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].turno+"</td>"
+            muestraAlumno+="</tr>"
+            i++;
+        }
+        muestraAlumno+="</tbody>"
+        muestraAlumno+="</table>"
+        muestraAlumno+="<center class='row'>"
+        muestraAlumno+="<button class='btn btn-light btn-outline-secondary btn-block' onclick='asginarForAlumno()'>Asignar a alumno(s)</button>"
+        muestraAlumno+="</center>"
+         document.getElementById("muestraAlumno").innerHTML=muestraAlumno;
+    }
+    
+    function asginarForAlumno(){
+        var alumnos=document.getElementsByName("alumno");
+        var ejercicios=document.getElementsByName("ej")
+        var examenes=document.getElementsByName("ex")
+        var alumnosSeleccionados=""
+        var gruposSeleccionados=""
+        var ejerciciosSeleccionados=""
+        var examenesSeleccionados=""
+        var ayuda=0;
+        for(var i=0;i<alumnos.length;i++){
+            if(alumnos[i].checked===true){
+                if(ayuda===0){
+                    alumnosSeleccionados=alumnos[i].value;
+                    gruposSeleccionados=alumnos[i].id;
+                    ayuda++;
+                }else{
+                    alumnosSeleccionados+=","+alumnos[i].value;
+                    gruposSeleccionados+=","+alumnos[i].id
+                }
+            }
+        }
+        ayuda=0;
+        for(var i=0;i<ejercicios.length;i++){
+            if(ejercicios[i].checked===true){
+                if(ayuda===0){
+                    ejerciciosSeleccionados=ejercicios[i].value;
+                    ayuda++;
+                }else{
+                    ejerciciosSeleccionados+=","+ejercicios[i].value;
+                }
+            }
+        }
+        
+        ayuda=0;
+        
+        for(var i=0;i<examenes.length;i++){
+            if(examenes[i].checked===true){
+                if(ayuda===0){
+                    examenesSeleccionados=examenes[i].value;
+                    ayuda++;
+                }else{
+                    examenesSeleccionados+=","+examenes[i].value;
+                }
+            }
+        }
+        
+        var id=getParameterByName("id")
+        let url = 'http://localhost:8080/ProjectFinalStruts/AsignarEjercicioAAlumnos?idGrupo='+gruposSeleccionados+'&numerosAlumnos='+alumnosSeleccionados+'&numerosEjercicios='+ejerciciosSeleccionados;
+        //alert('URL:' + url);
+        fetch(url).then(response => response.text()).then(data => {
+            alert(data);
+        });
+        
+        var id=getParameterByName("id")
+        let url2 = 'http://localhost:8080/ProjectFinalStruts/AsignarExamenAAlumnos?idGrupo='+gruposSeleccionados+'&numerosAlumnos='+alumnosSeleccionados+'&numerosExamenes='+examenesSeleccionados;
+        //alert('URL:' + url);
+        fetch(url2).then(response => response.text()).then(data => {
+            alert(data);
+        });
+        
+        
+        
+        
+        
+        
+    }
     
     function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -124,6 +334,7 @@ function cargarTablaExamen(){
         }
         
     }
+    
     function cargarTablaEjercicio() {
       var id=getParameterByName("id");
       var xhr = new XMLHttpRequest();

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <examenes>
-  <examen numero="1" nombre="Primer parcial 2019" fecha="2019-30-08">
-    <ejercicio numero="1" />
-    <ejercicio numero="3" />
-  </examen>
   <examen numero="2" nombre="Segundo parcial 2019" fecha="2019-15-10">
     <ejercicio numero="2" />
     <ejercicio numero="3" />
@@ -11,5 +7,15 @@
   <examen numero="4" nombre="Segundo parcial 2019" fecha="0-10-119">
     <ejercicio numero="2" />
     <ejercicio numero="3" />
+  </examen>
+  <examen numero="1" nombre="Primer parcial 2019" fecha="2019-30-08">
+    <ejercicio numero="1" />
+    <ejercicio numero="3" />
+    <pregunta numero="2" />
+  </examen>
+</examenes>
+Mon Nov 18 01:02:55 CST 2019">
+    <ejercicio numero="0" />
+    <pregunta numero="0" />
   </examen>
 </examenes>
