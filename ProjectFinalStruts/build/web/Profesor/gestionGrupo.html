@@ -6,9 +6,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="../src/css/index.css" />
-  <script src="https://unpkg.com/react/umd/react.production.js" crossorigin />
-  <script src="https://unpkg.com/react-dom/umd/react-dom.production.js" crossorigin/>
-    <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin/>
+  <script type="text/plain" src="https://unpkg.com/react/umd/react.production.js" crossorigin />
+  <script type="text/plain" src="https://unpkg.com/react-dom/umd/react-dom.production.js" crossorigin/>
+    <script type="text/plain" src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin/>
     <script>var Alert = ReactBootstrap.Alert;</script>
   <title>Numeros de decimales en Administrador</title>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
@@ -77,7 +77,7 @@
             document.getElementById("muestraExamen").innerHTML="";
             examen=0;
         }
-        
+        document.getElementById("muestraGrupo").innerHTML="";
       }
 
 function cargarTablaExamen(){
@@ -175,7 +175,6 @@ function cargarTablaExamen(){
     function cargaGruposProfesor(){
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-            //console.log(this)
             muestraGruposProfesor(this);
          };
         xhr.open("GET", "../json/resultadoConsultaGruposPorProfesor.json", true);
@@ -183,14 +182,38 @@ function cargarTablaExamen(){
     }
     
     function muestraGruposProfesor(json){
-        var docJson = json.response;
+        var docJson = json.responseText;
         var archivojson=JSON.parse(docJson);
         //console.log(archivojson)
-        var idGrupo=archivojson.idGrupo;
-        console.log(idGrupo)
-        
-        var muestraGrupos=""     
-         document.getElementById("muestraGrupo").innerHTML=muestraGrupos;
+        var idGrupo=archivojson.idGrupo;        
+        var muestraGrupo=""     
+        muestraGrupo+="<table class='container table table-hover bg-light'>"
+        muestraGrupo+="<thead>"
+        muestraGrupo+="<tr>"
+        muestraGrupo+="<th scope='col'>Selecciona</th>"
+        muestraGrupo+="<th scope='col'>Nombre</th>"
+        muestraGrupo+="<th scope='col'>Turno</th>"
+        muestraGrupo+="<th scope='col'>Año</th>"
+        muestraGrupo+="</tr>"
+        muestraGrupo+="</thead>"
+        muestraGrupo+="<tbody>"
+        var i=0;
+        while(true){
+            if(idGrupo[i]===undefined){
+                break;
+            }
+            muestraGrupo+="<tr>"
+            muestraGrupo+="<th scope='row'><input type='checkbox'></th>"
+            muestraGrupo+="<td>"+idGrupo[i].nombre+"</td>"
+            console.log(idGrupo[i].nombre)
+            muestraGrupo+="<td>"+idGrupo[i].turno+"</td>"
+            muestraGrupo+="<td>"+idGrupo[i].ano+"</td>"
+            muestraGrupo+="</tr>"
+            i++;
+        }
+        muestraGrupo+="</tbody>"
+        muestraGrupo+="</table>"
+         document.getElementById("muestraGrupo").innerHTML=muestraGrupo;
     }
     
     
