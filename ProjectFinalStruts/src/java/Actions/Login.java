@@ -117,6 +117,7 @@ public class Login extends ActionSupport implements SessionAware{
                 Alumno alumno = (Alumno)session.load(Alumno.class, id);
                 idGrupo = alumno.getGrupo().getIdGrupo();
             }
+            
             sessionMap.put("idUsuario", id);        //Para agregar el usuario a la sesión
             return true;
 
