@@ -159,20 +159,16 @@
         var infoExamen = '';
         var examen = docXML.getElementsByTagName("examen");
         console.log("Elementos en memoria")
-        //console.log(ejercicios)
-        //console.log(preggunta)
-        //console.log(examen)
-        //console.log(num)
-        //console.log(examen[num-1])
         var nombre=examen[num-1].getAttribute("nombre");
         var fecha=examen[num-1].getAttribute("fecha");
         var tipo=examen[num-1].getAttribute("tipo");
         console.log("Nombre de examen: "+nombre)
         console.log("Fecha: "+fecha)
         var ejerciciosExamen=examen[num-1].getElementsByTagName("ejercicio");
-        //console.log()
-         //console.log(ejerciciosExamen)
-         //console.log(ejerciciosExamen[numeritoExamen].attributes[0].value)             
+        examenes=examen;
+        todosEjercicios=ejercicios;
+        todasPreguntas=pregunta;
+        
             if(ejerciciosExamen[numeritoExamen].attributes[0].value===ejercicios[numeritoEjercicio].attributes[0].value){
              console.log(ejerciciosExamen[numeritoExamen])
             //console.log(ejercicios[numeritoEjercicio])
@@ -225,7 +221,7 @@
                 infoExamen+="<h2>Hola</h2>"
                 document.getElementById("cuerpo").innerHTML=infoExamen;
             }
-             numeritoExamen++;
+             
          }else{
              numeritoEjercicio++;
          }
@@ -234,7 +230,6 @@
         /*
           
           */
-          
       }
       
       function obtieneRespuestas(){
@@ -261,9 +256,212 @@
           }
           respuestasCorrectas='';
           respuestasObtenidas='';
-          numeritoEjercicio++;
+          numeritoExamen++;
+          siguienteEjercicio()
+          
+      }
+      
+      function siguienteEjercicio(){
+          //alert("Numerito Examen es: "+numeritoExamen)
+          document.getElementById("cuerpo").innerHTML=""
+          var num=getParameterByName("numero")
+          var numero=getParameterByName("numero")
+          var nombre=examenes[num-1].getAttribute("nombre");
+          var fecha=examenes[num-1].getAttribute("fecha");
+          var tipo=examenes[num-1].getAttribute("tipo");
+          var ejerciciosExamen=examenes[numero-1].getElementsByTagName("ejercicio");
+          var siguiente=""
+          console.log(ejerciciosExamen[numeritoExamen])
+          console.log(todosEjercicios[numeritoEjercicio])
+          if(ejerciciosExamen[numeritoExamen]===undefined){
+              alert("Fin de los ejercicios")
+              return;
+          }
+          if(ejerciciosExamen[numeritoExamen].attributes[0].value===todosEjercicios[numeritoEjercicio].attributes[0].value){
+                tipo=todosEjercicios[numeritoEjercicio].getAttribute("tipo");
+                if(tipo=="DAD"){
+                    document.getElementById("cuerpo").innerHTML=""
+                    respuestasCorrectas+=resultado;
+                    var nombreEjercicio=ejercicios[numeritoEjercicio].getAttribute("nombre");
+                    var ins=todosEjercicios[numeritoEjercicio].getElementsByTagName("indicaciones")[0].textContent;
+                    var opcion1=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion1")[0].textContent;
+                    var opcion2=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion2")[0].textContent;
+                    var opcion3=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion3")[0].textContent;
+                    var opcion4=todosEjercicios[numeritoEjercicio].getElementsByTagName("opcion4")[0].textContent;
+                    var resultado=todosEjercicios[numeritoEjercicio].getElementsByTagName("resultado")[0].textContent;
+                    siguiente+="<p class='lead fondo-superman text-link'>Nombre del examen: "+nombre+"</p>";
+                    siguiente+="<p class='lead fondo-superman text-light'>Fecha de creación del examen: "+fecha+"</p>";
+                    siguiente+="<div class='contenido-mediano card'>";
+                    siguiente+="<div class='header-card bg-light'>"
+                    siguiente+="<p class='lead'>Nombre del ejercicio: "+nombreEjercicio+"</p>";
+                    siguiente+="<hr>";
+                    siguiente+="<p class='lead'>Instrucciones: "+ins+"</p>";
+                    siguiente+="</div>";
+                    siguiente+="<div class='body-card'>";
+                    siguiente+="<div class='wrapper'>";
+                    siguiente+="<div class='box' id='primero'>"
+                    siguiente+="<div id='opcion1' class='task' draggable='true'>";
+                    siguiente+=""+opcion1+"";
+                    siguiente+="</div>";
+                    siguiente+="<div id='opcion2' class='task' draggable='true'>";
+                    siguiente+=""+opcion2+"";
+                    siguiente+="</div>";
+                    siguiente+="<div id='opcion3' class='task' draggable='true'>";
+                    siguiente+=""+opcion3+"";
+                    siguiente+="</div>"
+                    siguiente+="<div id='opcion4' class='task' draggable='true'>"
+                    siguiente+=""+opcion4+"";
+                    siguiente+="</div>";
+                    siguiente+="</div>";
+                    siguiente+="<div class='box' id='segundo'></div>";
+                    siguiente+="</div>";
+                    siguiente+="</div>";
+                    siguiente+="<div class='footer-card bg-success'>";
+                    siguiente+="<p class='font-weight-bold lead'>Ordena de arriba hacia abajo</p>";
+                    siguiente+="</div>"
+                    siguiente+="</div>"
+                    siguiente+="<button class='btn btn-outline-danger form-control' onclick='obtieneRespuestas()'>Evaluar</button>"
+                    document.getElementById("cuerpo").innerHTML=siguiente;
+                    creaEventos();
+                }else if(tipo=="Linea"){
+                    var nombreEjercicio=todosEjercicios[numeritoEjercicio].getAttribute("nombre");
+                    var ins=todosEjercicios[numeritoEjercicio].getElementsByTagName("indicaciones")[0].textContent;
+                    var canvas=""
+                    siguiente+="<p class='lead fondo-superman text-link'>Nombre del examen: "+nombre+"</p>";
+                    siguiente+="<p class='lead fondo-superman text-light'>Fecha de creación del examen: "+fecha+"</p>";
+                    siguiente+="<div class='contenido-mediano card'>";
+                    siguiente+="<div class='header-card bg-light'>"
+                    siguiente+="<p class='lead'>Nombre del ejercicio: "+nombreEjercicio+"</p>";
+                    siguiente+="<hr>";
+                    siguiente+="<p class='lead'>Instrucciones: "+ins+"</p>";
+                    siguiente+="</div>";
+                    siguiente+="</div>";
+                    canvas+="<center class='container'>"
+                    canvas+="<div class='row justify-content-around'>"
+                    canvas+=    "<div class='col-4'>"
+                      canvas+=    "  One of two columns"
+                       canvas+= "</div>"
+                       canvas+= "<div class=¿col-4'>"
+                          canvas+=  "One of two columns"
+                        canvas+="</div>"
+                    canvas+="</div>"
+                    canvas+="<p class='float-left'>Opcion 1</p><br>"
+                    canvas+="<p class='float-left'>Opcion 2</p>"
+                    canvas+="<canvas class='col-6' id='linea1' width='500px' height='400px' onclick='dibuja()' onmousemove='procesoDibuja()' style='background-color: black;'>Su navegador no soporta canvas :( </canvas>"
+                     canvas+="<p class='float-right'>Opcion 3</p><br>"
+                     canvas+="<p class='float-right'>Opcion 4</p>"
+                    canvas+="</center>"
+                    //console.log(siguiente)
+                    document.getElementById("cuerpo").innerHTML=siguiente;
+                    document.getElementById("canvas").innerHTML=canvas
+                }
+            }else{
+            numeritoEjercicio++;
+              if(todosEjercicios[numeritoEjercicio]===undefined){
+                  return;
+              }
+              siguienteEjercicio()
+            }          
       }
 
     </script>
+    
+    <script>
+            var numeroClick=0;
+            var coordenada1;
+            var todas_las_coordenadas=new Array();
+            function dibuja() {
+	        var canvas = document.getElementById("linea1");
+                var coordenadas;
+                var linea=new Object();
+                numeroClick++;
+		        if (canvas && canvas.getContext) {
+		            var ctx = canvas.getContext("2d");
+                    console.log(numeroClick)
+			        if (ctx) {
+                        if(numeroClick===1){
+                            ctx.lineWidth = 3;
+		            ctx.strokeStyle = "#f00";
+		            ctx.beginPath();
+                            coordenadas= obtieneCoordenada();
+                            coordenada1=coordenadas;
+                            ctx.moveTo(coordenadas.x, coordenadas.y);
+                            ctx.lineTo(coordenadas.x, coordenadas.y);
+		            ctx.stroke();
+                        }else{                            
+		            ctx.beginPath();
+                            coordenadas= obtieneCoordenada();
+		            ctx.moveTo(coordenada1.x, coordenada1.y);
+                            ctx.lineTo(coordenadas.x, coordenadas.y);
+                            ctx.stroke();
+                            linea.x1=coordenada1.x;
+                            linea.y1=coordenada1.y;
+                            linea.x2=coordenadas.x;
+                            linea.y2=coordenadas.y;
+                            console.log(linea);
+                            todas_las_coordenadas.push(linea);
+                            console.log(todas_las_coordenadas);
+                            pintaTodo();
+                            numeroClick=0;
+                        }
+				        
+                        
+			        }
+		        }
+            }
+
+            function pintaTodo(){
+                var linea;
+                var canvas = document.getElementById("linea1");
+                if (canvas && canvas.getContext) {
+		            var ctx = canvas.getContext("2d");
+                    console.log(numeroClick)
+			if (ctx) {
+                        ctx.strokeStyle = "#f00";
+                        for(var i=0;i<todas_las_coordenadas.length;i++){
+                            ctx.beginPath();
+                            linea=todas_las_coordenadas[i];
+			    ctx.moveTo(linea.x1, linea.y1);
+                            ctx.lineTo(linea.x2, linea.y2);
+			    ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            function procesoDibuja(){
+                var canvas = document.getElementById("linea1");
+                var coordenadas;
+		        if (canvas && canvas.getContext) {
+		            var ctx = canvas.getContext("2d");
+			        if (ctx) {
+                        if(numeroClick===1){
+                            ctx.lineWidth = 3;
+			    ctx.strokeStyle = "#ff0";
+                            ctx.clearRect(0,0,1000,1000);
+			    ctx.beginPath();
+                            coordenadas= obtieneCoordenada();
+                            console.log(coordenadas)
+                            ctx.moveTo(coordenada1.x, coordenada1.y);
+                            coordenadas=obtieneCoordenada();
+			    ctx.lineTo(coordenadas.x, coordenadas.y);
+			    ctx.stroke();
+                        }
+			        }
+		        }
+            }
+
+            function obtieneCoordenada(){
+                var x = window.event.clientX;
+                var y = window.event.clientY;
+                console.log("Coordenada x:"+x)
+                console.log("Coordenada y:"+y)
+                return {
+                    x: window.event.clientX-700,
+                    y: window.event.clientY-250 
+                };
+            }
+        </script>
+    
   <script type="text/javascript" src="js_react/exPrueba.js"></script></body>
 </html>
