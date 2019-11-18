@@ -17,6 +17,15 @@ import static Complementos.Operaciones.*;
  */
 public class AsignarExamenAGrupo {
     private int numeroExamen;
+    private String numerosExamen;
+
+    public String getNumerosExamen() {
+        return numerosExamen;
+    }
+
+    public void setNumerosExamen(String numerosExamen) {
+        this.numerosExamen = numerosExamen;
+    }
     private int idGrupo;
 
     public int getNumeroExamen() {
@@ -39,13 +48,8 @@ public class AsignarExamenAGrupo {
         Session hibernateSession;
         hibernateSession = HibernateUtil.getSessionFactory().openSession(); 
 
-        ExamenesAsignados ea = new ExamenesAsignados();
-        XMLActions xml = new XMLActions();
         
-        ea.setGrupoCompleto("si");
-        ea.setIdGrupo(this.idGrupo);
-        ea.setNumeroAlumno(0);
-        ea.setNumeroExamen(this.numeroExamen);
+        XMLActions xml = new XMLActions();
         
         Grupo grupo = (Grupo)hibernateSession.load(Grupo.class, this.idGrupo);
         String ruta = grupo.getRutaXmlasignados();
@@ -58,7 +62,18 @@ public class AsignarExamenAGrupo {
         ArrayList<EjerciciosAsignados> datosEjercicios = xml.convierte2ArrayListEjerciciosAsignados(ejercicios);
         ArrayList<PreguntasAsignadas> datosPreguntas = xml.convierte2ArrayListPreguntasAsignadas(preguntas);
         
-        datosExamenes.add(ea);
+        String[] numeros = this.numerosExamen.split(",");
+        
+        for(int i = 0; i < numeros.length; i++){
+            ExamenesAsignados ea = new ExamenesAsignados();
+            
+            ea.setNumeroExamen(Integer.parseInt(numeros[i]));
+            ea.setGrupoCompleto("si");
+            ea.setIdGrupo(this.idGrupo);
+            ea.setNumeroAlumno(0);
+            
+            datosExamenes.add(ea);
+        }
         
         if(xml.guardarXmlAsignados(datosExamenes, datosEjercicios, datosPreguntas, ruta)){
             return SUCCESS;
