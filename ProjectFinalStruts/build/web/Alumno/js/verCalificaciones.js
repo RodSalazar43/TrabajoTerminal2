@@ -1,0 +1,3 @@
+function verCalificaciones(){
+    alert("Calificaciones")
+}

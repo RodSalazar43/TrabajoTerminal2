@@ -37,7 +37,7 @@
       </div>
       <div class="row bg-dark">
           <div class="col-6">
-              <button class="btn btn-success btn-outline-light">Ver calificaciones</button>
+              <button class="btn btn-success btn-outline-light" onclick="muestraAlumnos()">Ver calificaciones</button>
           </div>
           <div class="col-6">
               <button class="btn btn-secondary btn-outline-light" onclick="muestraContrasena()">Cambiar contraseña a grupo</button>
@@ -68,6 +68,77 @@
   <div id="alerta"></div>
   <script>
     var examen=0;  
+    
+    
+    function muestraAlumnos(){
+        var id=getParameterByName("id")
+        let url = 'http://localhost:8080/ProjectFinalStruts/BuscarAlumnosPorProfesor?idProfesor='+id;;
+        //alert('URL:' + url);
+        fetch(url).then(response => response.text()).then(data => {
+            alert(data);
+            cargaAlumnosProfesorCalificacion();
+        });
+    }
+    
+    function cargaAlumnosProfesorCalificacion(){
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            muestraAlumnosProfesorCalificacion(this);
+         };
+        xhr.open("GET", "../json/resultadoAlumnosPorProfesor.json", true);
+        xhr.send();
+    }
+    
+    function muestraAlumnosProfesorCalificacion(json){
+        var docJson = json.responseText;
+        var archivojson=JSON.parse(docJson);
+        //console.log(archivojson)
+        var idAlumno=archivojson.idAlumno;        
+        console.log(idAlumno[4])
+        var muestraAlumno=""     
+        muestraAlumno+="<table class='container table table-hover table-dark'>"
+        muestraAlumno+="<thead class='bg-success'>"
+        muestraAlumno+="<tr>"
+        muestraAlumno+="<th scope='col'>Selecciona</th>"
+        muestraAlumno+="<th scope='col'>Nombre</th>"
+        muestraAlumno+="<th scope='col'>Apellido paterno</th>"
+        muestraAlumno+="<th scope='col'>Apellido materno</th>"
+        muestraAlumno+="<th scope='col'>Grupo</th>"
+        muestraAlumno+="<th scope='col'>Año</th>"
+        muestraAlumno+="<th scope='col'>Turno</th>"
+        muestraAlumno+="</tr>"
+        muestraAlumno+="</thead>"
+        muestraAlumno+="<tbody>"
+        var i=0;
+        while(true){
+            if(idAlumno[i]===undefined){
+                break;
+            }
+            muestraAlumno+="<tr>"
+            muestraAlumno+="<th scope='row'><button class='btn btn-outline-danger btn-light' onclick='redireccionaCalificacion("+idAlumno[i].id+")'>Ver respuestas</button></th>" //este es el id es del alumno 
+            muestraAlumno+="<td>"+idAlumno[i].nombre+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].apPaterno+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].apMaterno+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].grupo+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].ano+"</td>"
+            muestraAlumno+="<td>"+idAlumno[i].turno+"</td>"
+            muestraAlumno+="</tr>"
+            i++;
+        }
+        muestraAlumno+="</tbody>"
+        muestraAlumno+="</table>"
+        muestraAlumno+="<center class='row'>"
+        muestraAlumno+="<button class='btn btn-light btn-outline-secondary btn-block' onclick='asginarForAlumno()'>Asignar a alumno(s)</button>"
+        muestraAlumno+="</center>"
+         document.getElementById("muestraAlumno").innerHTML=muestraAlumno;
+    
+    }
+    
+    function redireccionaCalificacion(numero){
+        var id=getParameterByName("id");
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/agregaExamen.html?id='+id+;
+    }  
+    
     
     function muestraEjerciciosExamenes(){
       var id=getParameterByName("id");
