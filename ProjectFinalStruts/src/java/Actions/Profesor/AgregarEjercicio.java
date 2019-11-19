@@ -147,7 +147,9 @@ public class AgregarEjercicio {
         List listas = xml.cargarXmlEjercicios(ruta);
         ArrayList<Ejercicio> datos = xml.convierte2ArrayListEjercicios(listas);
         
-        ejercicio.setNumero(Integer.toString(listas.size() + 1));
+        Ejercicio nuevos = datos.get(datos.size() - 1);
+        int numeroUltimo = Integer.parseInt(nuevos.getNumero()) + 1;
+        ejercicio.setNumero(Integer.toString(numeroUltimo));
         ejercicio.setPregunta(indicaciones);
         ejercicio.setNombre(nombre);
         ejercicio.setOpcion1(opcion1);

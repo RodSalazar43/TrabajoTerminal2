@@ -93,7 +93,10 @@ public class AgregarPregunta {
         List listas = xml.cargarXmlPreguntas(ruta);
         ArrayList<Pregunta> datos = xml.convierte2ArrayListPreguntas(listas);
         
-        pregunta.setNumero(Integer.toString(listas.size() + 1));
+        Pregunta nuevaPregunta = datos.get(datos.size() - 1);
+        int nuevoNumero = Integer.parseInt(nuevaPregunta.getNumero()) + 1;
+        
+        pregunta.setNumero(Integer.toString(nuevoNumero));
         pregunta.setIndicaciones(indicaciones);
         pregunta.setNombre(nombre);
         pregunta.setOpcion1(opcion1);

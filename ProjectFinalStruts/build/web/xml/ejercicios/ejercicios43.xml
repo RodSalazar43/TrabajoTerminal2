@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejercicios>
+  <ejercicio numero="2" nombre="dsaij" tipo="DAD">
+    <indicaciones>ijnsdajn</indicaciones>
+    <opcion1>jsandh</opcion1>
+    <opcion2>hjnasdhb</opcion2>
+    <opcion3>hjbasjd</opcion3>
+    <opcion4>jhbsadh</opcion4>
+    <opcion5>default</opcion5>
+    <opcion6>default</opcion6>
+    <opcion7>default</opcion7>
+    <opcion8>default</opcion8>
+    <resultado>hbasd</resultado>
+  </ejercicio>
+  <ejercicio numero="3" nombre="iuhijn" tipo="DAD">
+    <indicaciones>ubhu</indicaciones>
+    <opcion1>hi</opcion1>
+    <opcion2>uijn</opcion2>
+    <opcion3>ih</opcion3>
+    <opcion4>iuh</opcion4>
+    <opcion5>default</opcion5>
+    <opcion6>default</opcion6>
+    <opcion7>default</opcion7>
+    <opcion8>default</opcion8>
+    <resultado>iuhiuhiu</resultado>
+  </ejercicio>
+  <ejercicio numero="4" nombre="KJNKJNKNMK" tipo="DAD">
+    <indicaciones>KM</indicaciones>
+    <opcion1>L</opcion1>
+    <opcion2>KML</opcion2>
+    <opcion3>KM</opcion3>
+    <opcion4>LKM</opcion4>
+    <opcion5>default</opcion5>
+    <opcion6>default</opcion6>
+    <opcion7>default</opcion7>
+    <opcion8>default</opcion8>
+    <resultado>LKM</resultado>
+  </ejercicio>
+</ejercicios>
