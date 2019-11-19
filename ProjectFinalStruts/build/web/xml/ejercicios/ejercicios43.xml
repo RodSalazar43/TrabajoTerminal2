@@ -36,4 +36,16 @@
     <opcion8>default</opcion8>
     <resultado>LKM</resultado>
   </ejercicio>
+  <ejercicio numero="5" nombre="jbjh" tipo="Linea">
+    <indicaciones>bjhb</indicaciones>
+    <opcion1>jhb</opcion1>
+    <opcion2>jhb</opcion2>
+    <opcion3>jb</opcion3>
+    <opcion4>jhb</opcion4>
+    <opcion5>jhbj</opcion5>
+    <opcion6>hbj</opcion6>
+    <opcion7>bjhbjhbjhhj</opcion7>
+    <opcion8>bjh</opcion8>
+    <resultado>default</resultado>
+  </ejercicio>
 </ejercicios>

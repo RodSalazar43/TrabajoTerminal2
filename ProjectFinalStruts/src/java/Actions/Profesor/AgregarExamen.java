@@ -19,6 +19,15 @@ public class AgregarExamen {
     private String nombre;
     private int idProfesor;
     private int numero;
+    private String numerosEjercicios;
+
+    public String getNumerosEjercicios() {
+        return numerosEjercicios;
+    }
+
+    public void setNumerosEjercicios(String numerosEjercicios) {
+        this.numerosEjercicios = numerosEjercicios;
+    }
 
     public int getNumero() {
         return numero;
@@ -70,9 +79,9 @@ public class AgregarExamen {
         examen.setNumero(Integer.toString(nuevoNumero));
         examen.setNombre(this.nombre);
         examen.setFecha(fechaString);
-        examen.setEjercicios(xml.generaArregloEjercicios());
+        examen.setEjercicios(xml.generaArregloEjercicios(this.numerosEjercicios));
         examen.setPreguntas(xml.generaArregloPreguntas());
-        System.out.println("El nuevo examen tendra el numero " + Integer.toString(examenes.size() + 1));
+        System.out.println("El nuevo examen tendra el numero " + nuevoNumero + " agregar examen");
         examenes.add(examen);
         
         if(xml.guardarXMLExamenAgregado(examenes, rutaExamen)){

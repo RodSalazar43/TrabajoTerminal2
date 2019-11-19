@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <examenes>
-  <examen numero="2" nombre="np" fecha="19-10-11">
-    <ejercicio numero="2" />
-    <pregunta numero="" />
-  </examen>
-  <examen numero="0" nombre="prueba" fecha="prueba">
-    <ejercicio numero="0" />
-    <ejercicio numero="2" />
-    <pregunta numero="0" />
-    <pregunta numero="" />
-  </examen>
   <examen numero="3" nombre="ugvjhj" fecha="19-10-119">
     <ejercicio numero="0" />
     <ejercicio numero="1" />
     <ejercicio numero="2" />
     <pregunta numero="0" />
   </examen>
+  <examen numero="2" nombre="np" fecha="19-10-11">
+    <ejercicio numero="2" />
+    <ejercicio numero="3" />
+    <pregunta numero="" />
+  </examen>
 </examenes>
-o numero="0" />
+jhbhj" fecha="19-10-119">
+    <ejercicio numero="0" />
     <pregunta numero="0" />
   </examen>
 </examenes>

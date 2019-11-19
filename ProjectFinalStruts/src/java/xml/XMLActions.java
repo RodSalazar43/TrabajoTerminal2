@@ -121,9 +121,9 @@ public class XMLActions {
     }
     
     public boolean guardarXMLExamenAgregado(ArrayList<Examen> examenes, String ruta){
-        Element root=new Element("examenes");
-        System.out.println("El arrayList tiene " + examenes.size() + " examenes");
-        for(int i = 0;i < examenes.size();i++){
+        Element root = new Element("examenes");
+        System.out.println("El arrayList tiene " + examenes.size() + " examenes, guardar xml examen agregado");
+        for(int i = 0; i < examenes.size();i++){
             Examen examen_datos= examenes.get(i);
             System.out.println("El numero del examen es " + examen_datos.getNumero());
             Element examen_element=new Element("examen");
@@ -609,7 +609,7 @@ public class XMLActions {
             //aqui va el codigo para agregar las preguntas
             examenes.add(examen_objeto);
         }
-        System.out.println("Se regresan los examenes en array list con: "+examenes.size()+" elementos");
+        System.out.println("Se regresan del xml los examenes en array list con: "+examenes.size()+" elementos");
         return examenes;
     }
     public ArrayList<Ejercicio> convierteList2ArrayListEjercicioAgregado(List nodos){
@@ -1239,13 +1239,16 @@ public class XMLActions {
         return ejerciciosGuardados;
     }
     
-    public ArrayList<Ejercicio> generaArregloEjercicios(){
+    public ArrayList<Ejercicio> generaArregloEjercicios(String numerosEjercicios){
+        String numeros[] = numerosEjercicios.split(",");
         ArrayList<Ejercicio> ejercicios = new ArrayList<>();
         
-        Ejercicio ejercicio = new Ejercicio();
-        ejercicio.setNumero("0");
+        for(int i = 0; i < numeros.length; i++){
+            Ejercicio ejercicio = new Ejercicio();
+            ejercicio.setNumero(numeros[i]);    
+            ejercicios.add(ejercicio);
+        }
         
-        ejercicios.add(ejercicio);
         return ejercicios;
     }
     
