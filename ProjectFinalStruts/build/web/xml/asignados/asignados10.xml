@@ -2,9 +2,14 @@
 <asignados>
   <examenes>
     <examen numeroExamen="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />
+    <examen numeroExamen="3" grupoCompleto="si" numeroAlumno="0" grupo="10" />
+    <examen numeroExamen="8" grupoCompleto="si" numeroAlumno="0" grupo="10" />
   </examenes>
   <ejercicios>
     <ejercicio numeroEjercicio="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />
+    <ejercicio numeroEjercicio="3" grupoCompleto="si" numeroAlumno="0" grupo="10" />
+    <ejercicio numeroEjercicio="5" grupoCompleto="si" numeroAlumno="0" grupo="10" />
+    <ejercicio numeroEjercicio="2" grupoCompleto="si" numeroAlumno="0" grupo="10" />
   </ejercicios>
   <preguntas>
     <pregunta numeroPregunta="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />

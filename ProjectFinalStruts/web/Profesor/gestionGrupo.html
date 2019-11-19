@@ -539,7 +539,7 @@ function cargarTablaExamen(){
         }
         console.log(examenSeleccionado)
         console.log(grupoSeleccionado.value)
-        let url = 'http://localhost:8080/ProjectFinalStruts/AsignarExamenAGrupo?idGrupo='+grupoSeleccionado.value+'&numeroExamen='+examenSeleccionado;
+        let url = 'http://localhost:8080/ProjectFinalStruts/AsignarExamenAGrupo?idGrupo='+grupoSeleccionado.value+'&numerosExamen='+examenSeleccionado;
         //alert('URL:' + url);
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    
@@ -574,9 +574,9 @@ function cargarTablaExamen(){
                 }
             }
         }
-        console.log(ejercicioSeleccioado)        
+        console.log(ejercicioSeleccionado)        
         
-        let url = 'http://localhost:8080/ProjectFinalStruts/AsignarEjercicioAGrupo?idGrupo='+grupoSeleccionado.value+'&numeroEjercicio='+ejercicioSeleccioado;
+        let url = 'http://localhost:8080/ProjectFinalStruts/AsignarEjercicioAGrupo?idGrupo='+grupoSeleccionado.value+'&numerosEjercicios='+ejercicioSeleccionado;
         //alert('URL:' + url);
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    

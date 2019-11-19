@@ -17,7 +17,7 @@ import static Complementos.Operaciones.*;
  */
 public class AsignarEjercicioAGrupo {
     private int numeroEjercicio;
-    private String numerosEjercicios;
+    private String numerosEjercicios;   
 
     public String getNumerosEjercicios() {
         return numerosEjercicios;
@@ -61,8 +61,8 @@ public class AsignarEjercicioAGrupo {
         ArrayList<ExamenesAsignados> datosExamenes = xml.convierte2ArrayListExamenesAsignados(examenes);
         ArrayList<EjerciciosAsignados> datosEjercicios = xml.convierte2ArrayListEjerciciosAsignados(ejercicios);
         ArrayList<PreguntasAsignadas> datosPreguntas = xml.convierte2ArrayListPreguntasAsignadas(preguntas);
-        
-        String[] numeros = numerosEjercicios.split(",");
+        System.out.println("asignar ejercicio a gupo " + this.numerosEjercicios + " " + this.idGrupo);
+        String[] numeros = this.numerosEjercicios.split(",");
         
         for(int i = 0; i < numeros.length; i++){
             EjerciciosAsignados ea = new EjerciciosAsignados();

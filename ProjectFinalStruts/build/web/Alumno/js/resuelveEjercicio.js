@@ -160,6 +160,7 @@ function XMLEjercicios(){
       }
       
       function obtieneRespuestasDAD(resultado){
+          console.log(resultado)
           var recupero=document.getElementById("segundo");
           var respuestaDada=""
           var ayuda=0
