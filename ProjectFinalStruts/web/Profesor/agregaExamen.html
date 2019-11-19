@@ -164,7 +164,7 @@
         //console.log(id)
         //http://localhost/struts2react/input1.jsp
         
-        let url1 = 'http://localhost:8080/ProjectFinalStruts/AgregarExamen?idProfesor='+id+'&nombre='+nombre;
+        let url1 = 'http://localhost:8080/ProjectFinalStruts/AgregarExamen?idProfesor='+id+'&nombre='+nombre+'&numerosEjercicios'+numerosE;
         fetch(url1).then(response => response.text()).then(data => {
             //alert(data);
             numeroExamen=data;
@@ -172,8 +172,8 @@
             console.log(numeroExamen)
         });
         
-        agregaEjercicios(numeroExamen,numerosE,nombre);
-        agregaPreguntas(numeroExamen,numerosP,nombre)
+        //agregaEjercicios(numeroExamen,numerosE,nombre);
+        //agregaPreguntas(numeroExamen,numerosP,nombre)
         //console.log(numeroExamen)
     }
     
