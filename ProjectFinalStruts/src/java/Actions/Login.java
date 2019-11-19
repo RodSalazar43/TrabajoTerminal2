@@ -4,7 +4,7 @@ import static Complementos.Operaciones.LOGOUT;
 import Complementos.cifrarContrasenas;
 import com.opensymphony.xwork2.ActionSupport;
 import entitys.Alumno;
-import entitys.Profesor;
+import entitys.Grupo;
 import java.util.List;
 import entitys.Usuario;
 import entitys.Tipo;
@@ -27,6 +27,8 @@ public class Login extends ActionSupport implements SessionAware{
     int id;
     int idGrupo;
     int idProfesor;
+    private Usuario dato;
+    private Tipo tipo;
 
     public int getIdProfesor() {
         return idProfesor;
@@ -35,8 +37,7 @@ public class Login extends ActionSupport implements SessionAware{
     public void setIdProfesor(int idProfesor) {
         this.idProfesor = idProfesor;
     }
-    private Usuario dato;
-    private Tipo tipo;
+    
 
     public int getIdGrupo() {
         return idGrupo;
@@ -126,8 +127,8 @@ public class Login extends ActionSupport implements SessionAware{
             if(tipo.getIdTipo() == 3){
                 Alumno alumno = (Alumno)session.load(Alumno.class, id);                
                 idGrupo = alumno.getGrupo().getIdGrupo();
-                Profesor profesor=alumno.getGrupo().getProfesor();
-                idProfesor=profesor.getIdUsuario();
+                Grupo grupo = (Grupo)session.load(Grupo.class, idGrupo);
+                idProfesor = grupo.getProfesor().getIdUsuario();
             }
             
             sessionMap.put("idUsuario", id);        //Para agregar el usuario a la sesión
