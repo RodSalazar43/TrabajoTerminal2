@@ -33,7 +33,7 @@ function cargarTabla() {
     }
     
     function redireccionaVerEjercicio(numero){
-          var id=getParameterByName("id");
+        var id=getParameterByName("id");
         window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/infoEjercicio.html?id='+id+'&numero='+numero;
     }
       

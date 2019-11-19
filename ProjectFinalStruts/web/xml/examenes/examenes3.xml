@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <examenes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/gerpo/OneDrive/Escritorio/xml/esquemaExamen.xsd">
-<examen fecha="2019-30-08" nombre="Primer parcial 2019" numero="1">
+        <examen fecha="2019-30-08" nombre="Primer parcial 2019" numero="1">
 		<ejercicio numero="1"></ejercicio>
 		<ejercicio numero="3"></ejercicio>
 	</examen>
