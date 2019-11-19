@@ -122,7 +122,7 @@ function generaEjercicio(){
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    
         });
-        location.reload()
+        //location.reload()
     }   
      
     }else if(tipo==="Linea"){
