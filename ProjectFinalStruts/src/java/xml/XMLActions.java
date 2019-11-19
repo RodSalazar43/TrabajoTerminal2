@@ -475,7 +475,7 @@ public class XMLActions {
             Document document = (Document) builder.build(xmlFile);
             Element rootNode = document.getRootElement();
             Element ejercicios = rootNode.getChild("ejercicios");
-            list = ejercicios.getChildren();
+            list = ejercicios.getChildren("ejercicio");
             return list;
         } catch (IOException io) {
             System.out.println(io.getMessage());
@@ -496,7 +496,7 @@ public class XMLActions {
             Document document = (Document) builder.build(xmlFile);
             Element rootNode = document.getRootElement();
             Element preguntas = rootNode.getChild("preguntas");
-            list = preguntas.getChildren();
+            list = preguntas.getChildren("pregunta");
             return list;
         } catch (IOException io) {
             System.out.println(io.getMessage());
@@ -1149,20 +1149,20 @@ public class XMLActions {
         
         Element ejercicio = new Element("ejercicio");
         ejercicio.setAttribute("numero", "0");
-        ejercicio.setText(" ");
+        ejercicio.setText("Prueba");
         
         ejercicios.addContent(ejercicio);
         
         Element pregunta = new Element("pregunta");
         pregunta.setAttribute("numero", "0");
-        pregunta.setText(" ");
+        pregunta.setText("Prueba");
         
         preguntas.addContent(pregunta);
         
         root.addContent(ejercicios);
         root.addContent(preguntas);
 
-        String rutaArchivo = ServletActionContext.getServletContext().getRealPath("/xml/preguntas");
+        String rutaArchivo = ServletActionContext.getServletContext().getRealPath("/xml/respuestas");
         File archivo = new File(rutaArchivo + nombreRuta);
         BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
         bw.close();
