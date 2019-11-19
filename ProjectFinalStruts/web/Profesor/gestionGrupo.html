@@ -327,6 +327,12 @@
         fetch(url).then(response => response.text()).then(data => {
             alert(data);
         });
+       
+       agregaExamen2Alumno(gruposSeleccionados,alumnosSeleccionados,examenesSeleccionados);
+        
+    }
+    
+    function agregaExamen2Alumno(gruposSeleccionados,alumnosSeleccionados,examenesSeleccionados){
         
         var id=getParameterByName("id")
         let url2 = 'http://localhost:8080/ProjectFinalStruts/AsignarExamenAAlumnos?idGrupo='+gruposSeleccionados+'&numerosAlumnos='+alumnosSeleccionados+'&numerosExamenes='+examenesSeleccionados;
@@ -334,8 +340,6 @@
         fetch(url2).then(response => response.text()).then(data => {
             alert(data);
         });
-        
-        
         
         
         

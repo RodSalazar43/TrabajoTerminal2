@@ -63,7 +63,7 @@ function asignaPass(){
     console.log(contrasena)
     var grupoSeleccionado;
     for(var i=0;i<contrasena.length;i++){
-        if(contrasena[i].value===""){
+        if(contrasena[i].value!=""){
             grupoSeleccionado=contrasena[i];
         }
     }
@@ -74,9 +74,10 @@ function asignaPass(){
     let url = 'http://localhost:8080/ProjectFinalStruts/AsignarContrasenaAGrupo?idGrupo='+grupoSeleccionado.id+'&nuevaContrasena='+grupoSeleccionado.value
         //alert('URL:' + url);
             fetch(url).then(response => response.text()).then(data => {
-                alert(data);    
+                alert(data);
+         //       location.reload()
             });
-            location.reload()
+            
     
     
     

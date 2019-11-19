@@ -45,18 +45,21 @@ public class AsignarContrasenaAGrupo implements Serializable{
         
         Grupo grupo = (Grupo)session.load(Grupo.class, this.idGrupo);
         
-        String hql = "from Alumno where Grupo = " + grupo;
+        String hql = "from Alumno";
         Query query = session.createQuery(hql);
         Iterator resultados = query.iterate();
         
         while(resultados.hasNext()){
             Alumno alumno = (Alumno)resultados.next();
-            int id = alumno.getIdUsuario();
-            Usuario usuario = (Usuario)session.load(Usuario.class, id);
-            usuario.setContrasena(c.encriptar(this.nuevaContrasena));
-            session.update(usuario);
-            t.commit();
+            if(this.idGrupo==alumno.getGrupo().getIdGrupo()){
+                int id = alumno.getIdUsuario();
+                Usuario usuario = (Usuario)session.load(Usuario.class, id);
+                usuario.setContrasena(c.encriptar(this.nuevaContrasena));
+                session.update(usuario);
+            }
+            
         }
+        t.commit();
         return SUCCESS;
     }
 }
