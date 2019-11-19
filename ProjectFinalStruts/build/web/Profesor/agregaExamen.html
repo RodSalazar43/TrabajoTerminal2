@@ -164,7 +164,7 @@
         //console.log(id)
         //http://localhost/struts2react/input1.jsp
         
-        let url1 = 'http://localhost:8080/ProjectFinalStruts/AgregarExamen?idProfesor='+id+'&nombre='+nombre+'&numerosEjercicios'+numerosE;
+        let url1 = 'http://localhost:8080/ProjectFinalStruts/AgregarExamen?idProfesor='+id+'&nombre='+nombre+'&numerosEjercicios='+numerosE+'&numerosPreguntas='+numerosP;
         fetch(url1).then(response => response.text()).then(data => {
             //alert(data);
             numeroExamen=data;
@@ -177,6 +177,7 @@
         //console.log(numeroExamen)
     }
     
+    /*
     function agregaEjercicios(numeroExamen,numerosE,nombre){
         var id=getParameterByName("id")
         let url2 = 'http://localhost:8080/ProjectFinalStruts/AgregarEjerciciosAExamen?idProfesor='+id+'&numeroEjercicios='+numerosE+'&nombreExamen='+nombre+'&numeroExamen='+numeroExamen;
@@ -193,7 +194,7 @@
             alert(data);
         });
     }
-    
+    */
     
     function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

@@ -48,16 +48,22 @@ public class BuscarAlumnosPorGrupo {
             
             if(this.idGrupo == alumnoActual.getGrupo().getIdGrupo()){
                 Usuario usuario = (Usuario)hibernateSession.load(Usuario.class, alumnoActual.getIdUsuario());
+                System.out.println("El valor es " + usuario.getNombre());
+                if(usuario.getNombre().equals(null)){
+                    continue;
+                }
+                else{
+                    JSONObject innerObj = new JSONObject();
                 
-                JSONObject innerObj = new JSONObject();
+                    innerObj.put("nombre", usuario.getNombre());
+                    innerObj.put("Ap_Paterno", usuario.getApPaterno());
+                    innerObj.put("Ap_Materno", usuario.getApMat());
+
+                    obj.put(contador, innerObj);
+                    raiz.put("idAlumno",obj);
+                    contador++;
+                }
                 
-                innerObj.put("nombre", usuario.getNombre());
-                innerObj.put("Ap_Paterno", usuario.getApPaterno());
-                innerObj.put("Ap_Materno", usuario.getApMat());
-                
-                obj.put(contador, innerObj);
-                raiz.put("idAlumno",obj);
-                contador++;
             }
         }
         

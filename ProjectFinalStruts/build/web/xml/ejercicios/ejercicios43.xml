@@ -48,4 +48,16 @@
     <opcion8>bjh</opcion8>
     <resultado>default</resultado>
   </ejercicio>
+  <ejercicio numero="6" nombre="Veamo" tipo="DAD">
+    <indicaciones>h</indicaciones>
+    <opcion1>h</opcion1>
+    <opcion2>j</opcion2>
+    <opcion3>j</opcion3>
+    <opcion4>f</opcion4>
+    <opcion5>default</opcion5>
+    <opcion6>default</opcion6>
+    <opcion7>default</opcion7>
+    <opcion8>default</opcion8>
+    <resultado>j</resultado>
+  </ejercicio>
 </ejercicios>

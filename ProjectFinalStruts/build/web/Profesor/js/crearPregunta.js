@@ -97,7 +97,7 @@ function guardaPregunta(){
     if(tipo==="Operacion"){
         var opera=document.getElementsByName("opera");
         console.log(opera)
-        let url = 'http://localhost:8080/ProjectFinalStruts/AgregarPregunta?idProfesor='+id+'&tipo='+tipo+'&nombre='+nombre[0].value+'&respuesta='+1+'&opcion1='+opera[0].value+'&opcion2='+determinado+'&indicaciones='+pregunta;
+        let url = 'http://localhost:8080/ProjectFinalStruts/AgregarPregunta?idProfesor='+id+'&tipo='+tipo+'&nombre='+nombre[0].value+'&respuesta='+opera[0].value+'&opcion1='+opera[0].value+'&opcion2='+determinado+'&indicaciones='+pregunta[0].value;
         //alert('URL:' + url);
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    

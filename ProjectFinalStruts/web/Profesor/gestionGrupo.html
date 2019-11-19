@@ -136,7 +136,7 @@
     
     function redireccionaCalificacion(numero){
         var id=getParameterByName("id");
-        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/agregaExamen.html?id='+id+;
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/agregaExamen.html?id='+id
     }  
     
     
@@ -545,7 +545,7 @@ function cargarTablaExamen(){
             alert(data);    
         });
         
-        location.reload();
+        //location.reload();
     }
     function asigna2GrupoEjercicios(){
         var grupo=document.getElementsByName("grupo")
@@ -581,7 +581,7 @@ function cargarTablaExamen(){
         fetch(url).then(response => response.text()).then(data => {
             alert(data);    
         });
-        location.reload();
+        //location.reload();
     }
     
     

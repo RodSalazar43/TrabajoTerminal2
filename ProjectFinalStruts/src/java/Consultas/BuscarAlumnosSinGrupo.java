@@ -34,17 +34,25 @@ public class BuscarAlumnosSinGrupo {
         while(results.hasNext()){
             Alumno alumno = (Alumno)results.next();
             int idGrupo = alumno.getGrupo().getIdGrupo();
+            String nombreGrupo = alumno.getGrupo().getNombre();
             
-            if(idGrupo == 0){
+            if(nombreGrupo.equals(" ")){
                 Usuario usuario = (Usuario)hibernateSession.load(Usuario.class, alumno.getIdUsuario());
-                JSONObject innerObj = new JSONObject();
-                innerObj.put("nombre", usuario.getNombre());
-                innerObj.put("id", usuario.getIdUsuario());
-                innerObj.put("apPat",usuario.getApPaterno());
-                innerObj.put("apMat",usuario.getApMat());
-                obj.put(contador, innerObj);
-                raiz.put("idAlumno", obj);
-                contador++;
+                System.out.println("El valor es " + usuario.getNombre());
+                if(usuario.getNombre().equals(null)){
+                    continue;
+                }
+                else{
+                    JSONObject innerObj = new JSONObject();
+                    innerObj.put("nombre", usuario.getNombre());
+                    innerObj.put("id", usuario.getIdUsuario());
+                    innerObj.put("apPat",usuario.getApPaterno());
+                    innerObj.put("apMat",usuario.getApMat());
+                    obj.put(contador, innerObj);
+                    raiz.put("idAlumno", obj);
+                    contador++;
+                }
+                
             }
         }
         try{

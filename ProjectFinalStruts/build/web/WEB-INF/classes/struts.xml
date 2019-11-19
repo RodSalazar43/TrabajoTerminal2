@@ -126,7 +126,7 @@
         <!-- ************************** Preguntas ***************  -->
         <action name="AgregarPregunta" class="Actions.Profesor.AgregarPregunta">             <!-- Agregar pregunta -->
             <result name="success" type="redirect">
-                <param name="location">Profesor/respuestas/agregarEjercicio?correcto=true</param>
+                <param name="location">Profesor/respuestas/agregarEjercicio.jsp?correcto=true</param>
             </result>
             <result name="error">
                 <param name="location">Profesor/respuestas/error.jsp?correcto=false</param>
@@ -326,7 +326,7 @@
         <!-- *****************************************  Examen -->
         <action name="AgregarExamen" class="Actions.Profesor.AgregarExamen">    <!-- AgregarExamen -->
             <result name="success" type="redirect">
-                <param name="location">Profesor/respuestas/agregaExamen.jsp?numero=${numero}&amp;correcto=true</param>
+                <param name="location">Profesor/respuestas/agregaExamen.jsp?correcto=true</param>
             </result>
             <result name="error">
                 <param name="location">Profesor/Profesor.html?correcto=false</param>

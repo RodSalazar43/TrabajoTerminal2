@@ -1,3 +1,3 @@
 <% 
-    out.println(request.getParameter("numero"));
+    out.println("Se agrego el examen correctamente");
 %>

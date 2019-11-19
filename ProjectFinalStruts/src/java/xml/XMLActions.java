@@ -538,6 +538,7 @@ public class XMLActions {
             Document document = (Document) builder.build(xmlFile);
             Element rootNode = document.getRootElement();
             list = rootNode.getChildren("examen");
+            System.out.println("XML leido "+list.size());
             return list;
         } catch (IOException io) {
             System.out.println(io.getMessage());
@@ -609,7 +610,7 @@ public class XMLActions {
             //aqui va el codigo para agregar las preguntas
             examenes.add(examen_objeto);
         }
-        System.out.println("Se regresan del xml los examenes en array list con: "+examenes.size()+" elementos");
+        System.out.println("convierte lista a objeto examen");
         return examenes;
     }
     public ArrayList<Ejercicio> convierteList2ArrayListEjercicioAgregado(List nodos){
@@ -1252,14 +1253,15 @@ public class XMLActions {
         return ejercicios;
     }
     
-    public ArrayList<Pregunta> generaArregloPreguntas(){
+    public ArrayList<Pregunta> generaArregloPreguntas(String numerosPreguntas){
+        String numeros[] = numerosPreguntas.split(",");
         ArrayList<Pregunta> preguntas = new ArrayList<>();
+        for(int i = 0; i < numeros.length; i++){
+            Pregunta pregunta = new Pregunta();
+            pregunta.setNumero(numeros[i]);
+            preguntas.add(pregunta);    
+        }
         
-        Pregunta pregunta = new Pregunta();
-        
-        pregunta.setNumero("0");
-        
-        preguntas.add(pregunta);
         return preguntas;
     }
     
