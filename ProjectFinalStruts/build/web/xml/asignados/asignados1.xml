@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <asignados>
   <examenes>
-    <examen numeroExamen="1" grupoCompleto="si" numeroAlumno="0" grupo="1" />
-    <examen numeroExamen="3" grupoCompleto="si" numeroAlumno="0" grupo="1" />
+      <examen grupo="1" grupoCompleto="si" numeroExamen="1" numeroAlumno="0"/>
   </examenes>
   <ejercicios>
-    <ejercicio numeroEjercicio="1" grupoCompleto="si" numeroAlumno="0" grupo="1" />
-    <ejercicio numeroEjercicio="3" grupoCompleto="si" numeroAlumno="0" grupo="1" />
+    <ejercicio numeroEjercicio="1" grupoCompleto="si" numeroAlumno="0" grupo="1"/>
+    <ejercicio numeroEjercicio="3" grupoCompleto="si" numeroAlumno="0" grupo="1"/>
   </ejercicios>
   <preguntas>
-    <pregunta numeroPregunta="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />
+    <pregunta numeroPregunta="0" grupoCompleto="no" numeroAlumno="0" grupo="0"/>
   </preguntas>
 </asignados>
