@@ -1178,6 +1178,54 @@ public class XMLActions {
             return false;
         }
     }
+    
+    public boolean crearXMLCalificaciones(int idUsuario) throws IOException{
+        String nombreRuta = "/calificaciones" + idUsuario + ".xml";
+        Element root = new Element("calificaciones");
+        
+        Element ejercicios = new Element("ejercicios");
+        Element preguntas = new Element("preguntas");
+        Element comentarios = new Element("comentarios");
+        
+        Element ejercicio = new Element("ejercicio");
+        ejercicio.setAttribute("numero", "0");
+        ejercicio.setAttribute("calificacion","0");
+        
+        ejercicios.addContent(ejercicio);
+        
+        Element pregunta = new Element("pregunta");
+        pregunta.setAttribute("numero", "0");
+        pregunta.setAttribute("calificacion","0");
+        
+        preguntas.addContent(pregunta);
+        
+        Element comentario = new Element("comentario");
+        comentario.setAttribute("numeroExamen","0");
+        comentario.setAttribute("numeroEjercicio","0");
+        comentario.setAttribute("numeroPregunta","0");
+        comentario.setText("Esto sera un comentario jeje");
+        
+        comentarios.addContent(comentario);
+        
+        root.addContent(ejercicios);
+        root.addContent(preguntas);
+        root.addContent(comentarios);
+
+        String rutaArchivo = ServletActionContext.getServletContext().getRealPath("/xml/calificaciones");
+        File archivo = new File(rutaArchivo + nombreRuta);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+        bw.close();
+        
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath("/xml/calificaciones" + nombreRuta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+            return false;
+        }
+    }
    
     public ArrayList<Ejercicio> eliminaEjercicio(ArrayList<Ejercicio> ejercicios,int numero){
         ejercicios.remove(numero - 1);
