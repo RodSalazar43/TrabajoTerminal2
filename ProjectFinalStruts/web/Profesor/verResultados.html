@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ver calificaciones</title>
+       <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../src/css/index.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    </head>
+    <body class="fondo-meredian">
+        <div id="welcome" class="text-white"></div>
+    <center>
+        <div class="container-fluid container">
+            <div class="row">
+                <div class="col-4">
+                    <button class='btn btn-danger btn-block' onclick='redireccionaGestionGrupo()'>Regresar a gestionar grupo</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-success btn-block" onclick='cargaCalificaciones()'>Ver resultados del alumno</button>
+                </div>
+            </div>
+        </div>
+    </center>
+        <script type="text/javascript">
+             function redireccionaGestionGrupo(){
+                var id=getParameterByName("id");
+                window.location.href='gestionGrupo.html?id='+id;
+             } 
+             
+             function cargaCalificaciones(){
+                 alert("hola")
+             }
+             
+             function cargarPregunta() {
+                  var id=getParameterByName("idAlumno");
+                  var xhr = new XMLHttpRequest();
+                  xhr.onreadystatechange = function () {
+                  cargarXML(this);
+            };
+             xhr.open("GET", "../xml/respuestas/respuestas"+id+".xml", true);
+             xhr.send();
+            }
+    
+            function cargarXML(xml) {
+                var docXML = xml.responseXML;
+                console.log(docXML)
+                var respuestas = docXML.getElementsByTagName("respuesta");
+                
+            }
+        </script>
+        <script type="text/javascript" src="js_react/profesor.js"></script>
+    </body>
+</html>
