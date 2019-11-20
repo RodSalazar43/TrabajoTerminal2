@@ -72,4 +72,16 @@
     <opcion8>default</opcion8>
     <resultado>4,2,1,3</resultado>
   </ejercicio>
+  <ejercicio numero="8" nombre="Ejercicio 2: Numeros decimales" tipo="DAD">
+    <indicaciones>Ordene de menor a mayor</indicaciones>
+    <opcion1>4.51</opcion1>
+    <opcion2>13.6</opcion2>
+    <opcion3>3.67</opcion3>
+    <opcion4>10.15</opcion4>
+    <opcion5>default</opcion5>
+    <opcion6>default</opcion6>
+    <opcion7>default</opcion7>
+    <opcion8>default</opcion8>
+    <resultado>3,1,4,2</resultado>
+  </ejercicio>
 </ejercicios>

@@ -11,9 +11,9 @@
     <ejercicio numeroEjercicio="3" grupoCompleto="no" numeroAlumno="45" grupo="10" />
     <ejercicio numeroEjercicio="5" grupoCompleto="no" numeroAlumno="45" grupo="10" />
     <ejercicio numeroEjercicio="7" grupoCompleto="si" numeroAlumno="0" grupo="10" />
+    <ejercicio numeroEjercicio="8" grupoCompleto="si" numeroAlumno="0" grupo="10" />
   </ejercicios>
   <preguntas>
     <pregunta numeroPregunta="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />
   </preguntas>
 </asignados>
-asignados>
