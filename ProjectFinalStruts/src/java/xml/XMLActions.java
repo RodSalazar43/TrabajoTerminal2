@@ -357,6 +357,61 @@ public class XMLActions {
         return datos;
     }
     
+    public ArrayList<EjercicioCalificado> convierte2ArrayListEjerciciosCalificados(List nodos){
+        ArrayList<EjercicioCalificado> datos = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            // numero, grupoCompleto, numeroAlumno
+            
+            Element ejercicios = (Element) nodos.get(i);
+            
+            EjercicioCalificado ejercicio = new EjercicioCalificado();
+            
+            ejercicio.setNumeroEjercicio(Integer.parseInt(ejercicios.getAttributeValue("numero")));
+            ejercicio.setCalificacion(ejercicios.getAttributeValue("calificacion"));
+            
+            datos.add(ejercicio);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
+    
+    public ArrayList<PreguntaCalificada> convierte2ArrayListPreguntasCalificadas(List nodos){
+        ArrayList<PreguntaCalificada> datos = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            // numero, grupoCompleto, numeroAlumno
+            
+            Element preguntas = (Element) nodos.get(i);
+            
+            PreguntaCalificada pregunta = new PreguntaCalificada();
+            
+            pregunta.setNumeroPregunta(Integer.parseInt(preguntas.getAttributeValue("numero")));
+            pregunta.setCalificacion(preguntas.getAttributeValue("calificacion"));
+            
+            datos.add(pregunta);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
+    
+    public ArrayList<Comentario> convierte2ArrayListComentarios(List nodos){
+        ArrayList<Comentario> datos = new ArrayList<>();
+        for(int i=0;i<nodos.size();i++){
+            
+            Element comentarios = (Element) nodos.get(i);
+            
+            Comentario comentario = new Comentario();
+            
+            comentario.setNumeroExamen(Integer.parseInt(comentarios.getAttributeValue("numeroExamen")));
+            comentario.setNumeroEjercicio(Integer.parseInt(comentarios.getAttributeValue("numeroEjercicio")));
+            comentario.setNumeroPregunta(Integer.parseInt(comentarios.getAttributeValue("numero")));
+            comentario.setComentario(comentarios.getText());
+            
+            datos.add(comentario);
+        }
+        System.out.println("El arraylist tiene "+datos.size()+" elementos");
+        return datos;
+    }
+    
     public ArrayList<EjerciciosAsignados> convierte2ArrayListEjerciciosAsignados(List nodos){
         ArrayList<EjerciciosAsignados> datos = new ArrayList<>();
         for(int i=0;i<nodos.size();i++){
@@ -517,6 +572,69 @@ public class XMLActions {
             Document document = (Document) builder.build(xmlFile);
             Element rootNode = document.getRootElement();
             Element preguntas = rootNode.getChild("examenes");
+            list = preguntas.getChildren();
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlEjerciciosCalificados(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element preguntas = rootNode.getChild("ejercicios");
+            list = preguntas.getChildren();
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlPreguntasCalificadas(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element preguntas = rootNode.getChild("preguntas");
+            list = preguntas.getChildren();
+            return list;
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+            System.out.println("Error con el xml");
+        } catch (JDOMException jdomex) {
+            System.out.println();
+            System.out.println(jdomex.getMessage());
+        } finally {
+            return list;
+        }
+    }
+    
+    public List cargarXmlComentarios(String ruta) {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File(ServletActionContext.getServletContext().getRealPath(ruta));
+        List list = null;
+        try {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            Element preguntas = rootNode.getChild("comentarios");
             list = preguntas.getChildren();
             return list;
         } catch (IOException io) {
@@ -936,6 +1054,66 @@ public class XMLActions {
         root.addContent(examenes);
         root.addContent(ejercicios);
         root.addContent(preguntas);
+        
+        XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+        try {
+            outputter.output(new Document(root), new FileOutputStream(ServletActionContext.getServletContext().getRealPath(ruta)));
+            System.out.println("Archivo xml, guardado");
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return false;
+    }
+    
+    public boolean guardarXmlCalificaciones(ArrayList<EjercicioCalificado> listaEjercicios, ArrayList<PreguntaCalificada> listaPreguntas, ArrayList<Comentario> listaComentarios, String ruta) {
+        Element root = new Element("calificaciones");
+        Element ejercicios = new Element("ejercicios");
+        Element preguntas = new Element("preguntas");
+        Element comentarios = new Element("comentarios");
+        
+        EjercicioCalificado ec;
+        PreguntaCalificada pc;
+        Comentario co;
+        
+        for(int i = 0; i < listaEjercicios.size(); i++){
+            ec = listaEjercicios.get(i);
+            Element ejercicio = new Element("ejercicio");
+            
+            ejercicio.setAttribute("numero",Integer.toString(ec.getNumeroEjercicio()));
+            ejercicio.setAttribute("calificacion", ec.getCalificacion());
+            
+            ejercicios.addContent(ejercicio);
+            
+        }
+        
+        for(int i = 0; i < listaPreguntas.size(); i++){
+            pc = listaPreguntas.get(i);
+            
+            Element pregunta = new Element("pregunta");
+            
+            pregunta.setAttribute("numero", Integer.toString(pc.getNumeroPregunta()));
+            pregunta.setAttribute("calificacion", pc.getCalificacion());
+            
+            preguntas.addContent(pregunta);
+        }
+        
+        for(int i = 0; i < listaComentarios.size(); i++){
+            co = listaComentarios.get(i);
+            
+            Element comentario = new Element("comentario");
+            
+            comentario.setAttribute("numeroExamen", Integer.toString(co.getNumeroExamen()));
+            comentario.setAttribute("numeroEjercicio", Integer.toString(co.getNumeroEjercicio()));
+            comentario.setAttribute("numeroPregunta", Integer.toString(co.getNumeroPregunta()));
+            comentario.setText(co.getComentario());
+            
+            comentarios.addContent(comentario);
+        }
+        
+        root.addContent(ejercicios);
+        root.addContent(preguntas);
+        root.addContent(comentarios);
         
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
         try {
