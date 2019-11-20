@@ -23,7 +23,7 @@
             </center>
         <br>
         
-        <button class="btn btn-block btn-outline-danger btn-info">Cerrar sesion</button>
+        <button class="btn btn-block btn-outline-danger btn-info" onclick='cierraSesion()'>Cerrar sesion</button>
         <br>
         <br>
         <br>
@@ -46,6 +46,12 @@
                 
             </table>
         </div>
+        <script type="text/javascript">
+            function cierraSesion(){
+                console.log("cerrando sesion")
+                window.location.href="http://localhost:8080/ProjectFinalStruts/index.html"
+            }
+        </script>
         <script type="text/javascript" src="js/verEjercicios.js"></script>
         <script type="text/javascript" src="js/verExamenes.js"></script>
         <script type="text/javascript" src="js/verCalificaciones.js"></script>
