@@ -57,6 +57,7 @@ CREATE TABLE  Alumno (
   idUsuario INT NOT NULL AUTO_INCREMENT,
   idGrupo INT NULL,
   RutaXMLRespuestas VARCHAR(45) NULL,
+  RutaXMLCalificaciones VARCHAR(45) NULL,
   PRIMARY KEY (idUsuario),
   INDEX fk_Alumno_Grupo1_idx (idGrupo ASC),
   CONSTRAINT fk_Alumno_Usuario1
