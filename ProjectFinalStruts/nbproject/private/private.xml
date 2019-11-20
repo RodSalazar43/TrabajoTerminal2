@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AgregarEjercicio.java</file>
-            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AgregarExamen.java</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AsignarEjercicioAAlumnos.java</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/web/Profesor/js/muestraContrasena.js</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AsignarExamenAAlumnos.java</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/web/Profesor/gestionGrupo.html</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AsignarContrasenaAGrupo.java</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/struts.xml</file>
+            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/web/Alumno/resulveEjercicio.html</file>
             <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/xml/XMLActions.java</file>
-            <file>file:/C:/Users/punk_/OneDrive/Documentos/GitHub/TrabajoTerminal2/ProjectFinalStruts/src/java/Actions/Profesor/AgregarPregunta.java</file>
         </group>
     </open-files>
 </project-private>
