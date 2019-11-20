@@ -26,11 +26,12 @@ CREATE TABLE `alumno` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `idGrupo` int(11) DEFAULT NULL,
   `RutaXMLRespuestas` varchar(45) DEFAULT NULL,
+  `RutaXMLCalificaciones` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`),
   KEY `fk_Alumno_Grupo1_idx` (`idGrupo`),
   CONSTRAINT `fk_Alumno_Grupo1` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idGrupo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_Alumno_Usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +40,7 @@ CREATE TABLE `alumno` (
 
 LOCK TABLES `alumno` WRITE;
 /*!40000 ALTER TABLE `alumno` DISABLE KEYS */;
-INSERT INTO `alumno` VALUES (4,1,'/xml/respuestas/respuestas4.xml');
+INSERT INTO `alumno` VALUES (4,2,'/xml/respuestas/respuestas4.xml','/xml/calificaciones/calificaciones4.xml'),(7,3,'/xml/respuestas/respuestas7.xml','/xml/calificaciones/calificaciones7.xml');
 /*!40000 ALTER TABLE `alumno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +61,7 @@ CREATE TABLE `grupo` (
   PRIMARY KEY (`idGrupo`),
   KEY `fk_Grupo_Profesor1_idx` (`idProfesor`),
   CONSTRAINT `fk_Grupo_Profesor1` FOREIGN KEY (`idProfesor`) REFERENCES `profesor` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +70,7 @@ CREATE TABLE `grupo` (
 
 LOCK TABLES `grupo` WRITE;
 /*!40000 ALTER TABLE `grupo` DISABLE KEYS */;
-INSERT INTO `grupo` VALUES (1,'4CM1',2019,'Matutino','/xml/asignados/asignados1.xml',3),(2,'',2019,'','',4);
+INSERT INTO `grupo` VALUES (1,'',2019,'','',4),(2,'4CM1',2019,'Matutino','/xml/asignados/asignados2.xml',3),(3,'4CM3',2019,'Matutino','/xml/asignados/asignados3.xml',3),(4,'',2019,'','',7);
 /*!40000 ALTER TABLE `grupo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +88,7 @@ CREATE TABLE `profesor` (
   `RutaXMLExamen` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`),
   CONSTRAINT `fk_Profesor_Usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +97,7 @@ CREATE TABLE `profesor` (
 
 LOCK TABLES `profesor` WRITE;
 /*!40000 ALTER TABLE `profesor` DISABLE KEYS */;
-INSERT INTO `profesor` VALUES (3,'/xml/preguntas/preguntas3.xml','/xml/ejercicios/ejercicios3.xml','/xml/examenes/examenes3.xml'),(4,'/xml/preguntas/preguntas4.xml','/xml/ejercicios/ejercicios4.xml','/xml/examenes/examenes4.xml');
+INSERT INTO `profesor` VALUES (3,'/xml/preguntas/preguntas3.xml','/xml/ejercicios/ejercicios3.xml','/xml/examenes/examenes3.xml'),(4,'/xml/preguntas/preguntas4.xml','/xml/ejercicios/ejercicios4.xml','/xml/examenes/examenes4.xml'),(5,'bandera',' ',' '),(6,'bandera',' ',' '),(7,'/xml/preguntas/preguntas7.xml','/xml/ejercicios/ejercicios7.xml','/xml/examenes/examenes7.xml');
 /*!40000 ALTER TABLE `profesor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +143,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`idUsuario`),
   KEY `fk_Usuario_Tipo1_idx` (`idTipo`),
   CONSTRAINT `fk_Usuario_Tipo1` FOREIGN KEY (`idTipo`) REFERENCES `tipo` (`idTipo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +152,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'German','Añorve','Pons','Ponsger','1234',1),(2,'Rodrigo','Salazar','Vazquez','Rod','cm9kbw==',1),(3,'Rubem','Peredo','Valderrama','Rperdo','cnB2',2),(4,'Fernando','Martino','Garcia','spider','MTIzNA==',3);
+INSERT INTO `usuario` VALUES (1,'prueba','prueba','prueba','prueba','prueba',1),(2,'GERMAN SILVESTRE','Añorve','Pons','ponsger','cG9uc2dlcg==',1),(3,'Ruben','Peredo','Valderrama','Rperedo','cnB2',2),(4,'Enrique','Hernandez','Perez','spider','aG9sYQ==',3),(5,NULL,NULL,NULL,NULL,NULL,NULL),(6,NULL,NULL,NULL,NULL,NULL,NULL),(7,'Pedro','De la Cruz','Garcia','pedro','MTIzNA==',3);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -164,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-18 15:19:36
+-- Dump completed on 2019-11-20  0:41:14

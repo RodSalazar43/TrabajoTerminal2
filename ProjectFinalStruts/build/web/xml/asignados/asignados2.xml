@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asignados>
+  <examenes>
+    <examen numeroExamen="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />
+    <examen numeroExamen="1" grupoCompleto="no" numeroAlumno="4" grupo="2" />
+  </examenes>
+  <ejercicios>
+    <ejercicio numeroEjercicio="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />
+    <ejercicio numeroEjercicio="1" grupoCompleto="no" numeroAlumno="4" grupo="2" />
+    <ejercicio numeroEjercicio="1" grupoCompleto="si" numeroAlumno="0" grupo="2" />
+    <ejercicio numeroEjercicio="3" grupoCompleto="si" numeroAlumno="0" grupo="2" />
+  </ejercicios>
+  <preguntas>
+    <pregunta numeroPregunta="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />
+  </preguntas>
+</asignados>

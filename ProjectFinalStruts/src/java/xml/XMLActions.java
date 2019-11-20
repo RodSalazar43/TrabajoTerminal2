@@ -403,7 +403,7 @@ public class XMLActions {
             
             comentario.setNumeroExamen(Integer.parseInt(comentarios.getAttributeValue("numeroExamen")));
             comentario.setNumeroEjercicio(Integer.parseInt(comentarios.getAttributeValue("numeroEjercicio")));
-            comentario.setNumeroPregunta(Integer.parseInt(comentarios.getAttributeValue("numero")));
+//            comentario.setNumeroPregunta(Integer.parseInt(comentarios.getAttributeValue("numero")));
             comentario.setComentario(comentarios.getText());
             
             datos.add(comentario);

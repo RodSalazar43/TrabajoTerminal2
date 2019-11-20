@@ -1,1 +1,1 @@
-{"idProfesores":{"0":{"id":4,"apMat":"Valderrama","nombre":"Ruben","apPat":"Peredo","username":"Rperedo"},"1":{"id":5,"apMat":"Vera","nombre":"Monserrat","apPat":"Perez","username":"Mperez"}}}
+{"idProfesores":{"0":{"id":3,"apMat":"Valderrama","nombre":"Ruben","apPat":"Peredo","username":"Rperedo"},"1":{"id":4,"apMat":"Perez","nombre":"Enrique","apPat":"Hernandez","username":"spider"},"2":{"id":5,"apMat":null,"nombre":null,"apPat":null,"username":null},"3":{"id":6,"apMat":null,"nombre":null,"apPat":null,"username":null}}}

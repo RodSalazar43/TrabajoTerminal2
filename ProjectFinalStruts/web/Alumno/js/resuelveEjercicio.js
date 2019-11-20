@@ -409,13 +409,13 @@ function XMLEjercicios(){
                 fetch(url).then(response => response.text()).then(data => {
                     alert(data);    
                 });
-                var regresar="<button class='btn btn-lg btn-warning' onlick='redireccionaInicio()'>Regresar al inicio</button>"
+                var regresar="<button class='btn btn-lg btn-warning' onclick='redireccionaInicio()'>Regresar al inicio</button>"
                 document.getElementById("canvas").innerHTML=regresar;
             }
             
-            function redireccionaInicio(numero){
+            function redireccionaInicio(){
                 var id=getParameterByName("id");
                 var idGrupo=getParameterByName("idGrupo");
                 var idProfesor=getParameterByName("idProfesor");
-                window.location.href='Alumno.html?id='+id+'&idProfesor='+idProfesor+'&idGrupo='+idGrupo+'&numero='+numero;
+                window.location.href='Alumno.html?id='+id+'&idProfesor='+idProfesor+'&idGrupo='+idGrupo;
             }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<respuestas>
+  <ejercicios>
+    <ejercicio numero="0">Prueba</ejercicio>
+    <ejercicio numero="1">3,2,4</ejercicio>
+    <ejercicio numero="3">0</ejercicio>
+    <ejercicio numero="3">2</ejercicio>
+  </ejercicios>
+  <preguntas>
+    <pregunta numero="0">Prueba</pregunta>
+  </preguntas>
+</respuestas>

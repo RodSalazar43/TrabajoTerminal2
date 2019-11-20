@@ -18,8 +18,15 @@
                     <button class='btn btn-danger btn-block' onclick='redireccionaGestionGrupo()'>Regresar a gestionar grupo</button>
                 </div>
                 <div class="col">
-                    <button class="btn btn-success btn-block" onclick='cargaCalificaciones()'>Ver resultados del alumno</button>
+                    <button class="btn btn-success btn-block" onclick='cargaAlumnosProfesorCalificacion()'>Ver resultados del alumno</button>
                 </div>
+            </div>
+            <br><br>
+            <div class='row' id='button'>
+                
+            </div>
+            <div class='row' id='tabla'>
+                
             </div>
         </div>
     </center>
@@ -28,27 +35,98 @@
                 var id=getParameterByName("id");
                 window.location.href='gestionGrupo.html?id='+id;
              } 
-             
-             function cargaCalificaciones(){
-                 alert("hola")
-             }
-             
-             function cargarPregunta() {
-                  var id=getParameterByName("idAlumno");
-                  var xhr = new XMLHttpRequest();
-                  xhr.onreadystatechange = function () {
-                  cargarXML(this);
-            };
-             xhr.open("GET", "../xml/respuestas/respuestas"+id+".xml", true);
-             xhr.send();
-            }
+                        
+            
+              function getParameterByName(name) {
+                 name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+              }
     
-            function cargarXML(xml) {
+            function cargaAlumnosProfesorCalificacion(){
+                var numero=getParameterByName("numero")
+               var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    cargaResultados(this);
+                 };
+                xhr.open("GET", "../xml/respuestas/respuestas"+numero+".xml", true);
+                xhr.send();
+            }
+            function cargaResultados(xml) {
                 var docXML = xml.responseXML;
                 console.log(docXML)
-                var respuestas = docXML.getElementsByTagName("respuesta");
+                var ejercicio = docXML.getElementsByTagName("ejercicio");
+                var pregunta = docXML.getElementsByTagName("pregunta")
+                console.log(ejercicio)
+                console.log(pregunta)
+                var ejercicioTabla=""
+                ejercicioTabla+="<table class='table table-striped table-dark'>"
+                ejercicioTabla+="<thead>"
+                ejercicioTabla+="<tr>"
+                  ejercicioTabla+="<th scope='col'>#</th>"
+                  ejercicioTabla+="<th scope='col'>Ejercicio/Pregunta</th>"
+                  ejercicioTabla+="<th scope='col'>Respuesta del alumno</th>"
+                  ejercicioTabla+="<th scope='col'>Asigna una calificacion</th>"
+                  ejercicioTabla+="<th scope='col'>Ingresa un comentario al alumno</th>"
+                ejercicioTabla+="</tr>"
+              ejercicioTabla+="</thead>"
+              ejercicioTabla+="<tbody>"
+              for(var i=0;i<ejercicio.length;i++){
+                  if(ejercicio[i].attributes[0].value==0){
+                      continue;
+                  }
+                    ejercicioTabla+="<tr>"
+                    ejercicioTabla+="<th scope='row'>"+ejercicio[i].attributes[0].value+"</th>"
+                    ejercicioTabla+="<td>Ejercicio</td>"
+                    ejercicioTabla+="<td>"+ejercicio[i].textContent+"</td>"
+                    ejercicioTabla+="<td><input type='text' id='"+ejercicio[i].getAttribute("numero")+"' value='' name='calificacion' /></td>"
+                    ejercicioTabla+="<td><input type='text' value='' name='comentario' /></td>"
+                    ejercicioTabla+="</tr>"
+              }
+              
+              for(var x=0;x<pregunta.length;x++){
+                  if(pregunta[x].attributes[0].value==0){
+                      continue;
+                  }
+                    ejercicioTabla+="<tr>"
+                    ejercicioTabla+="<th scope='row'>"+pregunta[x].getAttribute("numero")+"</th>"
+                    ejercicioTabla+="<td>Pregunta</td>"
+                    ejercicioTabla+="<td>"+pregunta[x].textContent+"</td>"
+                    ejercicioTabla+="<td><input type='text' value='' id='"+pregunta[x].getAttribute("numero")+"' name='calificacion' /></td>"
+                    ejercicioTabla+="<td><input type='text' value='' name='comentario'></td>"
+                    ejercicioTabla+="</tr>"
+              }
+              
+                
+              ejercicioTabla+="</tbody>"
+            ejercicioTabla+="</table>"
+                ejercicioTabla+="<br><br>"
+                ejercicioTabla+="<button class='btn btn-block btn-info' onclick='guardarCalificacion()'>Guardar calificacion</button>"
+                ejercicioTabla+="<center><p class='badge badge-pill badge-primary h4'>Recuerda que solo es una calificacion a la vez</p></center>"
+                document.getElementById("tabla").innerHTML=ejercicioTabla;
                 
             }
+            
+            function guardarCalificacion(){
+                var calificacion=document.getElementsByName("calificacion")
+                var comentario=document.getElementsByName("comentario")
+                console.log(calificacion[0].value)
+                console.log(comentario[0].value)
+                
+                var id=getParameterByName("id");
+                var numero=getParameterByName("numero")
+          
+           let url = 'http://localhost:8080/ProjectFinalStruts/AgregarCalificacionEjercicio?idAlumno='+numero+'&numeroEjercicio='+numero+'&calificacion='+calificacion[0].id;
+                //alert('URL:' + url);
+                fetch(url).then(response => response.text()).then(data => {
+                    alert(data);    
+                });
+          
+                
+            }
+            
+            
         </script>
         <script type="text/javascript" src="js_react/profesor.js"></script>
     </body>

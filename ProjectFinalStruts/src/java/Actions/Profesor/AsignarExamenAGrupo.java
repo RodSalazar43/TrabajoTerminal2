@@ -66,7 +66,7 @@ public class AsignarExamenAGrupo {
         
         for(int i = 0; i < numeros.length; i++){
             ExamenesAsignados ea = new ExamenesAsignados();
-            
+            System.out.println("numeros "+ numeros[i]);    
             ea.setNumeroExamen(Integer.parseInt(numeros[i]));
             ea.setGrupoCompleto("si");
             ea.setIdGrupo(this.idGrupo);

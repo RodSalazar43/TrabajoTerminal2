@@ -131,16 +131,14 @@
         }
         muestraAlumno+="</tbody>"
         muestraAlumno+="</table>"
-        muestraAlumno+="<center class='row'>"
-        muestraAlumno+="<button class='btn btn-light btn-outline-secondary btn-block' onclick='asginarForAlumno()'>Asignar a alumno(s)</button>"
-        muestraAlumno+="</center>"
          document.getElementById("muestraAlumno").innerHTML=muestraAlumno;
-    
     }
+    
+    
     
     function redireccionaCalificacion(numero){
         var id=getParameterByName("id");
-        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/agregaExamen.html?id='+id
+        window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/verResultados.html?id='+id+'&numero='+numero;
     }  
     
     function muestraBotones(){  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -350,7 +348,7 @@
             //alert('URL:' + url);
             fetch(url).then(response => response.text()).then(data => {
                 alert(data);
-                //location.reload()
+                location.reload()
             });
         }else if(clickExamen!=0){
             console.log("invocando examen")
@@ -359,6 +357,7 @@
             //alert('URL:' + url);
             fetch(url2).then(response => response.text()).then(data => {
                 alert(data);
+                location.reload()
             });
         
         }
