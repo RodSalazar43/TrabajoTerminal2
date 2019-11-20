@@ -32,7 +32,7 @@
               <button class="btn btn-primary btn-outline-light" onclick="asignaEjercicio()">Asignar ejercicio a un grupo</button>
           </div>
           <div class="col-4">
-              <button class="btn btn-warning btn-outline-success text-dark" onclick="muestraEjerciciosExamenes()">Asigna a un alumnos</button>
+              <button class="btn btn-warning btn-outline-success text-dark" onclick="muestraBotones()">Asigna a un alumnos</button>
           </div>
       </div>
       <div class="row bg-dark">
@@ -47,6 +47,10 @@
 </center>
 <hr>
 <center>
+    <br><br>
+    <div class="container-fluid" id="botones">
+        
+    </div>
     <br><br>
     <div class='container'>
         <table id='muestraEjercicio' class="table">
@@ -139,17 +143,26 @@
         window.location.href='http://localhost:8080/ProjectFinalStruts/Profesor/agregaExamen.html?id='+id
     }  
     
+    function muestraBotones(){  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        var botones="";
+        botones+="<button class='btn btn-light btn-outline-warning text-dark' onclick='muestraExamenes2Alumno()'>Asignar examenes a alumno</button>"
+        botones+="<button class='btn btn-light btn-outline-warning text-dark' onclick='muestraEjerciciosAlumnos()'>Asignar ejercicios a alumno</button>"
+        document.getElementById("botones").innerHTML=botones;
+    }
+        
     
-    function muestraEjerciciosExamenes(){
+    function muestraExamenes2Alumno(){
       var id=getParameterByName("id");
       var xhr=new XMLHttpRequest();
       xhr.onreadystatechange=function(){
         cargarXMLExamenAlumno(this);
       };
       xhr.open("GET","../xml/examenes/examenes"+id+".xml",true);
-      xhr.send();
-        
+      xhr.send(); 
     }
+    
+    var clickExamen=0;
+    var clickEjercicio=0
     
     function cargarXMLExamenAlumno(xml){
       var docXML=xml.responseXML;
@@ -168,8 +181,9 @@
       }
       tabla+="<br><br>"
       tabla+="<button class='btn btn-warning' onclick='asginar2Alumno()'>Mostrar alumnos</button>"
+      clickExamen++;
+      clickEjercicio=0;
       document.getElementById("muestraExamen").innerHTML=tabla;
-      muestraEjerciciosAlumnos();
     }
     
     function muestraEjerciciosAlumnos() {
@@ -206,7 +220,10 @@
         tabla += "</tr>"
       }
       tabla+="<br><br>"
-      document.getElementById("muestraEjercicio").innerHTML = tabla;
+      clickExamen=0;
+      clickEjercicio++;
+      tabla+="<button class='btn btn-warning' onclick='asginar2Alumno()'>Mostrar alumnos</button>"
+      document.getElementById("muestraExamen").innerHTML = tabla;
       
     }
     
@@ -237,7 +254,7 @@
         //console.log(archivojson)
         var idAlumno=archivojson.idAlumno;        
         console.log(idAlumno[4])
-        var muestraAlumno=""     
+        var muestraAlumno=""
         muestraAlumno+="<table class='container table table-hover table-dark'>"
         muestraAlumno+="<thead class='bg-warning'>"
         muestraAlumno+="<tr>"
@@ -257,7 +274,7 @@
                 break;
             }
             muestraAlumno+="<tr>"
-            muestraAlumno+="<th scope='row'><input type='checkbox' id='"+idAlumno[i].idGrupo+"' name='alumno' value='"+idAlumno[i].id+"'></th>" //este es el id es del alumno 
+            muestraAlumno+="<th scope='row'><input type='radio' id='"+idAlumno[i].idGrupo+"' name='alumno' value='"+idAlumno[i].id+"'></th>" //este es el id es del alumno 
             muestraAlumno+="<td>"+idAlumno[i].nombre+"</td>"
             muestraAlumno+="<td>"+idAlumno[i].apPaterno+"</td>"
             muestraAlumno+="<td>"+idAlumno[i].apMaterno+"</td>"
@@ -284,6 +301,7 @@
         var ejerciciosSeleccionados=""
         var examenesSeleccionados=""
         var ayuda=0;
+        //console.log(alumnos[0].id)
         for(var i=0;i<alumnos.length;i++){
             if(alumnos[i].checked===true){
                 if(ayuda===0){
@@ -320,31 +338,33 @@
                 }
             }
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        console.log(gruposSeleccionados)
+        console.log(alumnosSeleccionados)
+        console.log(ejerciciosSeleccionados)
+        console.log(examenesSeleccionados)
+        if(clickEjercicio!=0){
+            console.log("invocando ejercicio")
+            var id=getParameterByName("id")
+            let url = 'http://localhost:8080/ProjectFinalStruts/AsignarEjercicioAAlumnos?idGrupo='+gruposSeleccionados+'&numerosAlumnos='+alumnosSeleccionados+'&numerosEjercicios='+ejerciciosSeleccionados;
+            //alert('URL:' + url);
+            fetch(url).then(response => response.text()).then(data => {
+                alert(data);
+                //location.reload()
+            });
+        }else if(clickExamen!=0){
+            console.log("invocando examen")
+            var id=getParameterByName("id")
+            let url2 = 'http://localhost:8080/ProjectFinalStruts/AsignarExamenAAlumnos?idGrupo='+gruposSeleccionados+'&numerosAlumnos='+alumnosSeleccionados+'&numerosExamenes='+examenesSeleccionados;
+            //alert('URL:' + url);
+            fetch(url2).then(response => response.text()).then(data => {
+                alert(data);
+            });
         
-        var id=getParameterByName("id")
-        let url = 'http://localhost:8080/ProjectFinalStruts/AsignarEjercicioAAlumnos?idGrupo='+gruposSeleccionados+'&numerosAlumnos='+alumnosSeleccionados+'&numerosEjercicios='+ejerciciosSeleccionados;
-        //alert('URL:' + url);
-        fetch(url).then(response => response.text()).then(data => {
-            alert(data);
-        });
-       
-       agregaExamen2Alumno(gruposSeleccionados,alumnosSeleccionados,examenesSeleccionados);
+        }
         
     }
     
-    function agregaExamen2Alumno(gruposSeleccionados,alumnosSeleccionados,examenesSeleccionados){
-        
-        var id=getParameterByName("id")
-        let url2 = 'http://localhost:8080/ProjectFinalStruts/AsignarExamenAAlumnos?idGrupo='+gruposSeleccionados+'&numerosAlumnos='+alumnosSeleccionados+'&numerosExamenes='+examenesSeleccionados;
-        //alert('URL:' + url);
-        fetch(url2).then(response => response.text()).then(data => {
-            alert(data);
-        });
-        
-        
-        
-        
-    }
     
     function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

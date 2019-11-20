@@ -71,14 +71,14 @@
         
         <action name="AsignarContrasenaAGrupo" class="Actions.Profesor.AsignarContrasenaAGrupo">             <!-- AsignarContrasenaAGrupo -->
             <result name="success" type="redirect">
-                <param name="location">Profesor/Profesor.html?correcto=done</param>
+                <param name="location">Profesor/respuestas/cambiaContrasena2Grupo.jsp?correcto=done</param>
             </result>
         </action>
         
         <action name="Logout" class="Actions.Login" method="Logout">    <!-- Logout -->
             <result name="logout" type="redirect">
                 <param name="location">cerrarSesion.jsp?correcto=done</param>
-            </result>         
+            </result>
         </action>
         
         <action name="BuscarUnGrupo" class="Consultas.BuscarUnGrupo">    <!-- Buscar un grupo -->
