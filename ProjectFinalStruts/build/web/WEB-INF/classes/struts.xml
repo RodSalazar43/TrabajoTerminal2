@@ -164,10 +164,10 @@
         
         <action name="RegistrarRespuestaPregunta" class="Actions.Alumno.RegistrarRespuestaPregunta">  <!-- Registrar respuesta pregunta -->
             <result name="success" type="redirect">
-                <param name="location">Alumno/Alumno.html?correcto=true</param>
+                <param name="location">Alumno/respuestas/guardado.jsp?correcto=true</param>
             </result>
             <result name="error">
-                <param name="location">Alumno/Alumno.html?correcto=false</param>
+                <param name="location">Alumno/respuestas/error.jsp?correcto=false</param>
             </result>
         </action>
         

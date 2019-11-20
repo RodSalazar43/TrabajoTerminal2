@@ -264,6 +264,14 @@
               }
               
           }
+          var id=getParameterByName("id");
+          var numero=getParameterByName("numero")
+          
+           let url = 'http://localhost:8080/ProjectFinalStruts/RegistrarRespuestaEjercicio?idAlumno='+id+'&numeroEjercicio='+numero+'&respuesta='+respuestasObtenidas;
+                //alert('URL:' + url);
+                fetch(url).then(response => response.text()).then(data => {
+                    alert(data);    
+                });
           
           ////////////////Guardar respuestasd DAD-----------------------------------------------------------------------------------------------------------------------------------------------
           
@@ -555,6 +563,18 @@
                 //**********************************************************************************************************************************************
                 //guarda respuestas Linea
                 
+                var id=getParameterByName("id");
+                var numero=getParameterByName("numero")
+          
+           let url = 'http://localhost:8080/ProjectFinalStruts/RegistrarRespuestaEjercicio?idAlumno='+id+'&numeroEjercicio='+numero+'&respuesta='+correctas;
+                //alert('URL:' + url);
+                fetch(url).then(response => response.text()).then(data => {
+                    alert(data);    
+                });
+          
+                
+                
+                
                 numeritoExamen++;
                 siguienteEjercicio()
                 
@@ -662,16 +682,38 @@
                 var respuesta=document.getElementsByName("true");
                 console.log("Esta es la respuesta")
                 console.log(respuesta)
+                var id=getParameterByName("id");
+                var numero=getParameterByName("numero")
                 if(respuesta.length===1){
                     var valor=respuesta[0].value;
                     console.log(valor)
                     //*************************************************************************************************guarda respuesta pregunta operacion
+                    
+                    let url = 'http://localhost:8080/ProjectFinalStruts/RegistrarRespuestaEjercicio?idAlumno='+id+'&numeroEjercicio='+numPregunta+'&respuesta='+valor;
+                    //alert('URL:' + url);
+                    fetch(url).then(response => response.text()).then(data => {
+                        alert(data);    
+                    });
+          
                 }else{
+                    var contestacion=""
                     var verdadero=respuesta[0]
                     var falso=respuesta[1]
                     if(verdadero.checked===true){
+                        contestacion="verdadero"
+                        let url = 'http://localhost:8080/ProjectFinalStruts/RegistrarRespuestaEjercicio?idAlumno='+id+'&numeroEjercicio='+numPregunta+'&respuesta='+contestacion;
+                    //alert('URL:' + url);
+                        fetch(url).then(response => response.text()).then(data => {
+                            alert(data);    
+                        });
                         //******************************************************************guarda respuesta verdadero
                     }else{
+                        contestacion="falso"
+                        let url = 'http://localhost:8080/ProjectFinalStruts/RegistrarRespuestaEjercicio?idAlumno='+id+'&numeroEjercicio='+numPregunta+'&respuesta='+contestacion;
+                        //alert('URL:' + url);
+                        fetch(url).then(response => response.text()).then(data => {
+                            alert(data);    
+                        });
                         //*****************************************************************guarda respuesta falso
                     }
                 }

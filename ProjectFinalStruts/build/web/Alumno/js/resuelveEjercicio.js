@@ -206,10 +206,6 @@ function XMLEjercicios(){
                 var regresar="<button class='btn btn-lg btn-warning' onlick='redireccionaInicio()'>Regresar al inicio</button>"
                 document.getElementById("canvas").innerHTML=regresar;
           
-          
-          
-          
-          
       }
       
       
