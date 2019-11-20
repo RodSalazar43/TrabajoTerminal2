@@ -1,5 +1,5 @@
 package entitys;
-// Generated 11/11/2019 08:09:09 PM by Hibernate Tools 4.3.1
+// Generated 19/11/2019 08:06:34 PM by Hibernate Tools 4.3.1
 
 
 
@@ -13,6 +13,7 @@ public class Alumno  implements java.io.Serializable {
      private Grupo grupo;
      private Usuario usuario;
      private String rutaXmlrespuestas;
+     private String rutaXmlcalificaciones;
 
     public Alumno() {
     }
@@ -21,15 +22,17 @@ public class Alumno  implements java.io.Serializable {
     public Alumno(Usuario usuario) {
         this.usuario = usuario;
     }
-    public Alumno(Grupo grupo, Usuario usuario, String rutaXmlrespuestas) {
+    public Alumno(Grupo grupo, Usuario usuario, String rutaXmlrespuestas, String rutaXmlcalificaciones) {
        this.grupo = grupo;
        this.usuario = usuario;
        this.rutaXmlrespuestas = rutaXmlrespuestas;
+       this.rutaXmlcalificaciones = rutaXmlcalificaciones;
     }
-    
-    public Alumno(Grupo grupo, String rutaXmlrespuestas) {
-       this.grupo = grupo;
-       this.rutaXmlrespuestas = rutaXmlrespuestas;
+
+    public Alumno(Grupo grupo, String rutaXmlrespuestas, String rutaXmlcalificaciones) {
+        this.grupo = grupo;
+        this.rutaXmlrespuestas = rutaXmlrespuestas;
+        this.rutaXmlcalificaciones = rutaXmlcalificaciones;
     }
    
     public Integer getIdUsuario() {
@@ -59,6 +62,13 @@ public class Alumno  implements java.io.Serializable {
     
     public void setRutaXmlrespuestas(String rutaXmlrespuestas) {
         this.rutaXmlrespuestas = rutaXmlrespuestas;
+    }
+    public String getRutaXmlcalificaciones() {
+        return this.rutaXmlcalificaciones;
+    }
+    
+    public void setRutaXmlcalificaciones(String rutaXmlcalificaciones) {
+        this.rutaXmlcalificaciones = rutaXmlcalificaciones;
     }
 
 

@@ -103,7 +103,7 @@ public class AgregarUsuario implements Serializable {
         Profesor profe = new Profesor("/xml/preguntas/preguntas" + idLast + ".xml", "/xml/ejercicios/ejercicios" + idLast + ".xml", "/xml/examenes/examenes" + idLast + ".xml", grupos);
         grupo.setProfesor(profe);
         
-        Alumno alum = new Alumno(grupo, "/xml/respuestas/respuestas" + idLast + ".xml");
+        Alumno alum = new Alumno(grupo, "/xml/respuestas/respuestas" + idLast + ".xml", "/xml/calificaciones/calificaciones" + idLast + ".xml");
         
         Tipo tu = (Tipo)hibernateSession.load(Tipo.class, this.tipousuario);
         Usuario user = new Usuario(tu, this.nombres, this.apellidoPat, this.apellidoMat, this.nombreUsuario, c.encriptar(this.contrasena));
@@ -142,6 +142,12 @@ public class AgregarUsuario implements Serializable {
         
         if(this.tipousuario == 3){ //Alumno
             if(xml.crearXMLRespuestas(idLast)){
+                System.out.println("XML Ejercicio creado");
+            }
+            else{
+                System.out.println("No lo cree jeje");
+            }
+            if(xml.crearXMLCalificaciones(idLast)){
                 System.out.println("XML Ejercicio creado");
             }
             else{

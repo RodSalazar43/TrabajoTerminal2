@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 11/11/2019 08:09:10 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 19/11/2019 08:06:35 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entitys.Alumno" table="alumno" catalog="trabajoterminal" optimistic-lock="version">
         <id name="idUsuario" type="java.lang.Integer">
@@ -16,6 +16,9 @@
         <one-to-one name="usuario" class="entitys.Usuario" constrained="true"></one-to-one>
         <property name="rutaXmlrespuestas" type="string">
             <column name="RutaXMLRespuestas" length="45" />
+        </property>
+        <property name="rutaXmlcalificaciones" type="string">
+            <column name="RutaXMLCalificaciones" length="45" />
         </property>
     </class>
 </hibernate-mapping>
