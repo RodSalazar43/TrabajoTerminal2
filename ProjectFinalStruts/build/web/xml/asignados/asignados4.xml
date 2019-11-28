@@ -5,6 +5,7 @@
   </examenes>
   <ejercicios>
     <ejercicio numeroEjercicio="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />
+    <ejercicio numeroEjercicio="1" grupoCompleto="si" numeroAlumno="0" grupo="4" />
   </ejercicios>
   <preguntas>
     <pregunta numeroPregunta="0" grupoCompleto="no" numeroAlumno="0" grupo="0" />

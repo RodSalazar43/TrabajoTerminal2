@@ -1,1 +1,18 @@
-{"idAlumno":{"0":{"ano":2019,"apMaterno":"Perez","grupo":"4CM1","id":4,"turno":"Matutino","nombre":"Enrique","apPaterno":"Hernandez","idGrupo":2},"1":{"ano":2019,"apMaterno":"Garcia","grupo":"4CM3","id":7,"turno":"Matutino","nombre":"Pedro","apPaterno":"De la Cruz","idGrupo":3}}}
+{
+	"idAlumno":{
+		"0":{
+			"nombre":"Rodrigo",
+			"Ap_Paterno":"Salazar",
+			"Ap_Materno":"Vazquez",
+			"Grupo":"3cm3",
+			"Ano":"2019",
+			"Turno":"Matutino"},
+		"1":{
+			"nombre":"German",
+			"Ap_Paterno":"Anorve",
+			"Ap_Materno":"Pons",
+			"Grupo":"3cm3",
+			"Ano":"2019",
+			"Turno":"Matutino"}
+	}
+}

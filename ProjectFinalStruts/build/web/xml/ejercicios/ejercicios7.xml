@@ -1,41 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ejercicios xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/gerpo/OneDrive/Escritorio/xml/esquemaEjercicio.xsd">
-<ejercicio numero="1" tipo="DAD" nombre="Ordena los números decimales">
-    <indicaciones>Ordena los numeros de mayor a menor de arriba hacia abajo</indicaciones>
-    <opcion1>0.69</opcion1>
-    <opcion2>0.65</opcion2>
-    <opcion3>0.32</opcion3>
-    <opcion4>0.66</opcion4>
-    <opcion5></opcion5>
-    <opcion6></opcion6>
-    <opcion7></opcion7>
-    <opcion8></opcion8>
-    <resultado>1,4,2,3</resultado>
+<ejercicios>
+  <ejercicio numero="0" nombre="prueba" tipo="prueba">
+    <indicaciones>Vas a ignorar este ejercicio jeje</indicaciones>
+    <opcion1>veamos si funciona</opcion1>
+    <opcion2>veamos si funciona</opcion2>
+    <opcion3>veamos si funciona</opcion3>
+    <opcion4>veamos si funciona</opcion4>
+    <opcion5>veamos si funciona</opcion5>
+    <opcion6>veamos si funciona</opcion6>
+    <opcion7>veamos si funciona</opcion7>
+    <opcion8>veamos si funciona</opcion8>
+    <resultado>Este es el resultado</resultado>
   </ejercicio>
-  
-  <ejercicio numero="2" tipo="DAD" nombre="Ordena números enteros con decimales">
-    <indicaciones>Pinta de cualquier color el numero mas grande</indicaciones>
-    <opcion1>2.54</opcion1>
-    <opcion2>3.45</opcion2>
-    <opcion3>5.32</opcion3>
-    <opcion4>1.01</opcion4>
-    <opcion5></opcion5>
-    <opcion6></opcion6>
-    <opcion7></opcion7>
-    <opcion8></opcion8>
-    <resultado>3,2,1,4</resultado>
+  <ejercicio numero="1" nombre="Ejercicio 5: Numeros decimales" tipo="DAD">
+    <indicaciones>Ordene de mayor a menor</indicaciones>
+    <opcion1>6.3</opcion1>
+    <opcion2>3.1</opcion2>
+    <opcion3>5.2</opcion3>
+    <opcion4>8.1</opcion4>
+    <opcion5>default</opcion5>
+    <opcion6>default</opcion6>
+    <opcion7>default</opcion7>
+    <opcion8>default</opcion8>
+    <resultado>4,1,3,2</resultado>
   </ejercicio>
-  
-  <ejercicio numero="3" tipo="Linea" nombre="Une los numeros que son similares">
-    <indicaciones>Une los númneros con la que corresponda</indicaciones>
-    <opcion1>3.1*100</opcion1>
-    <opcion2>2.91*10</opcion2>
-    <opcion3>0.05*100</opcion3>
-    <opcion4>0.1*10</opcion4>
-    <opcion5>310</opcion5>
-    <opcion6>29.1</opcion6>
-    <opcion7>5</opcion7>
-    <opcion8>1</opcion8>
-    <resultado>4,2,3,1</resultado>
-  </ejercicio>
-  </ejercicios>
+</ejercicios>
